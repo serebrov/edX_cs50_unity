@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 
 		// despawn coin if it goes past the left edge of the screen
 		if (transform.position.x < -25) {
