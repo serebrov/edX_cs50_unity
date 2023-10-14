@@ -274,4 +274,38 @@ Specification:
 * Add Gems to the game that spawn in much the same way as Coins, though more rarely so. Gems should be worth 5 coins when collected and despawn when off the left edge of the screen. We have all of the pieces for this already implemented in the Coin and CoinSpawner classes, so it should suffice simply to make some new classes for the Gem and GemSpawner behaviors! In the Proto resource pack included in the Assets folder, you’ll find a model for a gem you can use, but feel free to import your own! You’ll need to make a prefab, recall, that you can attach to the GemSpawner component, should you choose to implement it similarly to what’s in the distro. There are of course other ways to implement this behavior, so feel free to experiment with the software as a chance to learn it all the more thoroughly if curious (but if you do decide to place it somewhere more unorthodox, make extremely sure when you commit your code that the staff is able to find it relatively quickly)! Do remember to make Gems worth 5 coins instead of just 1, and ensure they’re more rare than Coins as well! Aside from that, they should behave identically to Coins, including moving automatically from right to left and despawning when past the left edge of the screen!
 * Fix the bug whereby the scroll speed of planes, coins, and buildings doesn’t reset when the game is restarted via the space bar. This one’s a one-liner; note that static variables aren’t actually reset upon loading a scene, so a place to check would be the SkyscraperSpawner, as the speed field therein is what actually drives the speed for Skyscrapers, Airplanes, and Coins! However, we won’t find that this is the place where the game is reset upon pressing the space bar, and thus changing speed here doesn’t make much sense; any guesses as to where the code for resetting the game could be located?
 
+## Submission
 
+Key points for the demo (not specified):
+
+* Pick up the diamond
+* Speed reset
+
+Submission:
+
+```sh
+# git clone ssh://github.com/me50/serebrov.git
+cd serebrov
+git checkout main
+gco -b games50/projects/2018/x/helicopter
+cp -r ../unity_cs50/helicopter_8/* .
+git add .
+git commit -m "Helicopter submission"
+
+git push origin HEAD
+```
+
+Github link: https://github.com/me50/serebrov/blob/games50/projects/2018/x/helicopter/Assets/Resources/Scripts
+Youtube demo: https://youtu.be/ab5FABcP5JY
+
+Notes:
+I did not add a separate DiamondSpawner as it would be almost 
+identical to the CoinSpawner. Instead I added more public fields to
+CoinSpawner and configured it in Unity editor to make the difference:
+diamonds are spawned not as often as coins and in a slightly different
+horizontal position (also the Prefab for DimondSpawner is Diamond instead
+of Coin).
+The Diamond is implemented as Coin subclass so it reuses the `Update`
+logic. Actually, Coin could also be made more configurable and reused
+as a diamond (I could add a "value" field and make it 1 for coin and
+5 for diamond).
