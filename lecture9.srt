@@ -1,0 +1,10564 @@
+1
+00:00:00,000 --> 00:00:16,850
+
+
+2
+00:00:16,850 --> 00:00:17,850
+COLTON OGDEN: All right.
+
+3
+00:00:17,850 --> 00:00:20,580
+Welcome to Lecture 9 of GD50.
+
+4
+00:00:20,580 --> 00:00:23,970
+Today's topic is Dreadhalls.
+
+5
+00:00:23,970 --> 00:00:29,400
+So last week we ventured into Unity, our
+first foray into 3D, and not only 3D,
+
+6
+00:00:29,400 --> 00:00:32,460
+but also just getting
+our heads and hands
+
+7
+00:00:32,460 --> 00:00:36,690
+around the Unity game engine,
+which is among Unreal and others
+
+8
+00:00:36,690 --> 00:00:42,450
+sort of the most popular game
+engines in use for 2D and 3d games.
+
+9
+00:00:42,450 --> 00:00:46,740
+And last week we did sort of a
+2.5D style helicopter game whereby
+
+10
+00:00:46,740 --> 00:00:51,910
+everything was in 3D, but we were still
+aligning things based on just two axes,
+
+11
+00:00:51,910 --> 00:00:55,060
+the x and the y, I believe,
+possibly the z and the y.
+
+12
+00:00:55,060 --> 00:00:57,660
+I don't remember, but two
+axes versus three axes.
+
+13
+00:00:57,660 --> 00:01:02,310
+Today we'll actually be diving into
+using all three axes available to us
+
+14
+00:01:02,310 --> 00:01:05,160
+in Unity 3D in the context
+of a game called Dreadhalls.
+
+15
+00:01:05,160 --> 00:01:08,895
+And so what Dreadhalls is--
+
+16
+00:01:08,895 --> 00:01:11,190
+it was a VR game,
+actually the first VR game
+
+17
+00:01:11,190 --> 00:01:16,230
+that I ever played on the Oculus,
+the gear VR, Samsung Gear VR.
+
+18
+00:01:16,230 --> 00:01:20,107
+And it pits you in sort of
+this dark and eerie 3D maze
+
+19
+00:01:20,107 --> 00:01:21,940
+where you don't really
+know what's going on.
+
+20
+00:01:21,940 --> 00:01:23,861
+And you can go around
+and get collectibles
+
+21
+00:01:23,861 --> 00:01:25,860
+and encounter creatures
+and stuff as you can see
+
+22
+00:01:25,860 --> 00:01:28,130
+in the bottom right screen shot there.
+
+23
+00:01:28,130 --> 00:01:30,130
+Today's example is going
+to be a little simpler.
+
+24
+00:01:30,130 --> 00:01:33,450
+But it allows us to explore things
+like procedural maze generation
+
+25
+00:01:33,450 --> 00:01:36,120
+and first person camera control.
+
+26
+00:01:36,120 --> 00:01:40,140
+So last week recall we were using
+sort of a third person camera
+
+27
+00:01:40,140 --> 00:01:42,750
+whereby we were sort of
+far back on the scene.
+
+28
+00:01:42,750 --> 00:01:45,030
+Today we'll actually be
+using a first person camera
+
+29
+00:01:45,030 --> 00:01:47,800
+where the camera is effectively
+our eyes as if we were
+
+30
+00:01:47,800 --> 00:01:51,270
+walking around in the maze ourselves.
+
+31
+00:01:51,270 --> 00:01:54,610
+Unfortunately, we won't be using
+a VR demonstration this week,
+
+32
+00:01:54,610 --> 00:01:58,110
+but next week I hope to put
+together sort of a VR sampling
+
+33
+00:01:58,110 --> 00:02:00,510
+using this project so we
+can see how this works in VR
+
+34
+00:02:00,510 --> 00:02:02,812
+and how Unity's toolkit works in VR.
+
+35
+00:02:02,812 --> 00:02:04,770
+So some of the topics
+we'll be covering today--
+
+36
+00:02:04,770 --> 00:02:06,180
+we'll be talking about texturing.
+
+37
+00:02:06,180 --> 00:02:10,259
+So recall last week the helicopter
+and all of the items in our game
+
+38
+00:02:10,259 --> 00:02:11,966
+were just sort of flat colors.
+
+39
+00:02:11,966 --> 00:02:14,340
+They didn't really have any
+texture associated with them.
+
+40
+00:02:14,340 --> 00:02:17,010
+We'll talk about how to
+assign textures to materials
+
+41
+00:02:17,010 --> 00:02:19,780
+and how to apply those materials
+to objects in our scene.
+
+42
+00:02:19,780 --> 00:02:23,490
+We'll talk about materials and
+lighting, so not only materials but also
+
+43
+00:02:23,490 --> 00:02:28,710
+the different kinds of lights that Unity
+supports and a few details about those.
+
+44
+00:02:28,710 --> 00:02:30,880
+We'll talk about, again,
+3D maze generation,
+
+45
+00:02:30,880 --> 00:02:37,046
+so we'll have a simple but effective
+algorithm for creating a 3D data
+
+46
+00:02:37,046 --> 00:02:39,420
+structure to represent our
+level as opposed to previously
+
+47
+00:02:39,420 --> 00:02:42,870
+where we had just a
+tile map that we could
+
+48
+00:02:42,870 --> 00:02:45,150
+generate to give us the
+appearance of walking around
+
+49
+00:02:45,150 --> 00:02:46,740
+in some sort of 2D world.
+
+50
+00:02:46,740 --> 00:02:50,880
+Now we'll actually perform a similar
+operation on Data, a 2D array.
+
+51
+00:02:50,880 --> 00:02:53,850
+But we'll take that array and
+we'll actually create 3D blocks
+
+52
+00:02:53,850 --> 00:02:57,000
+and create a maze that we can
+walk through in 3D space, which
+
+53
+00:02:57,000 --> 00:02:59,400
+is kind of fun and interesting.
+
+54
+00:02:59,400 --> 00:03:03,300
+Last week we only had one scene in
+our game, which was just a play scene.
+
+55
+00:03:03,300 --> 00:03:06,600
+And even though we had like a
+game over state within that scene,
+
+56
+00:03:06,600 --> 00:03:08,100
+we didn't transition between scenes.
+
+57
+00:03:08,100 --> 00:03:10,080
+We just sort of reloaded the same scene.
+
+58
+00:03:10,080 --> 00:03:16,180
+Today we'll have a title
+screen and a play scene, which
+
+59
+00:03:16,180 --> 00:03:19,080
+is an evolution of the
+idea that we had in LOVE 2D
+
+60
+00:03:19,080 --> 00:03:22,609
+where we had a state machine that was
+governing our entire game in terms
+
+61
+00:03:22,609 --> 00:03:24,900
+of the different states that
+we could be in, whether it
+
+62
+00:03:24,900 --> 00:03:28,170
+was the title, the game over,
+the play state, and so forth.
+
+63
+00:03:28,170 --> 00:03:32,310
+Unity does the same thing with
+scene objects, which are effectively
+
+64
+00:03:32,310 --> 00:03:35,460
+a snapshot of a series
+of game objects aligned
+
+65
+00:03:35,460 --> 00:03:38,100
+in a particular way in the editor.
+
+66
+00:03:38,100 --> 00:03:41,220
+We'll talk about fog
+and also global lighting
+
+67
+00:03:41,220 --> 00:03:43,260
+and certain other things
+that allow us to create
+
+68
+00:03:43,260 --> 00:03:46,380
+a atmosphere conducive
+to the sort of feel
+
+69
+00:03:46,380 --> 00:03:49,530
+that we want to get in our game today,
+which is sort of creepy and eerie.
+
+70
+00:03:49,530 --> 00:03:54,100
+And lastly, when we talk about how
+to create UI elements in the game,
+
+71
+00:03:54,100 --> 00:03:58,590
+we'll talk about Unity 2D, its
+canvas object, and text labels
+
+72
+00:03:58,590 --> 00:04:01,057
+and some other things and
+how those all operate,
+
+73
+00:04:01,057 --> 00:04:02,890
+which is sort of two
+sides of the same coin.
+
+74
+00:04:02,890 --> 00:04:07,220
+Unity 3D also comes
+bundled with Unity 2D,
+
+75
+00:04:07,220 --> 00:04:11,880
+a set of tools used to make not only 2D
+games but also 2D interfaces that you
+
+76
+00:04:11,880 --> 00:04:14,730
+can apply to your 3D games.
+
+77
+00:04:14,730 --> 00:04:15,720
+So first, a demo.
+
+78
+00:04:15,720 --> 00:04:17,910
+Now I've been sick for
+the last week, so I'm not
+
+79
+00:04:17,910 --> 00:04:21,120
+going to ask for anybody to come
+up and demo just because I don't
+
+80
+00:04:21,120 --> 00:04:23,370
+want to get anybody
+else sick, so I'm going
+
+81
+00:04:23,370 --> 00:04:27,660
+to just go ahead and show,
+just this lecture, the game
+
+82
+00:04:27,660 --> 00:04:29,350
+that I put together for you.
+
+83
+00:04:29,350 --> 00:04:30,720
+So here I have two scenes.
+
+84
+00:04:30,720 --> 00:04:33,090
+Notice here I have a title
+scene and a place scene.
+
+85
+00:04:33,090 --> 00:04:35,100
+I'm in the Unity editor right now.
+
+86
+00:04:35,100 --> 00:04:37,852
+I'm going to load up the title
+scene here, which I've done.
+
+87
+00:04:37,852 --> 00:04:40,560
+And then notice that it has sort
+of a game view and a scene view.
+
+88
+00:04:40,560 --> 00:04:41,794
+I'm going to hit play.
+
+89
+00:04:41,794 --> 00:04:44,460
+We're going to make sure that
+it's set to maximize, which it is.
+
+90
+00:04:44,460 --> 00:04:46,980
+And so we have sound here,
+so we should hear audio.
+
+91
+00:04:46,980 --> 00:04:49,890
+And hit play.
+
+92
+00:04:49,890 --> 00:04:53,310
+And notice that we have sort of
+like this ambient creepy music track
+
+93
+00:04:53,310 --> 00:04:54,600
+playing.
+
+94
+00:04:54,600 --> 00:04:58,200
+We have a very-- we could have
+easily done this in LOVE 2D.
+
+95
+00:04:58,200 --> 00:05:02,640
+This is just a black screen
+with two text labels on it.
+
+96
+00:05:02,640 --> 00:05:06,230
+And this is done with
+Unity's 2D UI toolkit.
+
+97
+00:05:06,230 --> 00:05:07,096
+And so it says--
+
+98
+00:05:07,096 --> 00:05:08,220
+it tells us to press Enter.
+
+99
+00:05:08,220 --> 00:05:12,990
+So if I press Enter, We instantly
+get teleported into like this maze,
+
+100
+00:05:12,990 --> 00:05:14,490
+this creepy looking maze.
+
+101
+00:05:14,490 --> 00:05:17,220
+And so I can walk around in this maze.
+
+102
+00:05:17,220 --> 00:05:18,960
+And there are a few things going on.
+
+103
+00:05:18,960 --> 00:05:21,870
+So anybody-- can anybody
+tell me some of the things
+
+104
+00:05:21,870 --> 00:05:24,630
+they notice about the scene,
+what jumps out at them?
+
+105
+00:05:24,630 --> 00:05:31,480
+
+
+106
+00:05:31,480 --> 00:05:32,730
+What are some of the elements?
+
+107
+00:05:32,730 --> 00:05:35,470
+If you were to put this together
+yourself, where would you start?
+
+108
+00:05:35,470 --> 00:05:37,553
+What are the pieces that
+we can put together here?
+
+109
+00:05:37,553 --> 00:05:41,201
+
+
+110
+00:05:41,201 --> 00:05:41,700
+Yes.
+
+111
+00:05:41,700 --> 00:05:44,800
+
+
+112
+00:05:44,800 --> 00:05:45,300
+Yep.
+
+113
+00:05:45,300 --> 00:05:47,841
+There has to be a ground that
+you can stand on, and there is.
+
+114
+00:05:47,841 --> 00:05:52,380
+So we're generating not only
+walls in our scene, of course,
+
+115
+00:05:52,380 --> 00:05:54,020
+but we need a ground to sit in.
+
+116
+00:05:54,020 --> 00:05:57,190
+And also if you look up top,
+it's kind of difficult to tell,
+
+117
+00:05:57,190 --> 00:05:59,970
+but we also have a ceiling so
+ground and the ceiling and walls.
+
+118
+00:05:59,970 --> 00:06:02,880
+
+
+119
+00:06:02,880 --> 00:06:04,110
+Some kind of lighting.
+
+120
+00:06:04,110 --> 00:06:05,160
+Yes.
+
+121
+00:06:05,160 --> 00:06:08,580
+And so in this case, we're
+actually using ambient world
+
+122
+00:06:08,580 --> 00:06:10,780
+lighting as opposed to
+having a light source.
+
+123
+00:06:10,780 --> 00:06:12,090
+So we'll take a look at that.
+
+124
+00:06:12,090 --> 00:06:13,680
+In last week's lecture, we used--
+
+125
+00:06:13,680 --> 00:06:16,559
+two weeks prior's lecture, we
+used a directional light object.
+
+126
+00:06:16,559 --> 00:06:18,600
+But in this case, we have
+no lights in the scene.
+
+127
+00:06:18,600 --> 00:06:20,590
+We're actually using
+Unity's world lighting,
+
+128
+00:06:20,590 --> 00:06:21,923
+which we'll take a look at soon.
+
+129
+00:06:21,923 --> 00:06:24,840
+
+
+130
+00:06:24,840 --> 00:06:28,140
+When we walk around, notice
+that I can move where
+
+131
+00:06:28,140 --> 00:06:30,610
+my camera is looking with my mouse.
+
+132
+00:06:30,610 --> 00:06:35,550
+So we're actually controlling the camera
+with a first person controller, an FPS
+
+133
+00:06:35,550 --> 00:06:40,980
+controller, which is actually a
+component that Unity provides to you.
+
+134
+00:06:40,980 --> 00:06:44,280
+And then notice eventually if
+we keep exploring the maze,
+
+135
+00:06:44,280 --> 00:06:49,010
+we come across this little thing
+here, which is sort of a pickup.
+
+136
+00:06:49,010 --> 00:06:54,690
+And when we pick this up, we
+get like this weird creepy piano
+
+137
+00:06:54,690 --> 00:06:56,355
+sound and then the scene reloads.
+
+138
+00:06:56,355 --> 00:06:59,346
+
+
+139
+00:06:59,346 --> 00:07:02,520
+Does anybody notice anything
+about what we see in the distance,
+
+140
+00:07:02,520 --> 00:07:04,040
+like how that's affected?
+
+141
+00:07:04,040 --> 00:07:07,310
+
+
+142
+00:07:07,310 --> 00:07:09,210
+Like if I'm looking at
+this wall right here,
+
+143
+00:07:09,210 --> 00:07:11,940
+for example, it's kind
+of hard to tell, but as
+
+144
+00:07:11,940 --> 00:07:16,712
+opposed to like down this hallway,
+what's the difference there?
+
+145
+00:07:16,712 --> 00:07:19,282
+AUDIENCE: The light source
+is further away, I guess.
+
+146
+00:07:19,282 --> 00:07:21,240
+COLTON OGDEN: The light
+source is further away.
+
+147
+00:07:21,240 --> 00:07:21,750
+Kind of.
+
+148
+00:07:21,750 --> 00:07:24,480
+So what we're experiencing
+here-- we're seeing it's
+
+149
+00:07:24,480 --> 00:07:29,520
+a graphics sort of concept called fog.
+
+150
+00:07:29,520 --> 00:07:34,230
+And so what fog lets you do
+is it effectively adds color
+
+151
+00:07:34,230 --> 00:07:37,680
+to the scene based upon how far
+away the objects are in the scene
+
+152
+00:07:37,680 --> 00:07:39,550
+and multiplies color onto them.
+
+153
+00:07:39,550 --> 00:07:42,130
+And it gives you the
+illusion of looking--
+
+154
+00:07:42,130 --> 00:07:44,550
+as if you're surrounded
+by fog basically.
+
+155
+00:07:44,550 --> 00:07:48,210
+And it's been around for a very long
+time, back even as far as the N64 days.
+
+156
+00:07:48,210 --> 00:07:51,390
+And we'll talk about that later today
+and it's actually incredibly easy
+
+157
+00:07:51,390 --> 00:07:55,500
+to add that into a game with Unity
+and its world lighting system.
+
+158
+00:07:55,500 --> 00:07:59,530
+Any idea as to how fog, not
+only in terms of aesthetics,
+
+159
+00:07:59,530 --> 00:08:01,763
+but how it could maybe
+help with performance?
+
+160
+00:08:01,763 --> 00:08:08,286
+
+
+161
+00:08:08,286 --> 00:08:09,162
+Yeah.
+
+162
+00:08:09,162 --> 00:08:12,700
+AUDIENCE: Don't need as much
+pixel clarity because it's already
+
+163
+00:08:12,700 --> 00:08:13,670
+[INAUDIBLE].
+
+164
+00:08:13,670 --> 00:08:16,260
+COLTON OGDEN: You don't
+need as much pixel clarity.
+
+165
+00:08:16,260 --> 00:08:17,000
+Kind of.
+
+166
+00:08:17,000 --> 00:08:22,080
+The big thing about fog and the way
+that it was used a long time ago
+
+167
+00:08:22,080 --> 00:08:25,380
+is that, because eventually
+things are completely
+
+168
+00:08:25,380 --> 00:08:29,620
+opaque beyond a certain point, you don't
+need far draw distance in your game.
+
+169
+00:08:29,620 --> 00:08:33,059
+So you can actually
+like dynamically-- you
+
+170
+00:08:33,059 --> 00:08:35,730
+can omit rendering things that
+are a certain distance away
+
+171
+00:08:35,730 --> 00:08:37,730
+because you wouldn't be
+able to see them anyway.
+
+172
+00:08:37,730 --> 00:08:40,919
+And so this was an optimization
+technique used a lot back
+
+173
+00:08:40,919 --> 00:08:45,060
+when draw distance was a
+huge bottleneck on computers
+
+174
+00:08:45,060 --> 00:08:48,510
+and game video game consoles
+back in the 90s for example.
+
+175
+00:08:48,510 --> 00:08:52,147
+Like Silent Hill, the game for
+PS1, was almost exclusively fog.
+
+176
+00:08:52,147 --> 00:08:53,980
+And you can see very
+little in front of you.
+
+177
+00:08:53,980 --> 00:08:56,070
+And we'll see a
+screenshot of that later.
+
+178
+00:08:56,070 --> 00:08:58,770
+And they use that to
+boost their performance
+
+179
+00:08:58,770 --> 00:09:01,045
+and also to provide a certain aesthetic.
+
+180
+00:09:01,045 --> 00:09:03,420
+And then one other thing you
+might be paying attention to
+
+181
+00:09:03,420 --> 00:09:07,500
+is there's a sound on a loop, just sort
+of this creepy sort of whispering sound
+
+182
+00:09:07,500 --> 00:09:11,000
+and that's to just add atmosphere.
+
+183
+00:09:11,000 --> 00:09:11,760
+Right.
+
+184
+00:09:11,760 --> 00:09:16,140
+Just because without it, we would--
+it's little things like that, especially
+
+185
+00:09:16,140 --> 00:09:19,140
+in horror games like this, the
+atmosphere can be everything.
+
+186
+00:09:19,140 --> 00:09:23,140
+So with very simple ideas, fog, some
+whispers, first person controller,
+
+187
+00:09:23,140 --> 00:09:27,270
+so you have tight hallways, you can
+produce something that's pretty scary.
+
+188
+00:09:27,270 --> 00:09:29,190
+Now there are a few
+things missing from this,
+
+189
+00:09:29,190 --> 00:09:33,180
+namely there's nothing that's going
+to come at you and attack you.
+
+190
+00:09:33,180 --> 00:09:36,570
+But it would be not
+terribly difficult to add,
+
+191
+00:09:36,570 --> 00:09:39,824
+but because we're using
+procedural generation,
+
+192
+00:09:39,824 --> 00:09:41,490
+you would need what's called a nav mesh.
+
+193
+00:09:41,490 --> 00:09:44,115
+And you would need to generate
+that procedurally so that things
+
+194
+00:09:44,115 --> 00:09:45,682
+could follow you in 3D space.
+
+195
+00:09:45,682 --> 00:09:48,390
+We might have some time to talk
+about how to do that a little bit
+
+196
+00:09:48,390 --> 00:09:52,860
+later today, but that's not
+implemented in this particular lecture.
+
+197
+00:09:52,860 --> 00:09:57,790
+But it would be not too
+infeasible to accomplish.
+
+198
+00:09:57,790 --> 00:10:01,120
+But those are some of the pieces
+that we'll take a look at today.
+
+199
+00:10:01,120 --> 00:10:03,230
+So this is the title scene.
+
+200
+00:10:03,230 --> 00:10:07,230
+Notice that there's not a whole lot
+here actually, so if I zoom back out,
+
+201
+00:10:07,230 --> 00:10:10,410
+we can see canvases
+are huge in Unity just
+
+202
+00:10:10,410 --> 00:10:13,320
+because it's more optimized for
+the engine to render them that way.
+
+203
+00:10:13,320 --> 00:10:20,910
+But we can see, even though it's a
+2D UI, it's very visible in 3D space.
+
+204
+00:10:20,910 --> 00:10:26,650
+And if you click this button
+here, we end up getting--
+
+205
+00:10:26,650 --> 00:10:27,150
+oh, no.
+
+206
+00:10:27,150 --> 00:10:28,950
+That just brings us into-- sorry.
+
+207
+00:10:28,950 --> 00:10:30,340
+Click this button here.
+
+208
+00:10:30,340 --> 00:10:33,770
+That brings us into
+the 2D Unity 2D mode.
+
+209
+00:10:33,770 --> 00:10:36,060
+So now we're interacting
+with things in 2D.
+
+210
+00:10:36,060 --> 00:10:39,600
+And I can actually click on
+this label and move it around
+
+211
+00:10:39,600 --> 00:10:43,962
+in 2D as if we were using a 2D game
+engine as opposed to a 3D game engine.
+
+212
+00:10:43,962 --> 00:10:45,670
+So we'll look at that
+a little bit later.
+
+213
+00:10:45,670 --> 00:10:47,470
+This is just the title scene.
+
+214
+00:10:47,470 --> 00:10:49,060
+So the play scene itself--
+
+215
+00:10:49,060 --> 00:10:50,295
+I'm not going to save that.
+
+216
+00:10:50,295 --> 00:10:51,690
+The play scene itself--
+
+217
+00:10:51,690 --> 00:10:53,910
+I'm going to go from
+2D back to 3D here--
+
+218
+00:10:53,910 --> 00:10:55,480
+is pretty much empty.
+
+219
+00:10:55,480 --> 00:10:57,390
+So we have a first
+person controller here.
+
+220
+00:10:57,390 --> 00:11:00,440
+This is the FPS controller object.
+
+221
+00:11:00,440 --> 00:11:05,400
+Does anybody-- anybody tell what
+basically constitutes an FPS controller
+
+222
+00:11:05,400 --> 00:11:08,219
+just by looking at the scene here?
+
+223
+00:11:08,219 --> 00:11:10,260
+What are some of the pieces
+that jump out at you?
+
+224
+00:11:10,260 --> 00:11:14,172
+
+
+225
+00:11:14,172 --> 00:11:17,142
+AUDIENCE: I thought you just put
+the camera right where the player is
+
+226
+00:11:17,142 --> 00:11:18,850
+or right in front of the player.
+
+227
+00:11:18,850 --> 00:11:19,190
+COLTON OGDEN: Exactly.
+
+228
+00:11:19,190 --> 00:11:21,690
+You put the camera right where
+the player is, effectively
+
+229
+00:11:21,690 --> 00:11:24,960
+where your head should be
+relative to where their body is.
+
+230
+00:11:24,960 --> 00:11:27,630
+And their body-- what's
+constituting their body here?
+
+231
+00:11:27,630 --> 00:11:30,555
+Can you tell?
+
+232
+00:11:30,555 --> 00:11:33,770
+AUDIENCE: It could just be a-- it
+looks like a cube in the middle there.
+
+233
+00:11:33,770 --> 00:11:35,936
+COLTON OGDEN: It's actually
+this capsule right here.
+
+234
+00:11:35,936 --> 00:11:37,590
+I don't know if you can see it.
+
+235
+00:11:37,590 --> 00:11:40,490
+There's this capsule
+here, this green capsule.
+
+236
+00:11:40,490 --> 00:11:43,670
+It's a little bit more organic
+feeling than a cube necessarily,
+
+237
+00:11:43,670 --> 00:11:45,800
+but you could use a cube as well.
+
+238
+00:11:45,800 --> 00:11:50,990
+But a capsule is how character
+controllers in Unity are represented.
+
+239
+00:11:50,990 --> 00:11:54,680
+And character controllers come for
+free in Unity, which is really nice.
+
+240
+00:11:54,680 --> 00:11:57,270
+They're part of the standard assets.
+
+241
+00:11:57,270 --> 00:11:59,030
+So if you go to import
+package, in Unity--
+
+242
+00:11:59,030 --> 00:12:01,460
+if you go into Assets,
+Import Package, there's
+
+243
+00:12:01,460 --> 00:12:04,850
+a lot of packages that come for
+free that sort of bootstrap you.
+
+244
+00:12:04,850 --> 00:12:08,090
+Notice there's like 2D packages,
+the cameras, characters.
+
+245
+00:12:08,090 --> 00:12:12,890
+The characters package has 3D
+characters or third person characters,
+
+246
+00:12:12,890 --> 00:12:15,260
+first person characters,
+some that are physics based,
+
+247
+00:12:15,260 --> 00:12:16,820
+some that are not physics based.
+
+248
+00:12:16,820 --> 00:12:19,130
+This particular
+controller is not physics
+
+249
+00:12:19,130 --> 00:12:21,830
+based, meaning that we
+don't apply forces to it.
+
+250
+00:12:21,830 --> 00:12:23,040
+We move it around.
+
+251
+00:12:23,040 --> 00:12:24,850
+It's kinematic.
+
+252
+00:12:24,850 --> 00:12:28,610
+It is affected by gravity, so in a
+sense it kind of is physics based,
+
+253
+00:12:28,610 --> 00:12:32,140
+but it's not strictly physics based like
+a rigid body and a rigid body would.
+
+254
+00:12:32,140 --> 00:12:35,030
+And the collisions that occur
+between this and another rigid body
+
+255
+00:12:35,030 --> 00:12:37,070
+aren't the same as they
+would be if we were
+
+256
+00:12:37,070 --> 00:12:40,550
+to make this a purely rigid
+body based character controller.
+
+257
+00:12:40,550 --> 00:12:43,396
+There is a purely rigid body
+based character controller
+
+258
+00:12:43,396 --> 00:12:45,770
+that you can import-- haven't
+experimented with it a lot,
+
+259
+00:12:45,770 --> 00:12:48,770
+but you could probably figure out a
+good use for that in terms of a game
+
+260
+00:12:48,770 --> 00:12:53,120
+or maybe you want to move precisely on
+surfaces that have different materials,
+
+261
+00:12:53,120 --> 00:12:56,150
+like icy surfaces or
+whatnot, and have it apply it
+
+262
+00:12:56,150 --> 00:13:00,390
+in a very physically realistic way.
+
+263
+00:13:00,390 --> 00:13:03,980
+And a few things that we
+have here in our play scene--
+
+264
+00:13:03,980 --> 00:13:06,027
+we have a dungeon generator object.
+
+265
+00:13:06,027 --> 00:13:08,360
+So this dungeon generator
+object is just an empty object
+
+266
+00:13:08,360 --> 00:13:10,730
+with a level generator script here.
+
+267
+00:13:10,730 --> 00:13:13,970
+And then we have a few other objects,
+a floor parent, a walls parent,
+
+268
+00:13:13,970 --> 00:13:15,680
+and a whisper source.
+
+269
+00:13:15,680 --> 00:13:19,220
+So we'll get into the details
+of what all of those mean.
+
+270
+00:13:19,220 --> 00:13:21,810
+Our goal today will be
+talking about a few things.
+
+271
+00:13:21,810 --> 00:13:24,537
+So we'll be talking about--
+here's a picture of just our maze.
+
+272
+00:13:24,537 --> 00:13:26,870
+So we talked about some of
+those things at a high level.
+
+273
+00:13:26,870 --> 00:13:30,920
+We'll actually explore how to implement
+them in Unity today, so making a maze,
+
+274
+00:13:30,920 --> 00:13:35,210
+making the fog effect, walking through
+it with our character controller.
+
+275
+00:13:35,210 --> 00:13:37,940
+We want to be able to have
+some kind of game play here,
+
+276
+00:13:37,940 --> 00:13:40,410
+so we have collectibles in
+the form of this red coin.
+
+277
+00:13:40,410 --> 00:13:43,370
+This is actually part of another
+standard assets pack, the prototype
+
+278
+00:13:43,370 --> 00:13:44,300
+assets pack.
+
+279
+00:13:44,300 --> 00:13:48,350
+It comes with a prototype little
+coin object that you can throw in.
+
+280
+00:13:48,350 --> 00:13:51,800
+Anybody notice anything about
+this coin beyond the fact
+
+281
+00:13:51,800 --> 00:13:55,350
+that it's just a red coin?
+
+282
+00:13:55,350 --> 00:13:58,063
+What else do you know it's
+about this scene here?
+
+283
+00:13:58,063 --> 00:13:59,570
+AUDIENCE: It's emitting a glow.
+
+284
+00:13:59,570 --> 00:14:01,028
+COLTON OGDEN: It's emitting a glow.
+
+285
+00:14:01,028 --> 00:14:03,844
+Any ideas as to how
+it's emitting a glow?
+
+286
+00:14:03,844 --> 00:14:05,810
+AUDIENCE: There's a light
+source inside of it?
+
+287
+00:14:05,810 --> 00:14:06,650
+COLTON OGDEN: There's a
+light source inside of it.
+
+288
+00:14:06,650 --> 00:14:07,490
+Exactly.
+
+289
+00:14:07,490 --> 00:14:08,570
+So we'll talk about that.
+
+290
+00:14:08,570 --> 00:14:10,153
+We'll show you how that's implemented.
+
+291
+00:14:10,153 --> 00:14:11,450
+Very easy to do in Unity.
+
+292
+00:14:11,450 --> 00:14:17,000
+And then we'll also talk about, towards
+the end, our 2D scene, our title scene,
+
+293
+00:14:17,000 --> 00:14:19,820
+and how to construct it, which
+is actually very easy in Unity
+
+294
+00:14:19,820 --> 00:14:21,830
+as opposed to doing something by code.
+
+295
+00:14:21,830 --> 00:14:24,500
+You very rarely actually
+for interfaces need to touch
+
+296
+00:14:24,500 --> 00:14:26,810
+code, at least in terms
+of how to lay them out.
+
+297
+00:14:26,810 --> 00:14:29,870
+In Unity you can do everything
+very visually and with the mouse.
+
+298
+00:14:29,870 --> 00:14:33,260
+Actually, it's a pleasure
+to make interfaces
+
+299
+00:14:33,260 --> 00:14:37,110
+if you're used to just
+making them in code.
+
+300
+00:14:37,110 --> 00:14:41,870
+So texturing-- so last week or two
+weeks ago, we did nothing with textures.
+
+301
+00:14:41,870 --> 00:14:42,830
+Well, that's not true.
+
+302
+00:14:42,830 --> 00:14:45,170
+We had one texture on
+the background, which
+
+303
+00:14:45,170 --> 00:14:47,850
+was the sort of scrolling background.
+
+304
+00:14:47,850 --> 00:14:49,820
+But we didn't really
+look at that too much.
+
+305
+00:14:49,820 --> 00:14:52,800
+In today's example, you know
+the helicopter and the coin
+
+306
+00:14:52,800 --> 00:14:56,180
+and the buildings and
+all that stuff, those
+
+307
+00:14:56,180 --> 00:15:01,160
+were all just polygons with flat
+colors associated with them.
+
+308
+00:15:01,160 --> 00:15:04,770
+Today we'll be talking about how to
+actually texture things with materials.
+
+309
+00:15:04,770 --> 00:15:07,280
+And so this is very easy to do in Unity.
+
+310
+00:15:07,280 --> 00:15:10,640
+So I'm going to go
+over to my title scene
+
+311
+00:15:10,640 --> 00:15:14,612
+here, just because it's lit in a fairly
+normal way as opposed to the play
+
+312
+00:15:14,612 --> 00:15:16,820
+scene, which is not lit in
+a normal way because we're
+
+313
+00:15:16,820 --> 00:15:18,450
+using environment lighting.
+
+314
+00:15:18,450 --> 00:15:20,600
+We don't have a sky box.
+
+315
+00:15:20,600 --> 00:15:25,010
+The title scene has a fairly
+normal lighting set up.
+
+316
+00:15:25,010 --> 00:15:29,630
+So if I add a cube
+here to the scene, you
+
+317
+00:15:29,630 --> 00:15:33,500
+can see right off the bat by
+default we do get a material here,
+
+318
+00:15:33,500 --> 00:15:36,350
+which has what's called
+an albedo component.
+
+319
+00:15:36,350 --> 00:15:39,740
+Albedo just means like what's
+its surface color look like.
+
+320
+00:15:39,740 --> 00:15:43,346
+It has a much more technical definition.
+
+321
+00:15:43,346 --> 00:15:45,470
+And you can look up on
+Wikipedia what albedo means.
+
+322
+00:15:45,470 --> 00:15:49,340
+It has something to do with the way
+that light interacts with surfaces.
+
+323
+00:15:49,340 --> 00:15:51,050
+There's a lot of other elements here.
+
+324
+00:15:51,050 --> 00:15:52,899
+You can make something look metallic.
+
+325
+00:15:52,899 --> 00:15:54,440
+You can make it look smooth or rough.
+
+326
+00:15:54,440 --> 00:15:56,990
+And you can also add
+normal maps, height maps,
+
+327
+00:15:56,990 --> 00:16:00,110
+and a few other things, which gives
+it more of like a bumpy texture,
+
+328
+00:16:00,110 --> 00:16:01,260
+and so forth.
+
+329
+00:16:01,260 --> 00:16:04,860
+And you can also make
+things emit light this way,
+
+330
+00:16:04,860 --> 00:16:08,710
+which the coin actually not only emits
+light but also is a light source.
+
+331
+00:16:08,710 --> 00:16:11,730
+So it does both.
+
+332
+00:16:11,730 --> 00:16:13,290
+And there's a few other things here.
+
+333
+00:16:13,290 --> 00:16:18,800
+For example, let's say you have a
+very large cube and a small texture.
+
+334
+00:16:18,800 --> 00:16:20,900
+If you put a very small
+texture on a large cube,
+
+335
+00:16:20,900 --> 00:16:22,108
+what's it going to look like?
+
+336
+00:16:22,108 --> 00:16:26,835
+
+
+337
+00:16:26,835 --> 00:16:27,710
+What's your instinct?
+
+338
+00:16:27,710 --> 00:16:29,876
+What if we have a very large
+cube, but a very-- like
+
+339
+00:16:29,876 --> 00:16:34,354
+say we have a 64 by 64 pixel
+texture, but our cube is humongous?
+
+340
+00:16:34,354 --> 00:16:36,270
+What effect is that going
+to have on the cube?
+
+341
+00:16:36,270 --> 00:16:40,140
+
+
+342
+00:16:40,140 --> 00:16:43,330
+It's going to look kind of
+like an N64 cube, right?
+
+343
+00:16:43,330 --> 00:16:46,390
+What basically happens is it's going
+to interpolate between the texture
+
+344
+00:16:46,390 --> 00:16:50,500
+pixels, the texels when you
+apply a texture to your cube.
+
+345
+00:16:50,500 --> 00:16:53,050
+And so when you apply a small
+texture to a large surface,
+
+346
+00:16:53,050 --> 00:16:55,090
+it's going to look stretched.
+
+347
+00:16:55,090 --> 00:16:58,100
+It's going to look stretched.
+
+348
+00:16:58,100 --> 00:17:01,586
+It's going to look also filtered as like
+you sort of see in some YouTube videos
+
+349
+00:17:01,586 --> 00:17:04,210
+if you watch them and they're
+recorded a very small resolution,
+
+350
+00:17:04,210 --> 00:17:05,109
+but you blow them up.
+
+351
+00:17:05,109 --> 00:17:07,119
+They look filtered or
+if you've ever stretched
+
+352
+00:17:07,119 --> 00:17:11,530
+a picture in the right software and
+it looks interpolated in a filter,
+
+353
+00:17:11,530 --> 00:17:13,450
+it's going to have that look.
+
+354
+00:17:13,450 --> 00:17:15,520
+So what you can do is
+you can apply tiling.
+
+355
+00:17:15,520 --> 00:17:19,339
+So here we can see there's
+a tiling element x and y.
+
+356
+00:17:19,339 --> 00:17:23,020
+So a one in the x and y
+direction, because it only
+
+357
+00:17:23,020 --> 00:17:25,900
+applies on a flat surface.
+
+358
+00:17:25,900 --> 00:17:31,960
+So the effect of tiling would be such
+that if you have a 64 by 64 texture,
+
+359
+00:17:31,960 --> 00:17:35,007
+you could just tile that texture
+several times to get the desired
+
+360
+00:17:35,007 --> 00:17:37,090
+look that you want on
+whatever surface that you're
+
+361
+00:17:37,090 --> 00:17:38,590
+trying to look at in your game world.
+
+362
+00:17:38,590 --> 00:17:40,990
+Maybe it's a very small object
+or maybe it's a very large object
+
+363
+00:17:40,990 --> 00:17:43,073
+that you're looking at as
+a character and you want
+
+364
+00:17:43,073 --> 00:17:47,050
+to tile bricks for example or stone.
+
+365
+00:17:47,050 --> 00:17:57,640
+So to apply a texture to a 3D object in
+the scene, I'm going to go into here.
+
+366
+00:17:57,640 --> 00:18:00,517
+So you need a material first.
+
+367
+00:18:00,517 --> 00:18:02,350
+And so these are all
+Unity material objects.
+
+368
+00:18:02,350 --> 00:18:04,270
+You can tell because
+they have a circular--
+
+369
+00:18:04,270 --> 00:18:07,102
+they all look like as if they've
+been wrapped around a sphere.
+
+370
+00:18:07,102 --> 00:18:09,310
+These are all Unity materials
+as opposed to textures.
+
+371
+00:18:09,310 --> 00:18:13,880
+Textures are just 2D objects,
+2D textures, 2D images.
+
+372
+00:18:13,880 --> 00:18:16,420
+So this is part of an asset
+pack that I downloaded
+
+373
+00:18:16,420 --> 00:18:23,290
+for this lecture called low poly dungeon
+modules, which is in the asset store.
+
+374
+00:18:23,290 --> 00:18:25,650
+And so what I'm going to
+do is I'm going to apply--
+
+375
+00:18:25,650 --> 00:18:28,570
+let's say I want to just apply
+this rock material to this object.
+
+376
+00:18:28,570 --> 00:18:29,069
+Right.
+
+377
+00:18:29,069 --> 00:18:30,545
+Then I go over to that.
+
+378
+00:18:30,545 --> 00:18:33,790
+I'm going to first add a--
+
+379
+00:18:33,790 --> 00:18:40,550
+I think because I went into the
+material it had a incorrect appearance.
+
+380
+00:18:40,550 --> 00:18:42,040
+So do that.
+
+381
+00:18:42,040 --> 00:18:44,587
+Oh, that's strange.
+
+382
+00:18:44,587 --> 00:18:45,920
+I'm going to create a new scene.
+
+383
+00:18:45,920 --> 00:18:48,980
+
+
+384
+00:18:48,980 --> 00:18:53,480
+And then I'm going to
+add a cube and then a--
+
+385
+00:18:53,480 --> 00:18:57,370
+not pop but maybe the beam.
+
+386
+00:18:57,370 --> 00:19:00,770
+I wonder why it is not--
+
+387
+00:19:00,770 --> 00:19:01,810
+that's very strange.
+
+388
+00:19:01,810 --> 00:19:03,685
+For some reason, it
+might be a setting that I
+
+389
+00:19:03,685 --> 00:19:08,570
+have enabled that's not
+allowing it to correctly render.
+
+390
+00:19:08,570 --> 00:19:11,710
+But the effect of that should
+be that we apply-- normally
+
+391
+00:19:11,710 --> 00:19:19,030
+if you apply a texture
+to a material, it'll
+
+392
+00:19:19,030 --> 00:19:23,360
+have the effect of creating--
+it'll instantly texture it.
+
+393
+00:19:23,360 --> 00:19:25,390
+But what I can do is I
+can go to textures here.
+
+394
+00:19:25,390 --> 00:19:26,770
+And this should work too.
+
+395
+00:19:26,770 --> 00:19:29,260
+I can go to that and then
+it'll apply it that way.
+
+396
+00:19:29,260 --> 00:19:34,570
+So normally, if you're in a fresh
+project and you add a new 3D object,
+
+397
+00:19:34,570 --> 00:19:37,150
+and you just click and drag
+a material onto a 3D object,
+
+398
+00:19:37,150 --> 00:19:38,770
+it will texture it for you.
+
+399
+00:19:38,770 --> 00:19:40,810
+In this case, I think
+because it's automatically
+
+400
+00:19:40,810 --> 00:19:44,590
+assigning a material to these
+objects based on some project setting
+
+401
+00:19:44,590 --> 00:19:48,820
+that I off the cuff just unable to--
+
+402
+00:19:48,820 --> 00:19:50,080
+I don't know for sure--
+
+403
+00:19:50,080 --> 00:19:53,080
+you can instead just go to
+the albedo component here.
+
+404
+00:19:53,080 --> 00:19:58,190
+So albedo functions not only as a color
+but also as a texture for your object.
+
+405
+00:19:58,190 --> 00:20:00,430
+And so you can apply a
+texture, just a 2D image,
+
+406
+00:20:00,430 --> 00:20:02,680
+to your albedo component of a material.
+
+407
+00:20:02,680 --> 00:20:03,280
+Right.
+
+408
+00:20:03,280 --> 00:20:07,720
+And that will have the same effect
+as texturing it immediately.
+
+409
+00:20:07,720 --> 00:20:13,520
+So normally what this is supposed
+to do is create a albedo--
+
+410
+00:20:13,520 --> 00:20:16,330
+create a new material with
+that texture as the albedo when
+
+411
+00:20:16,330 --> 00:20:21,110
+you set a material to the 3D object.
+
+412
+00:20:21,110 --> 00:20:23,800
+Now I wonder if I--
+
+413
+00:20:23,800 --> 00:20:24,849
+Yeah.
+
+414
+00:20:24,849 --> 00:20:25,390
+I'm not sure.
+
+415
+00:20:25,390 --> 00:20:29,199
+I'm not sure exactly why it
+didn't work like right off the bat
+
+416
+00:20:29,199 --> 00:20:30,490
+like it's normally supposed to.
+
+417
+00:20:30,490 --> 00:20:31,900
+In a fresh project, it will.
+
+418
+00:20:31,900 --> 00:20:32,980
+I'll try to investigate.
+
+419
+00:20:32,980 --> 00:20:36,070
+But if it ever happens like that
+where for some reason you're--
+
+420
+00:20:36,070 --> 00:20:38,940
+I think it has to do with the
+way the shaders are set on here.
+
+421
+00:20:38,940 --> 00:20:41,770
+Maybe there's a setting
+I'm just not sure about.
+
+422
+00:20:41,770 --> 00:20:46,990
+But you can just set the
+albedo component here manually.
+
+423
+00:20:46,990 --> 00:20:48,860
+It'll have the same effect.
+
+424
+00:20:48,860 --> 00:20:52,810
+So the albedo component of your
+material, setting that with a texture,
+
+425
+00:20:52,810 --> 00:20:54,580
+textures objects.
+
+426
+00:20:54,580 --> 00:20:58,720
+And so that's effectively how
+we get from this sort of look
+
+427
+00:20:58,720 --> 00:21:03,550
+of a flat shaded or flat color
+shaded object to a texture shaded
+
+428
+00:21:03,550 --> 00:21:07,000
+object just like that.
+
+429
+00:21:07,000 --> 00:21:14,350
+And texture mapping in itself is a
+very wide field and fairly complicated,
+
+430
+00:21:14,350 --> 00:21:18,470
+but ultimately it looks
+something like this.
+
+431
+00:21:18,470 --> 00:21:23,690
+So does anybody-- can anybody
+tell me what this looks like here?
+
+432
+00:21:23,690 --> 00:21:28,750
+So we see here obviously we
+have a fully textured model.
+
+433
+00:21:28,750 --> 00:21:34,410
+But if we're looking at this, what
+does it look like we've done here?
+
+434
+00:21:34,410 --> 00:21:38,247
+
+
+435
+00:21:38,247 --> 00:21:39,330
+So what does it look like?
+
+436
+00:21:39,330 --> 00:21:40,580
+Ignore all the lines.
+
+437
+00:21:40,580 --> 00:21:43,145
+But what does it sort of
+look we have on the surface?
+
+438
+00:21:43,145 --> 00:21:46,174
+
+
+439
+00:21:46,174 --> 00:21:49,100
+It's just a texture, right?
+
+440
+00:21:49,100 --> 00:21:49,600
+Oops.
+
+441
+00:21:49,600 --> 00:21:51,750
+We can sort of see the colors here.
+
+442
+00:21:51,750 --> 00:21:55,170
+For example, maybe his
+belt here or actually that
+
+443
+00:21:55,170 --> 00:21:56,700
+looks like the top of his head here.
+
+444
+00:21:56,700 --> 00:22:00,872
+This being the top of his head, and then
+we have like his belt and other things.
+
+445
+00:22:00,872 --> 00:22:04,080
+This right here, we can pretty clearly
+see that's like sort of his face mask,
+
+446
+00:22:04,080 --> 00:22:04,580
+right?
+
+447
+00:22:04,580 --> 00:22:08,700
+But it's just on a 2D surface,
+like this is a regular texture.
+
+448
+00:22:08,700 --> 00:22:13,260
+And so what we've done
+here is basically taken
+
+449
+00:22:13,260 --> 00:22:19,290
+all of the polygons that comprise the
+model and laid them out flat, right?
+
+450
+00:22:19,290 --> 00:22:23,520
+Lay them out flat as if on
+a table where our texture is
+
+451
+00:22:23,520 --> 00:22:25,970
+and that's what UV mapping is.
+
+452
+00:22:25,970 --> 00:22:29,340
+And this is usually something that you
+do in whatever 3D modeling software
+
+453
+00:22:29,340 --> 00:22:31,150
+that you're using.
+
+454
+00:22:31,150 --> 00:22:36,990
+In Unity, when you apply a texture to a
+material, or a material with a texture
+
+455
+00:22:36,990 --> 00:22:41,840
+to an object, it will use its standard--
+
+456
+00:22:41,840 --> 00:22:44,640
+it has its own built
+in mapping algorithm
+
+457
+00:22:44,640 --> 00:22:47,130
+that will apply material to a model.
+
+458
+00:22:47,130 --> 00:22:49,800
+And so it does it differently
+for different objects.
+
+459
+00:22:49,800 --> 00:22:53,330
+We can create like a sphere for example.
+
+460
+00:22:53,330 --> 00:22:55,530
+Move the sphere over here.
+
+461
+00:22:55,530 --> 00:23:00,450
+And I'm going to try again and just
+to see if applying the material
+
+462
+00:23:00,450 --> 00:23:02,260
+works on that.
+
+463
+00:23:02,260 --> 00:23:02,760
+No.
+
+464
+00:23:02,760 --> 00:23:03,630
+It doesn't.
+
+465
+00:23:03,630 --> 00:23:08,850
+So applying a-- so if
+we go into this material
+
+466
+00:23:08,850 --> 00:23:13,760
+here, which is, for
+some reason, grayed out.
+
+467
+00:23:13,760 --> 00:23:16,820
+
+
+468
+00:23:16,820 --> 00:23:18,960
+New scene again.
+
+469
+00:23:18,960 --> 00:23:22,710
+Create a new 3D sphere.
+
+470
+00:23:22,710 --> 00:23:34,261
+And then oh, this time it looks
+like it's-- oh, I can't tell.
+
+471
+00:23:34,261 --> 00:23:34,760
+No.
+
+472
+00:23:34,760 --> 00:23:35,968
+I don't think that's working.
+
+473
+00:23:35,968 --> 00:23:38,360
+
+
+474
+00:23:38,360 --> 00:23:39,050
+Oh.
+
+475
+00:23:39,050 --> 00:23:41,450
+Now it allows us to accept a texture.
+
+476
+00:23:41,450 --> 00:23:42,200
+OK.
+
+477
+00:23:42,200 --> 00:23:43,370
+So we can apply a texture.
+
+478
+00:23:43,370 --> 00:23:43,870
+Whoops.
+
+479
+00:23:43,870 --> 00:23:46,070
+Can apply a texture to that.
+
+480
+00:23:46,070 --> 00:23:50,089
+And so now we can see our
+sphere has been mapped as well.
+
+481
+00:23:50,089 --> 00:23:51,380
+And it looks fairly convincing.
+
+482
+00:23:51,380 --> 00:23:53,421
+It's been wrapped around
+in a way that it doesn't
+
+483
+00:23:53,421 --> 00:23:55,400
+look too distorted or too weird.
+
+484
+00:23:55,400 --> 00:24:01,340
+And so Unity has its own ways of
+mapping for its primitive objects,
+
+485
+00:24:01,340 --> 00:24:05,070
+whether it's spheres, cubes, we have
+a few other ones, capsules, cylinders,
+
+486
+00:24:05,070 --> 00:24:06,049
+planes.
+
+487
+00:24:06,049 --> 00:24:08,090
+It'll depend, obviously,
+on what your texture is.
+
+488
+00:24:08,090 --> 00:24:12,680
+If your texture is fairly ornate,
+it might end up looking distorted.
+
+489
+00:24:12,680 --> 00:24:18,230
+But for most purposes, for simple
+primitive objects, for most textures
+
+490
+00:24:18,230 --> 00:24:19,430
+it should work pretty well.
+
+491
+00:24:19,430 --> 00:24:24,470
+Now if you imported a model that
+was like a table or a character
+
+492
+00:24:24,470 --> 00:24:29,790
+and you just applied a texture to
+it, it's not going to look good.
+
+493
+00:24:29,790 --> 00:24:31,380
+It's going to look messed up.
+
+494
+00:24:31,380 --> 00:24:34,790
+And so your 3D software
+will export a material
+
+495
+00:24:34,790 --> 00:24:37,380
+with the model assuming
+that you've modeled
+
+496
+00:24:37,380 --> 00:24:40,280
+in that software with a texture.
+
+497
+00:24:40,280 --> 00:24:42,830
+It'll actually give you a
+material that you can then
+
+498
+00:24:42,830 --> 00:24:47,330
+reference that will properly
+apply a texture to your character,
+
+499
+00:24:47,330 --> 00:24:49,910
+but the same sort of
+apply a texture, just
+
+500
+00:24:49,910 --> 00:24:52,250
+a regular texture to
+a complicated model,
+
+501
+00:24:52,250 --> 00:24:55,850
+just isn't going to work because it
+hasn't been UV mapped in a smart way.
+
+502
+00:24:55,850 --> 00:24:59,330
+Unity's not going to
+know I have a table.
+
+503
+00:24:59,330 --> 00:25:04,430
+I want to map the texture to the
+table in a way that looks convincing.
+
+504
+00:25:04,430 --> 00:25:09,920
+You can see this kind
+of if we create a cube.
+
+505
+00:25:09,920 --> 00:25:13,130
+And then if we go ahead and--
+
+506
+00:25:13,130 --> 00:25:16,050
+
+
+507
+00:25:16,050 --> 00:25:18,950
+been making apparent for some reason.
+
+508
+00:25:18,950 --> 00:25:22,350
+If we go up here, I'm
+going to first assign--
+
+509
+00:25:22,350 --> 00:25:22,850
+OK.
+
+510
+00:25:22,850 --> 00:25:25,610
+For some reason that worked instantly.
+
+511
+00:25:25,610 --> 00:25:29,570
+But you can see we've applied
+a sort of wall texture to it.
+
+512
+00:25:29,570 --> 00:25:35,300
+And then if we scale it down-- so
+this is the scale button up here.
+
+513
+00:25:35,300 --> 00:25:37,280
+You can move, rotate things.
+
+514
+00:25:37,280 --> 00:25:42,200
+If unfamiliar, these top buttons
+up here are transform operators.
+
+515
+00:25:42,200 --> 00:25:46,010
+So you can move things, rotate
+things, and scale things.
+
+516
+00:25:46,010 --> 00:25:53,630
+So if you scale this along this
+y-axis a bit and then you zoom in,
+
+517
+00:25:53,630 --> 00:25:56,520
+the texture looks pretty
+compressed and distorted,
+
+518
+00:25:56,520 --> 00:25:58,691
+because it's just doing
+the same algorithm
+
+519
+00:25:58,691 --> 00:26:00,440
+and assuming it's the
+same kind of surface
+
+520
+00:26:00,440 --> 00:26:03,680
+without taking into consideration
+how it's been warped.
+
+521
+00:26:03,680 --> 00:26:04,430
+Right.
+
+522
+00:26:04,430 --> 00:26:09,830
+So ideally you wouldn't have
+this flattening happening.
+
+523
+00:26:09,830 --> 00:26:13,820
+And so in your 3D software,
+you would unwrap your model
+
+524
+00:26:13,820 --> 00:26:19,670
+and then apply a texture to each
+separate polygon of your model
+
+525
+00:26:19,670 --> 00:26:22,482
+in a way that looks convincing.
+
+526
+00:26:22,482 --> 00:26:24,440
+And so this isn't anything
+that you necessarily
+
+527
+00:26:24,440 --> 00:26:29,510
+have to do for the lectures, or for
+the demonstration for your project.
+
+528
+00:26:29,510 --> 00:26:33,700
+But if you are creating your own 3D
+assets, if you're importing 3D assets,
+
+529
+00:26:33,700 --> 00:26:37,340
+and if you want to use textures
+in a way that we're doing today,
+
+530
+00:26:37,340 --> 00:26:41,750
+you will need to probably become
+familiar with UV wrapping, UV
+
+531
+00:26:41,750 --> 00:26:44,940
+unwrapping, UV mapping in whatever
+software that you're using.
+
+532
+00:26:44,940 --> 00:26:46,940
+And if you're just
+unfamiliar with it in general
+
+533
+00:26:46,940 --> 00:26:53,540
+and have wanted to know what goes
+on in turning a flat white polygon
+
+534
+00:26:53,540 --> 00:26:55,946
+character into something
+that has a texture,
+
+535
+00:26:55,946 --> 00:26:57,320
+this is effectively what happens.
+
+536
+00:26:57,320 --> 00:27:00,710
+You unwrap it, make it
+flat, sort of like stamp
+
+537
+00:27:00,710 --> 00:27:07,670
+the material onto it effectively,
+and that maps the UVs of the texture,
+
+538
+00:27:07,670 --> 00:27:12,710
+so the texture's virtual
+coordinates to your 3D model.
+
+539
+00:27:12,710 --> 00:27:17,670
+So any questions as to
+how this works at all
+
+540
+00:27:17,670 --> 00:27:22,368
+or about unity and applying textures?
+
+541
+00:27:22,368 --> 00:27:28,140
+AUDIENCE: What's the general way that
+you make the textures on the right
+
+542
+00:27:28,140 --> 00:27:32,307
+where it's like a world
+that's been flattened?
+
+543
+00:27:32,307 --> 00:27:34,640
+COLTON OGDEN: How do you make
+the textures on the right?
+
+544
+00:27:34,640 --> 00:27:36,640
+I mean that's kind of
+an art form in itself.
+
+545
+00:27:36,640 --> 00:27:42,810
+You do have to do it by hand and know--
+
+546
+00:27:42,810 --> 00:27:44,810
+I mean, there's a good
+amount of trial and error
+
+547
+00:27:44,810 --> 00:27:47,360
+that will go into it, too,
+as you're making your model
+
+548
+00:27:47,360 --> 00:27:50,240
+and unwrapping it and
+noticing, oh, this looks weird,
+
+549
+00:27:50,240 --> 00:27:53,210
+as I am applying this
+polygon to the surface.
+
+550
+00:27:53,210 --> 00:27:55,490
+I'm going to go ahead
+and change that texture.
+
+551
+00:27:55,490 --> 00:28:00,020
+But you could use any-- you could
+use Gimp or Photoshop or any standard
+
+552
+00:28:00,020 --> 00:28:02,722
+texture creation software and just--
+
+553
+00:28:02,722 --> 00:28:05,180
+it's something-- I don't do a
+lot of it, but it's something
+
+554
+00:28:05,180 --> 00:28:07,388
+that I imagine that you just
+get better at with time.
+
+555
+00:28:07,388 --> 00:28:12,390
+And texture artists and modeling
+artists probably develop sort of like
+
+556
+00:28:12,390 --> 00:28:17,960
+an attuned sense of what makes a
+good texture versus what doesn't.
+
+557
+00:28:17,960 --> 00:28:23,480
+Generally, you'll make the model first
+and then you'll make the texture.
+
+558
+00:28:23,480 --> 00:28:27,750
+
+
+559
+00:28:27,750 --> 00:28:28,400
+OK.
+
+560
+00:28:28,400 --> 00:28:31,100
+So we already talked a
+little bit about models--
+
+561
+00:28:31,100 --> 00:28:32,810
+sorry, about materials.
+
+562
+00:28:32,810 --> 00:28:35,710
+We'll go back over it
+really briefly again.
+
+563
+00:28:35,710 --> 00:28:39,320
+There is a resource
+that I really like and I
+
+564
+00:28:39,320 --> 00:28:42,260
+think does a really
+wonderful job of teaching far
+
+565
+00:28:42,260 --> 00:28:44,190
+beyond the basics of Unity.
+
+566
+00:28:44,190 --> 00:28:46,820
+And that's catlikecoding.com,
+and it's totally free.
+
+567
+00:28:46,820 --> 00:28:51,800
+They just have a bunch of free articles
+on there which are very in-depth.
+
+568
+00:28:51,800 --> 00:28:55,550
+And this is a screen shot
+taken from one of the articles
+
+569
+00:28:55,550 --> 00:28:58,880
+where they talk about how to make
+really interesting materials.
+
+570
+00:28:58,880 --> 00:29:00,655
+So you can see here,
+this one of the left,
+
+571
+00:29:00,655 --> 00:29:02,780
+it looks very-- you know,
+it looks like a fireball,
+
+572
+00:29:02,780 --> 00:29:05,310
+like it's made out of magma.
+
+573
+00:29:05,310 --> 00:29:06,480
+And it's got bumps on it.
+
+574
+00:29:06,480 --> 00:29:11,482
+It has contour you can see that there's
+sort of like a glow to the fire on it.
+
+575
+00:29:11,482 --> 00:29:13,190
+On the right, you can
+see that this model
+
+576
+00:29:13,190 --> 00:29:16,730
+has sort of conditional
+shine on certain parts of it.
+
+577
+00:29:16,730 --> 00:29:19,960
+Like the metal part of it is
+shiny but the rest of it isn't.
+
+578
+00:29:19,960 --> 00:29:22,550
+And so how do we make certain
+parts of the material shiny?
+
+579
+00:29:22,550 --> 00:29:24,680
+How do we make certain parts of it flat?
+
+580
+00:29:24,680 --> 00:29:26,150
+The article goes in depth on that.
+
+581
+00:29:26,150 --> 00:29:29,870
+Effectively what they do is
+they use several layers of maps,
+
+582
+00:29:29,870 --> 00:29:36,050
+like a shininess map, which
+is a texture that tells you--
+
+583
+00:29:36,050 --> 00:29:39,500
+that you reference in a Unity
+custom shader that you write,
+
+584
+00:29:39,500 --> 00:29:41,750
+which the article
+teaches you how to write.
+
+585
+00:29:41,750 --> 00:29:46,610
+Which will make certain parts of
+the texture glossy and certain parts
+
+586
+00:29:46,610 --> 00:29:48,744
+of it not glossy, so matte.
+
+587
+00:29:48,744 --> 00:29:51,410
+And so you can do a lot of really
+cool, very interesting things,
+
+588
+00:29:51,410 --> 00:29:54,450
+and Unity's shading system is very--
+
+589
+00:29:54,450 --> 00:29:55,790
+sort of the sky is the limit.
+
+590
+00:29:55,790 --> 00:29:59,230
+Because it's effectively a standard
+shader language like you would--
+
+591
+00:29:59,230 --> 00:30:02,330
+it's effectively the same
+thing as HLSL, I believe,
+
+592
+00:30:02,330 --> 00:30:05,100
+which is High Level Shading
+Language which is a--
+
+593
+00:30:05,100 --> 00:30:07,850
+if I'm not misremembering--
+
+594
+00:30:07,850 --> 00:30:09,920
+Microsoft originally
+came up with it, and it's
+
+595
+00:30:09,920 --> 00:30:14,422
+very similar to GLSL, which is
+the open GL shading language.
+
+596
+00:30:14,422 --> 00:30:16,880
+And so what these are, effectively,
+is just little programs
+
+597
+00:30:16,880 --> 00:30:18,171
+that run on your graphics card.
+
+598
+00:30:18,171 --> 00:30:19,910
+We talked about this before.
+
+599
+00:30:19,910 --> 00:30:23,540
+But they tell your scene
+how to process lighting
+
+600
+00:30:23,540 --> 00:30:25,520
+for the objects that are within it.
+
+601
+00:30:25,520 --> 00:30:28,610
+And everything in Unity has
+a shader associated with it,
+
+602
+00:30:28,610 --> 00:30:32,555
+even if it's just the standard shader,
+which by default is just a white color.
+
+603
+00:30:32,555 --> 00:30:34,430
+But you can write your
+own shaders and you're
+
+604
+00:30:34,430 --> 00:30:37,610
+capable of virtually
+unlimited possibility.
+
+605
+00:30:37,610 --> 00:30:45,020
+And this effectively is all a
+shader, and it's all a shader
+
+606
+00:30:45,020 --> 00:30:46,910
+that's been written in code.
+
+607
+00:30:46,910 --> 00:30:51,800
+But we have a lot of these
+variables that are exposed to us,
+
+608
+00:30:51,800 --> 00:30:53,570
+and albedo is one of them.
+
+609
+00:30:53,570 --> 00:30:55,310
+And albedo is sort of conditional.
+
+610
+00:30:55,310 --> 00:31:00,350
+If it gets a texture applied to it,
+it will just render that texture.
+
+611
+00:31:00,350 --> 00:31:05,150
+But if you apply color to it, it will
+apply that color to your material.
+
+612
+00:31:05,150 --> 00:31:07,280
+And so that's how you can
+get, you know, textured
+
+613
+00:31:07,280 --> 00:31:09,080
+things versus non-textured things.
+
+614
+00:31:09,080 --> 00:31:13,587
+Metallic just computes shininess
+and reflectivity off of surfaces.
+
+615
+00:31:13,587 --> 00:31:15,920
+And that's just something
+that's written into the shader
+
+616
+00:31:15,920 --> 00:31:19,400
+and produces the lighting
+responsible to make that happen.
+
+617
+00:31:19,400 --> 00:31:22,850
+And all of these different things
+are just part of a single shader.
+
+618
+00:31:22,850 --> 00:31:25,520
+And a material is effectively a shader.
+
+619
+00:31:25,520 --> 00:31:26,870
+They're kind of one in the same.
+
+620
+00:31:26,870 --> 00:31:28,703
+A material is a little
+bit different in that
+
+621
+00:31:28,703 --> 00:31:32,760
+you can also specify how its surface
+should interact with other things.
+
+622
+00:31:32,760 --> 00:31:35,320
+So for example, if
+you're in an ice level,
+
+623
+00:31:35,320 --> 00:31:40,040
+a material can not only be like the
+sort of glossy, icy look of something,
+
+624
+00:31:40,040 --> 00:31:43,160
+but also, how slippery is
+it when I walk over it?
+
+625
+00:31:43,160 --> 00:31:44,070
+And should I slide?
+
+626
+00:31:44,070 --> 00:31:47,540
+And how should other things
+interact with it that have physics?
+
+627
+00:31:47,540 --> 00:31:51,620
+So those two hand-in-hand are
+sort of what a material is.
+
+628
+00:31:51,620 --> 00:31:56,390
+But likely, as you're starting
+out the only real things
+
+629
+00:31:56,390 --> 00:31:58,100
+that you'll need to consider--
+
+630
+00:31:58,100 --> 00:32:00,980
+and you're sort of bound
+only by your curiosity--
+
+631
+00:32:00,980 --> 00:32:04,610
+our albedo and maybe
+metallic, and maybe emission.
+
+632
+00:32:04,610 --> 00:32:07,670
+And then depending on how much
+you-- how big your thing is
+
+633
+00:32:07,670 --> 00:32:10,670
+and how small your
+texture is, maybe tiling.
+
+634
+00:32:10,670 --> 00:32:13,730
+And then recall last week
+we manipulated offset.
+
+635
+00:32:13,730 --> 00:32:16,250
+So offset is how much the
+texture is shifted, and recall it
+
+636
+00:32:16,250 --> 00:32:19,250
+loops around back to the other side.
+
+637
+00:32:19,250 --> 00:32:22,040
+And so by manipulating
+offset on the x-axis,
+
+638
+00:32:22,040 --> 00:32:27,740
+we were able to get an infinitely
+scrolling texture, right?
+
+639
+00:32:27,740 --> 00:32:30,320
+And so all of these
+things have their uses.
+
+640
+00:32:30,320 --> 00:32:32,810
+And pretty much everything
+in Unity has its uses.
+
+641
+00:32:32,810 --> 00:32:35,441
+It's a very vast toolkit to use.
+
+642
+00:32:35,441 --> 00:32:37,940
+But those are probably the
+important things that you'll see.
+
+643
+00:32:37,940 --> 00:32:40,340
+And this article and many
+others on this website,
+
+644
+00:32:40,340 --> 00:32:43,580
+which I highly recommend if you're
+looking to get really deep into Unity,
+
+645
+00:32:43,580 --> 00:32:48,380
+will give you a lot of insight into how
+things work far beyond just the surface
+
+646
+00:32:48,380 --> 00:32:50,060
+level there.
+
+647
+00:32:50,060 --> 00:32:51,500
+So any questions on materials?
+
+648
+00:32:51,500 --> 00:32:54,550
+
+
+649
+00:32:54,550 --> 00:32:55,669
+All right.
+
+650
+00:32:55,669 --> 00:32:57,460
+So we're going take a
+look now at lighting.
+
+651
+00:32:57,460 --> 00:33:00,890
+So materials are one
+part of the equation.
+
+652
+00:33:00,890 --> 00:33:04,240
+So that sort of defines how things
+should look when light hits them,
+
+653
+00:33:04,240 --> 00:33:08,590
+but we also need light itself in
+our scene to illuminate things.
+
+654
+00:33:08,590 --> 00:33:12,830
+And so this is taken from another
+article on Catlike Coding on rendering.
+
+655
+00:33:12,830 --> 00:33:15,160
+And so this is a scene
+with a lot of lights, a lot
+
+656
+00:33:15,160 --> 00:33:17,470
+of glowing lights, emissive lights.
+
+657
+00:33:17,470 --> 00:33:21,130
+And there's a lot more
+going on here, but this
+
+658
+00:33:21,130 --> 00:33:24,580
+is another great series of articles
+on how to understand the lighting
+
+659
+00:33:24,580 --> 00:33:26,010
+model in Unity.
+
+660
+00:33:26,010 --> 00:33:27,250
+And it teaches you a lot.
+
+661
+00:33:27,250 --> 00:33:31,726
+It teaches you almost down to
+the very bare ingredients of the,
+
+662
+00:33:31,726 --> 00:33:34,600
+sort of, the software and the
+rendering, if you want to go that deep.
+
+663
+00:33:34,600 --> 00:33:36,840
+I certainly haven't gone
+through every article
+
+664
+00:33:36,840 --> 00:33:39,590
+because there's a tremendous amount
+of content and it's very deep.
+
+665
+00:33:39,590 --> 00:33:44,130
+But if you're looking to really
+get a sense of how it works,
+
+666
+00:33:44,130 --> 00:33:46,850
+I would encourage you to explore that.
+
+667
+00:33:46,850 --> 00:33:49,210
+So we'll look at a few
+different types of lighting.
+
+668
+00:33:49,210 --> 00:33:52,230
+Beyond the more complicated things
+that this article talks about,
+
+669
+00:33:52,230 --> 00:33:55,810
+we'll look at the different styles
+of lights, which you'll probably
+
+670
+00:33:55,810 --> 00:33:58,870
+use more often as you're starting out.
+
+671
+00:33:58,870 --> 00:34:00,190
+So point lights.
+
+672
+00:34:00,190 --> 00:34:05,590
+Anybody have an idea as to what a point
+light might be based on this picture?
+
+673
+00:34:05,590 --> 00:34:08,259
+AUDIENCE: Pointing in a
+very specific direction?
+
+674
+00:34:08,259 --> 00:34:10,800
+COLTON OGDEN: It's not pointing
+in a very specific direction.
+
+675
+00:34:10,800 --> 00:34:13,760
+That's actually a spotlight.
+
+676
+00:34:13,760 --> 00:34:19,710
+So a point light is a source of
+light that actually shoots out
+
+677
+00:34:19,710 --> 00:34:21,130
+in all directions around it.
+
+678
+00:34:21,130 --> 00:34:24,540
+So it emits light in all directions,
+but within a confined area,
+
+679
+00:34:24,540 --> 00:34:26,880
+at a specific intensity.
+
+680
+00:34:26,880 --> 00:34:30,000
+A spotlight shines light
+in a specific direction.
+
+681
+00:34:30,000 --> 00:34:31,440
+So only one direction.
+
+682
+00:34:31,440 --> 00:34:33,989
+And what's interesting about
+spotlights is you can actually
+
+683
+00:34:33,989 --> 00:34:36,330
+apply what's called a cookie to them.
+
+684
+00:34:36,330 --> 00:34:40,679
+And what a cookie does, very similar
+to what the Batman light does,
+
+685
+00:34:40,679 --> 00:34:43,230
+it allows you to apply
+a texture to a light
+
+686
+00:34:43,230 --> 00:34:46,929
+and therefore cast shadows,
+specific shadows, on the light.
+
+687
+00:34:46,929 --> 00:34:49,739
+So if you wanted to make
+something like the bat signal,
+
+688
+00:34:49,739 --> 00:34:53,350
+you could put the Batman icon
+cookie on your spotlight.
+
+689
+00:34:53,350 --> 00:34:56,314
+And that will shine a
+light, but the Batman logo
+
+690
+00:34:56,314 --> 00:34:57,480
+will be in the middle of it.
+
+691
+00:34:57,480 --> 00:35:00,990
+It's effectively the same thing
+as taking a literal spotlight
+
+692
+00:35:00,990 --> 00:35:03,530
+and putting a object onto it.
+
+693
+00:35:03,530 --> 00:35:04,405
+It produces a shadow.
+
+694
+00:35:04,405 --> 00:35:05,460
+A manual shadow.
+
+695
+00:35:05,460 --> 00:35:05,910
+AUDIENCE: It's called a cookie?
+
+696
+00:35:05,910 --> 00:35:07,576
+COLTON OGDEN: It's called a cookie, yep.
+
+697
+00:35:07,576 --> 00:35:10,050
+
+
+698
+00:35:10,050 --> 00:35:11,050
+A directional light.
+
+699
+00:35:11,050 --> 00:35:14,070
+Does anybody know what
+a directional light is?
+
+700
+00:35:14,070 --> 00:35:18,493
+So despite its name, it's actually
+not the same thing as a spotlight.
+
+701
+00:35:18,493 --> 00:35:22,840
+
+
+702
+00:35:22,840 --> 00:35:26,220
+So directional light-- we used a
+directional light last week, actually.
+
+703
+00:35:26,220 --> 00:35:27,300
+Last lecture.
+
+704
+00:35:27,300 --> 00:35:31,050
+Directional light casts
+light in a single direction,
+
+705
+00:35:31,050 --> 00:35:34,530
+but throughout the entire
+scene, as if it's the sun.
+
+706
+00:35:34,530 --> 00:35:38,220
+So this allows us to illuminate
+globally the entire scene,
+
+707
+00:35:38,220 --> 00:35:41,350
+but all light gets cast
+from one direction.
+
+708
+00:35:41,350 --> 00:35:45,000
+So if you want to produce the
+appearance of daylight in your scene,
+
+709
+00:35:45,000 --> 00:35:49,020
+just a single directional light
+will illuminate everything.
+
+710
+00:35:49,020 --> 00:35:54,222
+And then the last thing, which is
+used less, is called an area light.
+
+711
+00:35:54,222 --> 00:35:56,430
+So does anybody know-- can
+anybody guess what an area
+
+712
+00:35:56,430 --> 00:35:58,110
+light is based on this picture here?
+
+713
+00:35:58,110 --> 00:36:03,810
+
+
+714
+00:36:03,810 --> 00:36:04,310
+Yes.
+
+715
+00:36:04,310 --> 00:36:07,650
+AUDIENCE: It's light
+that's only on the surface?
+
+716
+00:36:07,650 --> 00:36:09,990
+COLTON OGDEN: Light that's
+only on the surface.
+
+717
+00:36:09,990 --> 00:36:11,070
+Kind of, yes.
+
+718
+00:36:11,070 --> 00:36:13,740
+So it's light that will
+emit from the surface
+
+719
+00:36:13,740 --> 00:36:21,040
+of a specifically-designated rectangle,
+effectively, in one direction.
+
+720
+00:36:21,040 --> 00:36:24,360
+So you can define a large area.
+
+721
+00:36:24,360 --> 00:36:27,870
+For example, maybe you want like a
+wall strip in your game or something
+
+722
+00:36:27,870 --> 00:36:33,694
+on the wall to emit light specifically
+to the left or something like that.
+
+723
+00:36:33,694 --> 00:36:35,360
+That's what an area light is capable of.
+
+724
+00:36:35,360 --> 00:36:38,940
+Now, area lights are
+computationally expensive,
+
+725
+00:36:38,940 --> 00:36:41,649
+and so you can only use them
+when you bake your lighting.
+
+726
+00:36:41,649 --> 00:36:44,440
+Does anybody remember what baking
+means when referring to lighting?
+
+727
+00:36:44,440 --> 00:36:47,520
+
+
+728
+00:36:47,520 --> 00:36:51,600
+So baked lighting just means that,
+instead of real-time lighting,
+
+729
+00:36:51,600 --> 00:36:56,350
+calculating things dynamically,
+the light gets calculated one time
+
+730
+00:36:56,350 --> 00:37:01,285
+and saved, and almost like freezed
+onto all of the objects in the scene.
+
+731
+00:37:01,285 --> 00:37:02,910
+And so there are pros and cons to this.
+
+732
+00:37:02,910 --> 00:37:07,094
+What's a pro to baked
+lighting, do we think?
+
+733
+00:37:07,094 --> 00:37:09,010
+AUDIENCE: It's less
+computationally intensive.
+
+734
+00:37:09,010 --> 00:37:10,884
+COLTON OGDEN: Less
+computationally intensive.
+
+735
+00:37:10,884 --> 00:37:15,630
+What's a downside to baked lighting?
+
+736
+00:37:15,630 --> 00:37:17,817
+AUDIENCE: Can't be dynamically affected.
+
+737
+00:37:17,817 --> 00:37:19,650
+COLTON OGDEN: Can't be
+dynamically affected.
+
+738
+00:37:19,650 --> 00:37:22,190
+So if you're walking through
+a baked lighting scene
+
+739
+00:37:22,190 --> 00:37:25,340
+and you're expecting to cast a
+shadow on something, or for something
+
+740
+00:37:25,340 --> 00:37:27,860
+to cast a shadow onto you,
+it's not going to happen.
+
+741
+00:37:27,860 --> 00:37:29,720
+Because the environment's already been--
+
+742
+00:37:29,720 --> 00:37:31,880
+the lighting for that
+scene has been pre-baked.
+
+743
+00:37:31,880 --> 00:37:35,510
+It's almost as if we've just
+recolored the world in a specific way,
+
+744
+00:37:35,510 --> 00:37:37,970
+but we're not actually doing
+any lighting calculations.
+
+745
+00:37:37,970 --> 00:37:41,270
+But this is how lighting
+worked in, like, the N64 era.
+
+746
+00:37:41,270 --> 00:37:43,850
+And it's how it still works
+now for certain situations.
+
+747
+00:37:43,850 --> 00:37:46,790
+If you know nothing is going
+to cast a shadow on something,
+
+748
+00:37:46,790 --> 00:37:50,270
+you can make really nice
+looking lighting for a scene
+
+749
+00:37:50,270 --> 00:37:53,110
+without needing to do it in real time.
+
+750
+00:37:53,110 --> 00:37:55,250
+You can just bake it, right?
+
+751
+00:37:55,250 --> 00:37:57,290
+So those are the
+different types of lights.
+
+752
+00:37:57,290 --> 00:37:59,480
+So we can see that, in Unity--
+
+753
+00:37:59,480 --> 00:38:01,940
+so if we go here.
+
+754
+00:38:01,940 --> 00:38:05,270
+I'm going to-- so right now
+we have a directional light.
+
+755
+00:38:05,270 --> 00:38:07,700
+So this directional light
+is this object here.
+
+756
+00:38:07,700 --> 00:38:11,640
+By default, all-- and you can
+zoom in as much as you want,
+
+757
+00:38:11,640 --> 00:38:13,290
+but it's sort of like--
+
+758
+00:38:13,290 --> 00:38:16,140
+oh, there we go.
+
+759
+00:38:16,140 --> 00:38:21,270
+This directional light is
+only shining in one direction.
+
+760
+00:38:21,270 --> 00:38:22,220
+So I can move it here.
+
+761
+00:38:22,220 --> 00:38:24,905
+So currently I'm in--
+
+762
+00:38:24,905 --> 00:38:27,470
+it's a little bit
+weird to navigate, just
+
+763
+00:38:27,470 --> 00:38:29,490
+because it's been rotated a little bit.
+
+764
+00:38:29,490 --> 00:38:31,790
+Given that it's a directional
+light, its rotation--
+
+765
+00:38:31,790 --> 00:38:34,620
+
+
+766
+00:38:34,620 --> 00:38:36,210
+So notice how it changes.
+
+767
+00:38:36,210 --> 00:38:39,014
+So if I shine it upwards, notice
+that everything becomes black
+
+768
+00:38:39,014 --> 00:38:41,180
+because the lighting is
+just shining upwards, right?
+
+769
+00:38:41,180 --> 00:38:43,710
+So as if it's coming from below.
+
+770
+00:38:43,710 --> 00:38:46,700
+And if I shine it towards
+there, notice that the lighting
+
+771
+00:38:46,700 --> 00:38:51,680
+on the sphere and the little cube
+there sort of change a bit, right?
+
+772
+00:38:51,680 --> 00:38:55,190
+Because they're getting affected by the
+direction of the light a little bit.
+
+773
+00:38:55,190 --> 00:38:57,230
+But they both get
+affected the exact same,
+
+774
+00:38:57,230 --> 00:38:59,155
+because the directional
+light is omnipresent.
+
+775
+00:38:59,155 --> 00:39:00,530
+It's throughout the entire scene.
+
+776
+00:39:00,530 --> 00:39:02,330
+It's a global object.
+
+777
+00:39:02,330 --> 00:39:05,250
+Now if I delete the directional light--
+
+778
+00:39:05,250 --> 00:39:07,380
+Notice have no light
+now, so these things just
+
+779
+00:39:07,380 --> 00:39:10,160
+look kind of, like, statically shaded.
+
+780
+00:39:10,160 --> 00:39:12,290
+You can add a new light through--
+
+781
+00:39:12,290 --> 00:39:15,759
+if you right click in your sort of game
+object view, and then you go over here,
+
+782
+00:39:15,759 --> 00:39:18,300
+you can see we have all the
+different lights we talked about.
+
+783
+00:39:18,300 --> 00:39:20,910
+There's also things called reflection
+probes and light probe groups.
+
+784
+00:39:20,910 --> 00:39:22,743
+And those are a little
+bit more complicated.
+
+785
+00:39:22,743 --> 00:39:26,750
+But those allow you to effectively
+get pseudo-real-time lighting
+
+786
+00:39:26,750 --> 00:39:30,185
+and reflection with baked
+lighting and reflection.
+
+787
+00:39:30,185 --> 00:39:32,060
+We won't talk about
+those in today's lecture.
+
+788
+00:39:32,060 --> 00:39:34,900
+But here's a point light, for example.
+
+789
+00:39:34,900 --> 00:39:36,800
+So, let's see, where is it?
+
+790
+00:39:36,800 --> 00:39:37,820
+It's right over here.
+
+791
+00:39:37,820 --> 00:39:40,820
+So I'm going to move it over here.
+
+792
+00:39:40,820 --> 00:39:46,002
+So you can see it's not global like
+the directional light was, right?
+
+793
+00:39:46,002 --> 00:39:49,210
+It's just affecting this very limited--
+and I'm going to zoom in a little bit
+
+794
+00:39:49,210 --> 00:39:50,668
+so you can see a little bit better.
+
+795
+00:39:50,668 --> 00:39:53,564
+But it's affecting just
+sort of these two objects
+
+796
+00:39:53,564 --> 00:39:54,980
+relative to where its position is.
+
+797
+00:39:54,980 --> 00:39:57,520
+
+
+798
+00:39:57,520 --> 00:40:00,455
+And so this works perfectly for
+things like lamps in your scene.
+
+799
+00:40:00,455 --> 00:40:03,080
+If you want to have a street
+light, or whether you want to have
+
+800
+00:40:03,080 --> 00:40:05,270
+maybe like a fire going on in a house.
+
+801
+00:40:05,270 --> 00:40:08,760
+Or if you want the
+power up that we had--
+
+802
+00:40:08,760 --> 00:40:12,840
+or the pickup that we had
+in the Unity scene, right?
+
+803
+00:40:12,840 --> 00:40:14,750
+We have just the--
+
+804
+00:40:14,750 --> 00:40:21,210
+it's just emitting a purple light
+that is within a very small radius.
+
+805
+00:40:21,210 --> 00:40:25,250
+Notice here we can change
+the color of the light.
+
+806
+00:40:25,250 --> 00:40:26,810
+So if I make it like that--
+
+807
+00:40:26,810 --> 00:40:31,540
+
+
+808
+00:40:31,540 --> 00:40:37,010
+there we go-- so I'll do that.
+
+809
+00:40:37,010 --> 00:40:39,470
+So notice now it's
+emitting a purple light.
+
+810
+00:40:39,470 --> 00:40:41,379
+So you can color a
+light however you want
+
+811
+00:40:41,379 --> 00:40:42,920
+to produce whatever effects you want.
+
+812
+00:40:42,920 --> 00:40:45,100
+So fire is not going
+to emit white light.
+
+813
+00:40:45,100 --> 00:40:47,740
+It's probably going to emit
+like an orange red light.
+
+814
+00:40:47,740 --> 00:40:51,352
+Street lights are probably going to emit
+kind of like a yellow orangey light.
+
+815
+00:40:51,352 --> 00:40:54,560
+So depending on what your scene looks
+like and what you're trying to emulate,
+
+816
+00:40:54,560 --> 00:40:59,405
+you can accomplish pretty much anything
+with just these very simple objects.
+
+817
+00:40:59,405 --> 00:41:02,180
+So I'm going to get
+rid of the point light.
+
+818
+00:41:02,180 --> 00:41:05,390
+And then I'm going to
+create a spotlight.
+
+819
+00:41:05,390 --> 00:41:08,630
+I'm not going to create an area light
+just because I need to actually bake
+
+820
+00:41:08,630 --> 00:41:10,010
+the lighting into the scene.
+
+821
+00:41:10,010 --> 00:41:12,843
+But I will create a spotlight just
+so we can see what it looks like.
+
+822
+00:41:12,843 --> 00:41:15,282
+
+
+823
+00:41:15,282 --> 00:41:16,490
+Get it in the right position.
+
+824
+00:41:16,490 --> 00:41:22,400
+
+
+825
+00:41:22,400 --> 00:41:27,400
+Sometimes it can be a little tough
+to figure exactly where you are.
+
+826
+00:41:27,400 --> 00:41:30,685
+OK, getting close.
+
+827
+00:41:30,685 --> 00:41:31,950
+There we go.
+
+828
+00:41:31,950 --> 00:41:33,540
+Perfect.
+
+829
+00:41:33,540 --> 00:41:37,229
+So this little spotlight right here
+is being produced by our object.
+
+830
+00:41:37,229 --> 00:41:38,770
+So you can see we can move it around.
+
+831
+00:41:38,770 --> 00:41:41,430
+And then we can apply a cookie
+to it if we want to, as well.
+
+832
+00:41:41,430 --> 00:41:42,190
+It's right here.
+
+833
+00:41:42,190 --> 00:41:46,080
+So in your-- if you're in a spotlight
+and you want to apply a texture to it,
+
+834
+00:41:46,080 --> 00:41:47,980
+just this little cookie--
+
+835
+00:41:47,980 --> 00:41:49,230
+and it just expects a texture.
+
+836
+00:41:49,230 --> 00:41:51,630
+So whatever image you want.
+
+837
+00:41:51,630 --> 00:41:56,220
+And if you're creating a cookie texture,
+white means full light and black
+
+838
+00:41:56,220 --> 00:41:58,112
+means full shadow.
+
+839
+00:41:58,112 --> 00:41:59,820
+And so you can make
+it a grayscale image.
+
+840
+00:41:59,820 --> 00:42:02,680
+You can make it anywhere
+in between white and black,
+
+841
+00:42:02,680 --> 00:42:05,520
+which will allow you to produce
+some interesting effects.
+
+842
+00:42:05,520 --> 00:42:07,530
+For example, the manual in--
+
+843
+00:42:07,530 --> 00:42:10,230
+
+
+844
+00:42:10,230 --> 00:42:11,370
+It's not here.
+
+845
+00:42:11,370 --> 00:42:13,470
+I didn't include the
+picture here, but the manual
+
+846
+00:42:13,470 --> 00:42:17,340
+shows there are some kind of like
+the lights that you put on a stand.
+
+847
+00:42:17,340 --> 00:42:19,590
+And they have a bunch of LEDs, right?
+
+848
+00:42:19,590 --> 00:42:22,470
+And they're sort of in a grid,
+and they shoot out a spotlight.
+
+849
+00:42:22,470 --> 00:42:25,800
+You can create a cookie that's kind of
+a grayscale with those gridded lines,
+
+850
+00:42:25,800 --> 00:42:28,020
+and it'll shoot light onto
+the scene as if it's being
+
+851
+00:42:28,020 --> 00:42:32,910
+broadcast from a sort of grid of LEDs.
+
+852
+00:42:32,910 --> 00:42:36,240
+So there's a lot you can do with
+just some very simple ideas.
+
+853
+00:42:36,240 --> 00:42:39,610
+Those are the kinds of
+lighting that we can use.
+
+854
+00:42:39,610 --> 00:42:42,790
+And in today's lecture, we only
+really used the point light.
+
+855
+00:42:42,790 --> 00:42:46,900
+And in the last lecture we
+used the directional light.
+
+856
+00:42:46,900 --> 00:42:51,330
+And spotlights you could,
+for example, programmatically
+
+857
+00:42:51,330 --> 00:42:54,190
+change, for example, the
+rotation of a spotlight,
+
+858
+00:42:54,190 --> 00:42:57,960
+if you want to have like a swinging
+spotlight in your scene to illuminate
+
+859
+00:42:57,960 --> 00:42:59,490
+some wall or some surface.
+
+860
+00:42:59,490 --> 00:43:01,900
+There's a lot of cool
+things you can do with it.
+
+861
+00:43:01,900 --> 00:43:04,750
+So those are the core
+types of lights in Unity.
+
+862
+00:43:04,750 --> 00:43:08,846
+Does anybody have any questions as
+to how they're used or how they were.
+
+863
+00:43:08,846 --> 00:43:10,988
+AUDIENCE: For directional
+light, does it matter
+
+864
+00:43:10,988 --> 00:43:12,660
+where it's placed or only
+the direction it's facing?
+
+865
+00:43:12,660 --> 00:43:14,430
+COLTON OGDEN: It does not matter--
+so for the directional light,
+
+866
+00:43:14,430 --> 00:43:15,660
+it does not matter where it's placed.
+
+867
+00:43:15,660 --> 00:43:17,451
+You could place it
+anywhere in your scene--
+
+868
+00:43:17,451 --> 00:43:19,540
+00 or some far distance away--
+
+869
+00:43:19,540 --> 00:43:23,100
+it'll have the exact same
+effect on the entire scene.
+
+870
+00:43:23,100 --> 00:43:25,850
+Any more questions?
+
+871
+00:43:25,850 --> 00:43:27,030
+OK.
+
+872
+00:43:27,030 --> 00:43:27,630
+Cool, cool.
+
+873
+00:43:27,630 --> 00:43:29,180
+So those are lights.
+
+874
+00:43:29,180 --> 00:43:31,050
+Bump mapping, we'll
+talk about very briefly.
+
+875
+00:43:31,050 --> 00:43:32,580
+So bump mapping is--
+
+876
+00:43:32,580 --> 00:43:36,000
+we actually do use this in the game.
+
+877
+00:43:36,000 --> 00:43:39,750
+A bump map effectively is-- so
+what you see here on the left
+
+878
+00:43:39,750 --> 00:43:41,820
+is an actual 3D scene.
+
+879
+00:43:41,820 --> 00:43:44,810
+These are actual models
+being shaded in real time.
+
+880
+00:43:44,810 --> 00:43:48,690
+Or, not in real time, but they're
+actually real models being illuminated.
+
+881
+00:43:48,690 --> 00:43:52,510
+In the middle, we can see what's
+called a bump map, and on the right,
+
+882
+00:43:52,510 --> 00:43:56,240
+we can see a-- that's just a flat--
+
+883
+00:43:56,240 --> 00:43:58,020
+like a flat plane.
+
+884
+00:43:58,020 --> 00:44:01,090
+With a bump map-- with that
+same bump map-- applied to it,
+
+885
+00:44:01,090 --> 00:44:02,590
+and then illuminated.
+
+886
+00:44:02,590 --> 00:44:08,970
+So what a bump map allows us to do is
+to take a flat wall or flat surface
+
+887
+00:44:08,970 --> 00:44:14,820
+or whatever you want, and then simulate
+an actual three-dimensional contour,
+
+888
+00:44:14,820 --> 00:44:18,540
+three-dimensional bumps, or
+whatever you want on that surface
+
+889
+00:44:18,540 --> 00:44:22,740
+without needing to create the
+actual geometry to make it possible.
+
+890
+00:44:22,740 --> 00:44:25,240
+And so there are different
+tools that will allow
+
+891
+00:44:25,240 --> 00:44:28,050
+you to create bump mapping objects--
+
+892
+00:44:28,050 --> 00:44:29,220
+or bump mapping textures.
+
+893
+00:44:29,220 --> 00:44:33,060
+Often 3D packages will have
+these, so you can create them.
+
+894
+00:44:33,060 --> 00:44:34,930
+Or other software.
+
+895
+00:44:34,930 --> 00:44:38,580
+But they are effectively
+just the encoding
+
+896
+00:44:38,580 --> 00:44:41,130
+of what are called surface normals.
+
+897
+00:44:41,130 --> 00:44:50,130
+So just a vector going from outside
+of the polygon at that given point.
+
+898
+00:44:50,130 --> 00:44:53,130
+And they tell the
+lighting system in Unity,
+
+899
+00:44:53,130 --> 00:44:59,640
+pretend as if there's actually
+geometry pointed in that direction
+
+900
+00:44:59,640 --> 00:45:00,990
+when you calculate it.
+
+901
+00:45:00,990 --> 00:45:04,310
+And so, even though it doesn't
+distort the geometry in a way that's--
+
+902
+00:45:04,310 --> 00:45:06,150
+like, this is still completely flat.
+
+903
+00:45:06,150 --> 00:45:12,730
+The lighting thinks that the geometry
+is kind of, you know, contoured.
+
+904
+00:45:12,730 --> 00:45:15,360
+And so it allows us to create--
+
+905
+00:45:15,360 --> 00:45:17,730
+this is kind of a toy
+example, but it's actually
+
+906
+00:45:17,730 --> 00:45:20,900
+relevant in the case
+of walls that have--
+
+907
+00:45:20,900 --> 00:45:23,760
+and we covered this last week,
+just not in as much detail.
+
+908
+00:45:23,760 --> 00:45:25,860
+But walls that you
+want to be flat and you
+
+909
+00:45:25,860 --> 00:45:28,485
+don't want to have a lot of
+polygons for, you can create a bump
+
+910
+00:45:28,485 --> 00:45:30,369
+map for and apply that bump map.
+
+911
+00:45:30,369 --> 00:45:32,910
+And then when you're rendering
+it, when you walk past a wall,
+
+912
+00:45:32,910 --> 00:45:36,600
+it's going to look as if the wall
+actually has cracks and bumps in it,
+
+913
+00:45:36,600 --> 00:45:37,890
+for a realistic effect.
+
+914
+00:45:37,890 --> 00:45:40,140
+And this is used in the
+game to a slight degree.
+
+915
+00:45:40,140 --> 00:45:41,820
+And you can crank it up if you want to.
+
+916
+00:45:41,820 --> 00:45:45,300
+I didn't on my computer because
+my specs aren't sufficient.
+
+917
+00:45:45,300 --> 00:45:49,990
+But every texture in today's example
+has a bump map associated with it.
+
+918
+00:45:49,990 --> 00:46:01,920
+So you can actually see the effect of
+bump mapping at various degrees of use.
+
+919
+00:46:01,920 --> 00:46:03,770
+The materials here-- I'm going to go--
+
+920
+00:46:03,770 --> 00:46:09,850
+I'm going to load up the scene
+that has the actual stuff.
+
+921
+00:46:09,850 --> 00:46:13,100
+
+
+922
+00:46:13,100 --> 00:46:16,340
+I'm going to-- actually, I
+don't need to load up the scene.
+
+923
+00:46:16,340 --> 00:46:18,350
+All I need to do is go to the materials.
+
+924
+00:46:18,350 --> 00:46:20,630
+And the floor, for example.
+
+925
+00:46:20,630 --> 00:46:21,830
+Where is the floor?
+
+926
+00:46:21,830 --> 00:46:23,520
+Right here.
+
+927
+00:46:23,520 --> 00:46:26,000
+So notice that before,
+we talked about albedo,
+
+928
+00:46:26,000 --> 00:46:27,740
+and then I also mentioned normal map.
+
+929
+00:46:27,740 --> 00:46:30,020
+So right here, all you
+really need to do in order
+
+930
+00:46:30,020 --> 00:46:32,660
+to get Unity to detect normal
+maps-- and this is just
+
+931
+00:46:32,660 --> 00:46:34,160
+part of the standard shader.
+
+932
+00:46:34,160 --> 00:46:38,480
+Normal maps and bump maps, by the
+way, are effectively synonymous.
+
+933
+00:46:38,480 --> 00:46:42,740
+You can just drag your
+normal map texture
+
+934
+00:46:42,740 --> 00:46:45,020
+into this field here,
+this little square,
+
+935
+00:46:45,020 --> 00:46:47,600
+and then give it a degree at
+which to apply that normal map.
+
+936
+00:46:47,600 --> 00:46:51,260
+And so if you look at this
+here, you might be able to see--
+
+937
+00:46:51,260 --> 00:46:52,270
+I don't recall.
+
+938
+00:46:52,270 --> 00:46:56,090
+Yeah, we can sort of see how
+it changes the texture, right?
+
+939
+00:46:56,090 --> 00:47:02,000
+So at zero, there's no normal
+mapping taking place at all.
+
+940
+00:47:02,000 --> 00:47:04,190
+That texture is just
+completely flat, as if we
+
+941
+00:47:04,190 --> 00:47:07,850
+had done just the regular
+apply texture to a sphere.
+
+942
+00:47:07,850 --> 00:47:11,980
+But the degree at which we apply normal
+mapping-- so notice that at degree one,
+
+943
+00:47:11,980 --> 00:47:15,830
+it kind of looks pretty realistic, as
+if we've got kind of a stony texture.
+
+944
+00:47:15,830 --> 00:47:21,860
+And the more we go, the more
+exaggerated it starts to look, right?
+
+945
+00:47:21,860 --> 00:47:25,400
+And you can just keep doing
+that, and it'll eventually just
+
+946
+00:47:25,400 --> 00:47:26,660
+look really distorted.
+
+947
+00:47:26,660 --> 00:47:28,535
+But that allows you--
+
+948
+00:47:28,535 --> 00:47:30,410
+and depending on how
+strong your computer is,
+
+949
+00:47:30,410 --> 00:47:32,750
+you can go higher or lower--
+
+950
+00:47:32,750 --> 00:47:36,380
+to affect just how bumpy--
+
+951
+00:47:36,380 --> 00:47:40,610
+just how strong the bump map, the normal
+map, affects the lighting rendering.
+
+952
+00:47:40,610 --> 00:47:45,410
+So it's that easy to get
+just a fairly, sort of,
+
+953
+00:47:45,410 --> 00:47:47,360
+extra sense of realism in your scene.
+
+954
+00:47:47,360 --> 00:47:49,610
+So you'll notice, if you're
+walking through the scene,
+
+955
+00:47:49,610 --> 00:47:51,710
+if you turn off lighting
+it's even easier to see
+
+956
+00:47:51,710 --> 00:47:55,220
+all of the surfaces, the floors,
+the ceilings, and the walls
+
+957
+00:47:55,220 --> 00:47:59,820
+have a bump map as
+well as a texture map.
+
+958
+00:47:59,820 --> 00:48:04,190
+So that's-- in case you're wondering
+what these weird colored textures are,
+
+959
+00:48:04,190 --> 00:48:10,520
+RGB or XYZ for the surface normals
+and their permutations thereof.
+
+960
+00:48:10,520 --> 00:48:12,410
+And that's how it gets
+encoded into this.
+
+961
+00:48:12,410 --> 00:48:13,910
+And so often you can see--
+
+962
+00:48:13,910 --> 00:48:16,850
+if you're looking at a bump
+map and a texture map--
+
+963
+00:48:16,850 --> 00:48:19,789
+you can kind of see together,
+like, oh, OK this makes sense.
+
+964
+00:48:19,789 --> 00:48:21,830
+The parts that I would
+expect to be bumpier or do
+
+965
+00:48:21,830 --> 00:48:26,810
+have a correlation to how they look
+on the actual bump map texture.
+
+966
+00:48:26,810 --> 00:48:27,910
+You can see it here.
+
+967
+00:48:27,910 --> 00:48:31,790
+Everything that is bumpy or contoured
+is very visible in the bump map.
+
+968
+00:48:31,790 --> 00:48:35,210
+And that's just by nature of
+the way the data is encoded.
+
+969
+00:48:35,210 --> 00:48:38,424
+So any questions as to how
+bump maps work or what they are
+
+970
+00:48:38,424 --> 00:48:39,590
+or how to use them in Unity?
+
+971
+00:48:39,590 --> 00:48:42,800
+
+
+972
+00:48:42,800 --> 00:48:43,640
+All right.
+
+973
+00:48:43,640 --> 00:48:44,360
+Cool.
+
+974
+00:48:44,360 --> 00:48:46,568
+So now we're going to start
+getting a little bit more
+
+975
+00:48:46,568 --> 00:48:50,600
+into how this all comes together
+in our maze on our game,
+
+976
+00:48:50,600 --> 00:48:53,150
+and we'll talk about maze generation.
+
+977
+00:48:53,150 --> 00:48:58,910
+So I'm going to just
+start up the scene here.
+
+978
+00:48:58,910 --> 00:49:02,330
+So I'm in the actual play scene.
+
+979
+00:49:02,330 --> 00:49:04,850
+So in scenes, I loaded
+up play as before.
+
+980
+00:49:04,850 --> 00:49:06,366
+I'm going to hit Play.
+
+981
+00:49:06,366 --> 00:49:08,907
+I'm going to turn off my sound,
+just because the creepy sound
+
+982
+00:49:08,907 --> 00:49:12,712
+is a little disorienting after a while.
+
+983
+00:49:12,712 --> 00:49:13,670
+And then I'm going to--
+
+984
+00:49:13,670 --> 00:49:16,220
+
+
+985
+00:49:16,220 --> 00:49:18,930
+actually, I'm going to
+go to a 2 by 3 view.
+
+986
+00:49:18,930 --> 00:49:21,470
+
+
+987
+00:49:21,470 --> 00:49:24,620
+And then hit Play.
+
+988
+00:49:24,620 --> 00:49:28,670
+So we have the regular
+game view down here below.
+
+989
+00:49:28,670 --> 00:49:34,800
+And then also, if I zoom out, you can
+see that our scene was empty before,
+
+990
+00:49:34,800 --> 00:49:36,050
+but now we've got a maze.
+
+991
+00:49:36,050 --> 00:49:40,770
+And currently it's not very
+visible at all because one,
+
+992
+00:49:40,770 --> 00:49:42,890
+we're applying fog, right?
+
+993
+00:49:42,890 --> 00:49:45,860
+And recall fog allows us
+to effectively add color
+
+994
+00:49:45,860 --> 00:49:48,790
+to objects that are
+farther away from us.
+
+995
+00:49:48,790 --> 00:49:51,850
+And two, there's a
+ceiling on top of our--
+
+996
+00:49:51,850 --> 00:49:53,580
+a roof on top of our maze.
+
+997
+00:49:53,580 --> 00:49:57,530
+So it's actually blocking
+out what the maze looks like.
+
+998
+00:49:57,530 --> 00:50:00,380
+So we can fairly easily
+make a couple of changes
+
+999
+00:50:00,380 --> 00:50:03,660
+here in order to see our
+maze a little bit better.
+
+1000
+00:50:03,660 --> 00:50:06,520
+So I'm going to go to Window, I'm
+going to go to Lighting, Settings.
+
+1001
+00:50:06,520 --> 00:50:08,930
+And so if you go to
+Window, Lighting, Settings,
+
+1002
+00:50:08,930 --> 00:50:12,750
+those are your sort of global
+Unity lighting settings.
+
+1003
+00:50:12,750 --> 00:50:15,650
+You can set your skybox, you
+can set environment lighting,
+
+1004
+00:50:15,650 --> 00:50:19,130
+you can set things like fog, you
+can choose how things are baked.
+
+1005
+00:50:19,130 --> 00:50:21,300
+There's a lot of things here.
+
+1006
+00:50:21,300 --> 00:50:22,850
+We won't cover nearly all of them.
+
+1007
+00:50:22,850 --> 00:50:25,070
+We will cover a few of them.
+
+1008
+00:50:25,070 --> 00:50:26,884
+Environment lighting is a big one.
+
+1009
+00:50:26,884 --> 00:50:29,300
+That's actually how we're
+lighting the scene in this game.
+
+1010
+00:50:29,300 --> 00:50:32,140
+So all of the lighting that's not--
+
+1011
+00:50:32,140 --> 00:50:35,077
+well, all of the lighting
+is environment lighting.
+
+1012
+00:50:35,077 --> 00:50:36,160
+That's how we're doing it.
+
+1013
+00:50:36,160 --> 00:50:37,380
+We're doing it with color.
+
+1014
+00:50:37,380 --> 00:50:40,640
+So notice that you can choose
+Skybox, Gradient, and Color.
+
+1015
+00:50:40,640 --> 00:50:45,650
+So if you choose skybox Environment.
+lighting, it's going to have sort of--
+
+1016
+00:50:45,650 --> 00:50:48,440
+it's going to look kind of like
+this skybox that we have here.
+
+1017
+00:50:48,440 --> 00:50:50,980
+This sort of in the far
+distance, looks blue.
+
+1018
+00:50:50,980 --> 00:50:52,470
+Kind of a little bit more natural.
+
+1019
+00:50:52,470 --> 00:50:54,860
+But I didn't-- but when
+it's applied to our scene,
+
+1020
+00:50:54,860 --> 00:50:58,590
+it doesn't look quite the
+way we want it to look.
+
+1021
+00:50:58,590 --> 00:51:00,860
+So what we went with
+instead was just color.
+
+1022
+00:51:00,860 --> 00:51:04,190
+And I chose this sort of
+murky greenish brownish color.
+
+1023
+00:51:04,190 --> 00:51:06,620
+And that gave the result
+that I was looking for.
+
+1024
+00:51:06,620 --> 00:51:08,630
+But you can make this
+any color you want to.
+
+1025
+00:51:08,630 --> 00:51:11,000
+We can make this some sort
+of bright yellow color.
+
+1026
+00:51:11,000 --> 00:51:12,958
+I have no idea what this
+is going to look like.
+
+1027
+00:51:12,958 --> 00:51:15,460
+This is probably going
+to look horrible, but--
+
+1028
+00:51:15,460 --> 00:51:16,340
+Yep.
+
+1029
+00:51:16,340 --> 00:51:17,990
+I mean, actually, this--
+
+1030
+00:51:17,990 --> 00:51:21,030
+is in a weird way this
+kind of looks interesting.
+
+1031
+00:51:21,030 --> 00:51:25,160
+It actually looks closer to the original
+Dreadhalls game than what I did.
+
+1032
+00:51:25,160 --> 00:51:26,427
+But it's not very scary.
+
+1033
+00:51:26,427 --> 00:51:28,010
+Kind of looks like we're in a pyramid.
+
+1034
+00:51:28,010 --> 00:51:30,560
+
+
+1035
+00:51:30,560 --> 00:51:33,290
+That is-- am I able to go back?
+
+1036
+00:51:33,290 --> 00:51:33,910
+No.
+
+1037
+00:51:33,910 --> 00:51:34,410
+OK.
+
+1038
+00:51:34,410 --> 00:51:37,960
+Well, I screwed up the color.
+
+1039
+00:51:37,960 --> 00:51:41,100
+Now I'm trying to find kind
+of what color I had before.
+
+1040
+00:51:41,100 --> 00:51:43,110
+It's kind of like a nasty green.
+
+1041
+00:51:43,110 --> 00:51:44,950
+Kind of like that.
+
+1042
+00:51:44,950 --> 00:51:47,360
+That's probably good enough.
+
+1043
+00:51:47,360 --> 00:51:47,900
+OK.
+
+1044
+00:51:47,900 --> 00:51:48,930
+Something like that.
+
+1045
+00:51:48,930 --> 00:51:54,147
+And so we play it again, we can see
+we're back to the nasty dark color.
+
+1046
+00:51:54,147 --> 00:51:55,480
+But that's environment lighting.
+
+1047
+00:51:55,480 --> 00:51:59,101
+So it applies a lighting,
+uniform, just ambience.
+
+1048
+00:51:59,101 --> 00:52:01,850
+Kind of like a directional light,
+but it doesn't have a direction.
+
+1049
+00:52:01,850 --> 00:52:08,990
+It just applies to everything in
+your scene at a given intensity.
+
+1050
+00:52:08,990 --> 00:52:12,320
+And that is how we are
+lighting our scene.
+
+1051
+00:52:12,320 --> 00:52:13,220
+It's that easy.
+
+1052
+00:52:13,220 --> 00:52:16,640
+Just environment lighting in our
+scene and our lighting scene window.
+
+1053
+00:52:16,640 --> 00:52:20,300
+Now, the other important
+thing here is the fog.
+
+1054
+00:52:20,300 --> 00:52:22,370
+So fog is as easy--
+
+1055
+00:52:22,370 --> 00:52:25,610
+almost as easy as just clicking
+this button here that says fog,
+
+1056
+00:52:25,610 --> 00:52:27,770
+and then choosing a
+color for it, probably.
+
+1057
+00:52:27,770 --> 00:52:31,010
+You can choose the density, so
+obviously if it's a higher density fog
+
+1058
+00:52:31,010 --> 00:52:33,320
+it's going to look as if
+you're in a foggier place.
+
+1059
+00:52:33,320 --> 00:52:37,040
+It's going to sum the color to
+things that are closer to you
+
+1060
+00:52:37,040 --> 00:52:40,460
+faster than it would if you
+had a lower density fog.
+
+1061
+00:52:40,460 --> 00:52:43,949
+And there are some other
+features here, some of which
+
+1062
+00:52:43,949 --> 00:52:45,240
+I'm not terribly familiar with.
+
+1063
+00:52:45,240 --> 00:52:48,320
+But for the sake of today's
+example, just the click--
+
+1064
+00:52:48,320 --> 00:52:49,880
+make sure fog is selected.
+
+1065
+00:52:49,880 --> 00:52:52,620
+And then click, make sure you
+have the right color for your fog.
+
+1066
+00:52:52,620 --> 00:52:55,700
+So if you have like a ridiculous
+red color for your fog,
+
+1067
+00:52:55,700 --> 00:52:59,030
+it's probably going to look weird.
+
+1068
+00:52:59,030 --> 00:53:00,406
+Yep.
+
+1069
+00:53:00,406 --> 00:53:02,780
+But you can see how you can
+do all kinds of weird effects
+
+1070
+00:53:02,780 --> 00:53:04,335
+just by adding these things together.
+
+1071
+00:53:04,335 --> 00:53:07,210
+Like, if you want to have the effect
+of being in some sort of, like--
+
+1072
+00:53:07,210 --> 00:53:10,790
+I don't know, noxious foreign world,
+maybe you want like a purple fog
+
+1073
+00:53:10,790 --> 00:53:13,780
+instead of like a dark
+green fog or whatever.
+
+1074
+00:53:13,780 --> 00:53:15,400
+That's super easy.
+
+1075
+00:53:15,400 --> 00:53:19,290
+You produce a lot of very basic
+but effective effects that way.
+
+1076
+00:53:19,290 --> 00:53:22,926
+Let me find-- I think it was just that
+kind of the same nasty green color.
+
+1077
+00:53:22,926 --> 00:53:24,800
+AUDIENCE: How you bring
+this screen up again?
+
+1078
+00:53:24,800 --> 00:53:26,066
+The one that says lighting?
+
+1079
+00:53:26,066 --> 00:53:28,940
+COLTON OGDEN: So to bring up this
+lighting screen, all you need to do
+
+1080
+00:53:28,940 --> 00:53:29,920
+is, if you're on a Mac--
+
+1081
+00:53:29,920 --> 00:53:31,190
+I think in Windows it's
+the same thing-- there's
+
+1082
+00:53:31,190 --> 00:53:33,230
+a Window option in the top menu.
+
+1083
+00:53:33,230 --> 00:53:37,730
+Window, and then Lighting
+here, and then Settings.
+
+1084
+00:53:37,730 --> 00:53:41,100
+And so this will bring you to all of the
+settings that are pertinent to at least
+
+1085
+00:53:41,100 --> 00:53:42,766
+today's example.
+
+1086
+00:53:42,766 --> 00:53:45,020
+And so we're not using
+any lights in our scene
+
+1087
+00:53:45,020 --> 00:53:50,490
+that we talked about before, at least
+for the lighting of the scene itself.
+
+1088
+00:53:50,490 --> 00:53:55,020
+Now, there are point lights
+being used for the pickups,
+
+1089
+00:53:55,020 --> 00:53:57,430
+and I'll show you that in a second.
+
+1090
+00:53:57,430 --> 00:54:02,460
+But what I wanted to illustrate
+was how we can look at our maze
+
+1091
+00:54:02,460 --> 00:54:03,880
+after it's been generated.
+
+1092
+00:54:03,880 --> 00:54:05,700
+And so what we need to do first--
+
+1093
+00:54:05,700 --> 00:54:10,490
+notice that before we couldn't
+really see our maze at a distance
+
+1094
+00:54:10,490 --> 00:54:12,990
+because it was just purely
+dark green because of the fog.
+
+1095
+00:54:12,990 --> 00:54:18,870
+It was adding green to that
+geometry because it was so far away.
+
+1096
+00:54:18,870 --> 00:54:20,645
+So I'm going to disable fog for now.
+
+1097
+00:54:20,645 --> 00:54:23,186
+It'll actually remember your
+settings, which is kind of nice.
+
+1098
+00:54:23,186 --> 00:54:25,950
+So just going to disable fog.
+
+1099
+00:54:25,950 --> 00:54:30,600
+And I'm going to actually add a
+directional light to the scene.
+
+1100
+00:54:30,600 --> 00:54:33,619
+So I'm going to go here,
+add a directional light.
+
+1101
+00:54:33,619 --> 00:54:35,160
+And then I'm going to hit Play again.
+
+1102
+00:54:35,160 --> 00:54:38,130
+
+
+1103
+00:54:38,130 --> 00:54:42,165
+So now, our scene is lit.
+
+1104
+00:54:42,165 --> 00:54:44,910
+
+
+1105
+00:54:44,910 --> 00:54:49,960
+And, you know, it looks a lot
+different, a lot less scary.
+
+1106
+00:54:49,960 --> 00:54:52,040
+And we can see our maze lot better.
+
+1107
+00:54:52,040 --> 00:54:57,930
+We can actually see that it
+is a collection of blocks.
+
+1108
+00:54:57,930 --> 00:54:59,160
+It's tiled blocks.
+
+1109
+00:54:59,160 --> 00:55:02,880
+Now, we can't see into the maze
+because the maze has a roof.
+
+1110
+00:55:02,880 --> 00:55:04,980
+So what I did was I just
+made a generated roof,
+
+1111
+00:55:04,980 --> 00:55:10,170
+an option in the script, and so if you
+unselect that and then we try again,
+
+1112
+00:55:10,170 --> 00:55:11,830
+now we can see our maze.
+
+1113
+00:55:11,830 --> 00:55:14,029
+So this is what our mazes look like.
+
+1114
+00:55:14,029 --> 00:55:16,320
+And so the cool thing about
+Unity, which I really love,
+
+1115
+00:55:16,320 --> 00:55:19,540
+is just this ability to look
+through your scene independent
+
+1116
+00:55:19,540 --> 00:55:22,500
+of the actual game, just to help debug.
+
+1117
+00:55:22,500 --> 00:55:26,550
+It's hard to know if you're
+generating your maze correctly
+
+1118
+00:55:26,550 --> 00:55:27,800
+when you're creating it in 3D.
+
+1119
+00:55:27,800 --> 00:55:29,940
+You know, in 2D you can
+easily just look at it.
+
+1120
+00:55:29,940 --> 00:55:33,910
+But in 3D, especially in a first-person
+game, you can't really see it.
+
+1121
+00:55:33,910 --> 00:55:37,110
+So being able to split your view
+like this-- the scene and the game--
+
+1122
+00:55:37,110 --> 00:55:41,400
+and actually see, oh, my algorithm's
+working, or it's not working.
+
+1123
+00:55:41,400 --> 00:55:43,120
+Super helpful.
+
+1124
+00:55:43,120 --> 00:55:47,240
+So we can see that it is
+carving a maze for us.
+
+1125
+00:55:47,240 --> 00:55:48,450
+It looks a little bit weird.
+
+1126
+00:55:48,450 --> 00:55:53,730
+It's not a traditional maze in the
+sense that it has the classic maze
+
+1127
+00:55:53,730 --> 00:55:54,870
+shape to it.
+
+1128
+00:55:54,870 --> 00:55:58,830
+But it effectively functions as
+a maze, and it works very well
+
+1129
+00:55:58,830 --> 00:56:01,530
+for its intended purpose.
+
+1130
+00:56:01,530 --> 00:56:05,680
+And the algorithm is incredibly
+simple, and we'll talk about that.
+
+1131
+00:56:05,680 --> 00:56:07,440
+So that's our maze.
+
+1132
+00:56:07,440 --> 00:56:10,320
+I'm going to go ahead
+and revert all of the--
+
+1133
+00:56:10,320 --> 00:56:13,610
+I think if I just reload the
+scene it should just revert it.
+
+1134
+00:56:13,610 --> 00:56:14,110
+Don't save.
+
+1135
+00:56:14,110 --> 00:56:14,730
+Yep.
+
+1136
+00:56:14,730 --> 00:56:17,521
+OK, so everything's been reverted,
+all the lighting and everything.
+
+1137
+00:56:17,521 --> 00:56:19,770
+Just going to do a sanity
+check and make sure.
+
+1138
+00:56:19,770 --> 00:56:20,610
+Yep.
+
+1139
+00:56:20,610 --> 00:56:23,250
+Everything works perfectly well.
+
+1140
+00:56:23,250 --> 00:56:27,960
+So anybody have any
+ideas as to where to get
+
+1141
+00:56:27,960 --> 00:56:32,500
+started if we were to
+implement a 3D maze?
+
+1142
+00:56:32,500 --> 00:56:34,490
+AUDIENCE: The way I
+did it once before is
+
+1143
+00:56:34,490 --> 00:56:40,760
+you put a bunch of x's where you want
+something to be drawn in an array.
+
+1144
+00:56:40,760 --> 00:56:47,270
+And then you loop through the array
+and draw, instantiate the walls.
+
+1145
+00:56:47,270 --> 00:56:48,020
+COLTON OGDEN: Yes.
+
+1146
+00:56:48,020 --> 00:56:50,190
+So create an array.
+
+1147
+00:56:50,190 --> 00:56:53,870
+Populate it with x's where you want--
+
+1148
+00:56:53,870 --> 00:56:56,081
+data wherever you want
+something to be instantiated,
+
+1149
+00:56:56,081 --> 00:56:57,830
+then loop over and
+instantiate everything.
+
+1150
+00:56:57,830 --> 00:57:00,830
+That's exactly how it works.
+
+1151
+00:57:00,830 --> 00:57:04,250
+Now, in terms of actually
+creating the maze,
+
+1152
+00:57:04,250 --> 00:57:06,110
+do you have any ideas as to what--
+
+1153
+00:57:06,110 --> 00:57:09,940
+how would you go about implementing
+a simple maze generator?
+
+1154
+00:57:09,940 --> 00:57:13,415
+And there are, obviously, very
+complicated maze generation algorithms,
+
+1155
+00:57:13,415 --> 00:57:17,747
+so nothing terribly
+fancy, but just a simple--
+
+1156
+00:57:17,747 --> 00:57:18,830
+how would you make a maze?
+
+1157
+00:57:18,830 --> 00:57:19,891
+AUDIENCE: So it's random?
+
+1158
+00:57:19,891 --> 00:57:20,390
+Or--
+
+1159
+00:57:20,390 --> 00:57:21,473
+COLTON OGDEN: It's random.
+
+1160
+00:57:21,473 --> 00:57:33,540
+
+
+1161
+00:57:33,540 --> 00:57:37,490
+So starting with the idea
+that we have an array, right?
+
+1162
+00:57:37,490 --> 00:57:40,670
+It's got to be a 2D array because
+we have two axes upon which
+
+1163
+00:57:40,670 --> 00:57:42,420
+we're generating things here.
+
+1164
+00:57:42,420 --> 00:57:46,670
+Even though we're in a 3D
+environment, we don't need a 3D array.
+
+1165
+00:57:46,670 --> 00:57:48,290
+We just need a 2D array.
+
+1166
+00:57:48,290 --> 00:57:51,080
+Because if there is a
+positive value for wherever
+
+1167
+00:57:51,080 --> 00:57:54,830
+we want to generate a
+block in our 3D maze,
+
+1168
+00:57:54,830 --> 00:57:56,850
+we just generate a column of blocks.
+
+1169
+00:57:56,850 --> 00:57:59,840
+We don't need to worry about
+a third dimension, right?
+
+1170
+00:57:59,840 --> 00:58:04,890
+Our maze isn't taking into consideration
+multiple levels, at which point
+
+1171
+00:58:04,890 --> 00:58:07,590
+we would need to maybe
+consider three dimensions.
+
+1172
+00:58:07,590 --> 00:58:14,460
+And even still, you can still divide
+those into separate 2D arrays of mazes.
+
+1173
+00:58:14,460 --> 00:58:16,580
+We just have an x and a y.
+
+1174
+00:58:16,580 --> 00:58:19,456
+So how would we get started--
+
+1175
+00:58:19,456 --> 00:58:22,330
+what would we start populating the
+arra-- let's say we have an array,
+
+1176
+00:58:22,330 --> 00:58:24,320
+it's just a bunch of zeros, right?
+
+1177
+00:58:24,320 --> 00:58:27,530
+What are we populating with the
+array after we have initialized it?
+
+1178
+00:58:27,530 --> 00:58:35,130
+
+
+1179
+00:58:35,130 --> 00:58:37,618
+AUDIENCE: So I'm thinking
+maybe you would kind of start
+
+1180
+00:58:37,618 --> 00:58:44,830
+off with just four walls
+add corridors, maybe?
+
+1181
+00:58:44,830 --> 00:58:45,330
+
+
+1182
+00:58:45,330 --> 00:58:48,870
+COLTON OGDEN: So start with a bunch
+of walls and then add corridors.
+
+1183
+00:58:48,870 --> 00:58:51,990
+That's exactly what we do.
+
+1184
+00:58:51,990 --> 00:58:54,220
+The algorithm is actually pretty simple.
+
+1185
+00:58:54,220 --> 00:58:56,790
+So I'll try and maybe draw
+a little bit, just to see
+
+1186
+00:58:56,790 --> 00:58:58,530
+if I can illustrate how this works.
+
+1187
+00:58:58,530 --> 00:59:01,613
+AUDIENCE: How do you make sure that
+you can get from one side to the other
+
+1188
+00:59:01,613 --> 00:59:04,500
+and there's no wall in between?
+
+1189
+00:59:04,500 --> 00:59:10,530
+COLTON OGDEN: By making sure that every
+thing that you change is orthogonal.
+
+1190
+00:59:10,530 --> 00:59:13,540
+Every block-- every step
+that you move is orthogonal.
+
+1191
+00:59:13,540 --> 00:59:17,820
+That will ensure that you start at
+one point, end at another point,
+
+1192
+00:59:17,820 --> 00:59:20,940
+and those points will always
+be accessible to one another,
+
+1193
+00:59:20,940 --> 00:59:23,250
+just by virtue of how
+simple the algorithm is
+
+1194
+00:59:23,250 --> 00:59:24,910
+and the orthogonality of it.
+
+1195
+00:59:24,910 --> 00:59:28,980
+So if we start with walls--
+
+1196
+00:59:28,980 --> 00:59:35,250
+so 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.
+
+1197
+00:59:35,250 --> 00:59:39,142
+These are all-- in the
+distro, these are all Booleans
+
+1198
+00:59:39,142 --> 00:59:41,850
+because we don't need-- we only
+need zeros and ones so we're just
+
+1199
+00:59:41,850 --> 00:59:43,150
+going to use true and false.
+
+1200
+00:59:43,150 --> 00:59:45,600
+We don't need to use integers for that.
+
+1201
+00:59:45,600 --> 00:59:48,900
+So this is our starting maze here.
+
+1202
+00:59:48,900 --> 00:59:53,160
+And actually I'm going to add
+another dimension because--
+
+1203
+00:59:53,160 --> 00:59:56,700
+or not another dimension,
+but another size,
+
+1204
+00:59:56,700 --> 01:00:01,260
+just because the walls always
+need to stay-- to be there.
+
+1205
+01:00:01,260 --> 01:00:03,540
+These are basically untouchable.
+
+1206
+01:00:03,540 --> 01:00:08,760
+I'm going to try and
+draw that as best I can.
+
+1207
+01:00:08,760 --> 01:00:10,950
+Right.
+
+1208
+01:00:10,950 --> 01:00:14,850
+So we effectively have this as our
+working area for creating a maze.
+
+1209
+01:00:14,850 --> 01:00:16,066
+Because we want this to be--
+
+1210
+01:00:16,066 --> 01:00:17,940
+we want walls no matter
+what because we don't
+
+1211
+01:00:17,940 --> 01:00:20,065
+want our person to be able
+to walk outside the maze
+
+1212
+01:00:20,065 --> 01:00:21,600
+or see the outside world, ever.
+
+1213
+01:00:21,600 --> 01:00:24,130
+We want them to be locked in.
+
+1214
+01:00:24,130 --> 01:00:29,470
+So we have all of these ones
+here, these trues, effectively.
+
+1215
+01:00:29,470 --> 01:00:33,690
+And so all we need to do is
+start at some random position,
+
+1216
+01:00:33,690 --> 01:00:36,980
+let's say this value.
+
+1217
+01:00:36,980 --> 01:00:40,140
+At 3, 2-- or, well, it's
+actually, technically
+
+1218
+01:00:40,140 --> 01:00:44,820
+it's 2, 3 because we index at
+y and then x in a 2D array.
+
+1219
+01:00:44,820 --> 01:00:46,782
+So we go 2, 3.
+
+1220
+01:00:46,782 --> 01:00:48,720
+We go here.
+
+1221
+01:00:48,720 --> 01:00:53,700
+And then we basically
+can move either left--
+
+1222
+01:00:53,700 --> 01:00:57,314
+or we can move either left
+or right or up or down.
+
+1223
+01:00:57,314 --> 01:00:58,980
+But we can't move both at the same time.
+
+1224
+01:00:58,980 --> 01:01:01,822
+And why can't we move
+both at the same time?
+
+1225
+01:01:01,822 --> 01:01:04,780
+Let's say that we're-- let's say,
+first of all, let me say that we're--
+
+1226
+01:01:04,780 --> 01:01:08,880
+let's say we're going to carve
+our way through the maze.
+
+1227
+01:01:08,880 --> 01:01:16,050
+So we're going to turn these ones into
+zeros, but we can only move either--
+
+1228
+01:01:16,050 --> 01:01:19,530
+we can only move orthogonally,
+meaning left or right up or down.
+
+1229
+01:01:19,530 --> 01:01:20,970
+We can't move diagonally.
+
+1230
+01:01:20,970 --> 01:01:23,770
+So we can only--
+
+1231
+01:01:23,770 --> 01:01:28,530
+let's say we have an x move, right?
+
+1232
+01:01:28,530 --> 01:01:29,479
+And a y move.
+
+1233
+01:01:29,479 --> 01:01:33,610
+
+
+1234
+01:01:33,610 --> 01:01:35,070
+And those can be set to--
+
+1235
+01:01:35,070 --> 01:01:37,420
+by default they're 0, so
+we're basically saying,
+
+1236
+01:01:37,420 --> 01:01:40,594
+where on this step of the
+generation are we going to move?
+
+1237
+01:01:40,594 --> 01:01:43,510
+And actually, technically, it's
+direction because we're-- the way that
+
+1238
+01:01:43,510 --> 01:01:45,585
+we do it is via directions.
+
+1239
+01:01:45,585 --> 01:01:48,403
+AUDIENCE: So if you're moving
+down, then what's in front of you
+
+1240
+01:01:48,403 --> 01:01:50,135
+will have no wall.
+
+1241
+01:01:50,135 --> 01:01:53,685
+And there'll be walls on either side
+of you except for where you came from.
+
+1242
+01:01:53,685 --> 01:01:54,185
+
+
+1243
+01:01:54,185 --> 01:01:54,976
+COLTON OGDEN: Yeah.
+
+1244
+01:01:54,976 --> 01:01:58,120
+So if you're here and they move
+down, this is going to be 0,
+
+1245
+01:01:58,120 --> 01:02:00,940
+this is going to be 0, and
+so those points are linked.
+
+1246
+01:02:00,940 --> 01:02:05,260
+And then from there we're going
+to move in a given direction.
+
+1247
+01:02:05,260 --> 01:02:07,810
+And so all of tho--
+let's say they move here.
+
+1248
+01:02:07,810 --> 01:02:10,330
+All of those are going to be linked.
+
+1249
+01:02:10,330 --> 01:02:14,350
+And so if we move here, all of
+those are going to be linked.
+
+1250
+01:02:14,350 --> 01:02:17,350
+Just by virtue of the fact
+that we're moving orthogonally,
+
+1251
+01:02:17,350 --> 01:02:20,590
+we can't create a maze
+that's unreachable.
+
+1252
+01:02:20,590 --> 01:02:22,879
+Because the way that--
+
+1253
+01:02:22,879 --> 01:02:25,170
+just by virtue of the fact
+they're moving orthogonally.
+
+1254
+01:02:25,170 --> 01:02:29,370
+Now if we move diagonally, if
+I were to move here, right?
+
+1255
+01:02:29,370 --> 01:02:31,960
+There's walls right here
+and then two spaces there.
+
+1256
+01:02:31,960 --> 01:02:34,840
+That's not going to work
+because we can't access that.
+
+1257
+01:02:34,840 --> 01:02:37,400
+We see a-- we're going to see
+a cube here and a cube here.
+
+1258
+01:02:37,400 --> 01:02:41,257
+And we're going to see-- we won't be
+able to move diagonally through walls.
+
+1259
+01:02:41,257 --> 01:02:43,090
+So that's why we need
+to ensure that we only
+
+1260
+01:02:43,090 --> 01:02:48,350
+move either in the x or y
+direction, not both at once.
+
+1261
+01:02:48,350 --> 01:02:52,450
+And so what the algorithm does is
+it randomly chooses should I move x
+
+1262
+01:02:52,450 --> 01:02:53,980
+or should I move y.
+
+1263
+01:02:53,980 --> 01:02:56,120
+And should I move positive or negative.
+
+1264
+01:02:56,120 --> 01:02:58,780
+So it'll do-- math dot random, equal--
+
+1265
+01:02:58,780 --> 01:03:00,970
+you know, two equals 1.
+
+1266
+01:03:00,970 --> 01:03:05,380
+Effectively in the code it's
+random dot value, less than 0.5,
+
+1267
+01:03:05,380 --> 01:03:10,150
+because random dot value in Unity
+gives you 0 to 1 as a float.
+
+1268
+01:03:10,150 --> 01:03:15,310
+So you say if random
+dot value less than 0.5,
+
+1269
+01:03:15,310 --> 01:03:20,650
+which is a random chance between
+true and false, effectively 50%--
+
+1270
+01:03:20,650 --> 01:03:21,790
+move in x or move in y.
+
+1271
+01:03:21,790 --> 01:03:27,850
+And then same thing, but should I move
+in the negative or positive direction?
+
+1272
+01:03:27,850 --> 01:03:31,000
+So if I'm here, I'm
+thinking, OK, let's see.
+
+1273
+01:03:31,000 --> 01:03:32,274
+X move or y move?
+
+1274
+01:03:32,274 --> 01:03:35,440
+Again it's going to be an x move, so
+I'm going to move either left or right.
+
+1275
+01:03:35,440 --> 01:03:38,380
+OK, so am I going to move
+either negative one or one
+
+1276
+01:03:38,380 --> 01:03:41,410
+step, one to the right or to the left?
+
+1277
+01:03:41,410 --> 01:03:45,570
+So if it's negative 1 and that is
+going to move to the left, right?
+
+1278
+01:03:45,570 --> 01:03:49,870
+And if it's positive 1 it's
+going to move to the right.
+
+1279
+01:03:49,870 --> 01:03:53,350
+So that's the essence of the algorithm,
+just looped over a bunch of times.
+
+1280
+01:03:53,350 --> 01:03:58,420
+Whenever I move to another
+tile, turn that into a zero.
+
+1281
+01:03:58,420 --> 01:04:01,720
+So actually, this becomes a zero.
+
+1282
+01:04:01,720 --> 01:04:04,580
+Change the color.
+
+1283
+01:04:04,580 --> 01:04:06,580
+So this will become a zero.
+
+1284
+01:04:06,580 --> 01:04:10,210
+So that's now an empty space.
+
+1285
+01:04:10,210 --> 01:04:13,900
+And in the code, that instantly
+teleports the character to that space,
+
+1286
+01:04:13,900 --> 01:04:14,680
+too.
+
+1287
+01:04:14,680 --> 01:04:18,100
+So we know that our character is
+always going to be in an empty space,
+
+1288
+01:04:18,100 --> 01:04:22,690
+because he gets placed in the first open
+space that gets generated in the maze.
+
+1289
+01:04:22,690 --> 01:04:27,940
+And so let's say x move is equal
+to negative 1 on this iteration.
+
+1290
+01:04:27,940 --> 01:04:31,540
+So let's say we're looping
+until we've cleared x blocks.
+
+1291
+01:04:31,540 --> 01:04:34,060
+So I want to clear-- let's say
+I want to clear five blocks.
+
+1292
+01:04:34,060 --> 01:04:39,190
+So to clear equals 5.
+
+1293
+01:04:39,190 --> 01:04:40,190
+That's how many blocks--
+
+1294
+01:04:40,190 --> 01:04:43,940
+when we've cleared that many blocks,
+we're done with the maze generator.
+
+1295
+01:04:43,940 --> 01:04:48,880
+So cleared one, so our
+current counter is one.
+
+1296
+01:04:48,880 --> 01:04:51,100
+So x, we get-- flip a coin.
+
+1297
+01:04:51,100 --> 01:04:55,040
+We're moving to the x
+direction by negative 1.
+
+1298
+01:04:55,040 --> 01:05:02,590
+So we move to here, and then
+we turn this into a zero.
+
+1299
+01:05:02,590 --> 01:05:08,390
+Now, this implementation of the
+algorithm moves one step at a time.
+
+1300
+01:05:08,390 --> 01:05:12,190
+And so because of its randomness,
+what this ends up doing is
+
+1301
+01:05:12,190 --> 01:05:15,650
+it produces very large
+chunks of deformed space,
+
+1302
+01:05:15,650 --> 01:05:18,520
+just because the crawler is
+just constantly moving around,
+
+1303
+01:05:18,520 --> 01:05:20,170
+kind of, like, haphazardly.
+
+1304
+01:05:20,170 --> 01:05:22,840
+So what's a refinement that
+we can make to this algorithm
+
+1305
+01:05:22,840 --> 01:05:27,018
+to make it look a little bit more
+like corridors or like hallways?
+
+1306
+01:05:27,018 --> 01:05:29,309
+AUDIENCE: Just keep going
+until you hit the other wall?
+
+1307
+01:05:29,309 --> 01:05:30,770
+In the same direction?
+
+1308
+01:05:30,770 --> 01:05:32,561
+COLTON OGDEN: You could
+do that, yeah, keep
+
+1309
+01:05:32,561 --> 01:05:34,640
+going until you hit the other wall.
+
+1310
+01:05:34,640 --> 01:05:36,270
+The result of that--
+
+1311
+01:05:36,270 --> 01:05:39,390
+you mean to hit the side of the maze?
+
+1312
+01:05:39,390 --> 01:05:41,150
+Yeah, because it--
+well, if you did that,
+
+1313
+01:05:41,150 --> 01:05:44,390
+it would effectively just be like--
+
+1314
+01:05:44,390 --> 01:05:45,810
+it would kind of be--
+
+1315
+01:05:45,810 --> 01:05:50,150
+it might work in some cases, but
+it will be very long hallways
+
+1316
+01:05:50,150 --> 01:05:53,130
+and not a lot of turns
+or anything like that.
+
+1317
+01:05:53,130 --> 01:05:57,650
+So the result, what we actually
+want to do, is when we flip a coin
+
+1318
+01:05:57,650 --> 01:06:03,920
+and we say x move or y move, we
+want to also say times to move.
+
+1319
+01:06:03,920 --> 01:06:08,240
+We want to create a new variable called
+number of times to move, effectively.
+
+1320
+01:06:08,240 --> 01:06:14,930
+To move, and then we just set
+that to a random number between 1,
+
+1321
+01:06:14,930 --> 01:06:22,460
+so we're going to move 1 tile,
+or the size of the maze minus 2.
+
+1322
+01:06:22,460 --> 01:06:24,950
+Taking in consideration
+both walls, right?
+
+1323
+01:06:24,950 --> 01:06:28,130
+So let's say we get the--
+
+1324
+01:06:28,130 --> 01:06:32,920
+let's say we-- let's say
+we did x move minus 1,
+
+1325
+01:06:32,920 --> 01:06:35,836
+and we only got to
+move equal to 1, right?
+
+1326
+01:06:35,836 --> 01:06:36,710
+So we only move here.
+
+1327
+01:06:36,710 --> 01:06:40,040
+We move once in this direction,
+so we've got two spaces.
+
+1328
+01:06:40,040 --> 01:06:44,270
+And then let's say we flip a coin
+again and then we got y move--
+
+1329
+01:06:44,270 --> 01:06:46,310
+positive 1.
+
+1330
+01:06:46,310 --> 01:06:50,120
+And then two move, we got two.
+
+1331
+01:06:50,120 --> 01:06:54,620
+So we're going to move two
+directions in the y-axis by one.
+
+1332
+01:06:54,620 --> 01:06:59,030
+So this is a result of us going
+down here, so we go 0 and then 0.
+
+1333
+01:06:59,030 --> 01:07:01,640
+
+
+1334
+01:07:01,640 --> 01:07:07,970
+And so the effect of
+this is that we move--
+
+1335
+01:07:07,970 --> 01:07:11,240
+we can move in more than
+just one block at a time
+
+1336
+01:07:11,240 --> 01:07:17,540
+and avoid the sort of random, like,
+haphazard, weird, organic, large room
+
+1337
+01:07:17,540 --> 01:07:18,780
+aesthetic that we want.
+
+1338
+01:07:18,780 --> 01:07:26,110
+If we want like a hallway, grid-like,
+dungeon looking room generator, right?
+
+1339
+01:07:26,110 --> 01:07:32,480
+Now there's a caveat to this, and
+that is if we start here, for example,
+
+1340
+01:07:32,480 --> 01:07:34,400
+and then we want to--
+
+1341
+01:07:34,400 --> 01:07:35,660
+let's say we flip a coin.
+
+1342
+01:07:35,660 --> 01:07:39,470
+It's x move, but it's positive four.
+
+1343
+01:07:39,470 --> 01:07:43,600
+We can't obviously move four
+tiles to the right because one,
+
+1344
+01:07:43,600 --> 01:07:45,770
+it will go into our walls
+on the outside, and two,
+
+1345
+01:07:45,770 --> 01:07:48,480
+it's actually beyond
+the bounds of our array.
+
+1346
+01:07:48,480 --> 01:07:51,440
+So we need to clamp that value down.
+
+1347
+01:07:51,440 --> 01:07:57,200
+When we add 1 to our
+value, to wherever our x--
+
+1348
+01:07:57,200 --> 01:07:58,700
+we have to basically keep pointers.
+
+1349
+01:07:58,700 --> 01:08:02,030
+We keep pointer to whichever
+tile we're currently at.
+
+1350
+01:08:02,030 --> 01:08:03,920
+We need to keep--
+
+1351
+01:08:03,920 --> 01:08:07,580
+when we actually go to
+the next tile in our step,
+
+1352
+01:08:07,580 --> 01:08:11,300
+we need to clamp that value
+within the range of our walls.
+
+1353
+01:08:11,300 --> 01:08:15,890
+So we need to clamp between one--
+
+1354
+01:08:15,890 --> 01:08:18,439
+so because we don't want to be at zero--
+
+1355
+01:08:18,439 --> 01:08:24,649
+we want to clamp it between one
+and main size minus two, actually.
+
+1356
+01:08:24,649 --> 01:08:28,310
+Because we want to make sure that we
+don't go any farther than this one
+
+1357
+01:08:28,310 --> 01:08:30,600
+here.
+
+1358
+01:08:30,600 --> 01:08:31,740
+Does that make sense?
+
+1359
+01:08:31,740 --> 01:08:34,490
+This is how-- that is effectively
+how our generator works.
+
+1360
+01:08:34,490 --> 01:08:37,250
+It's a step beyond just the
+move one block at a time,
+
+1361
+01:08:37,250 --> 01:08:41,840
+just because the mazes look
+away too empty and weird.
+
+1362
+01:08:41,840 --> 01:08:44,819
+With this approach where
+you're moving in a direction,
+
+1363
+01:08:44,819 --> 01:08:47,720
+and for a random number of tiles
+as opposed to just one at a time,
+
+1364
+01:08:47,720 --> 01:08:51,350
+you actually get pretty
+nice looking, simple mazes.
+
+1365
+01:08:51,350 --> 01:08:56,068
+This isn't how actual maze generation
+works, for mazes that you would see
+
+1366
+01:08:56,068 --> 01:08:59,359
+and an actual maze that you do in, like,
+a crossword puzzle book or a maze book
+
+1367
+01:08:59,359 --> 01:09:00,080
+or something.
+
+1368
+01:09:00,080 --> 01:09:02,840
+Those are more complicated.
+
+1369
+01:09:02,840 --> 01:09:05,630
+But this solution works well.
+
+1370
+01:09:05,630 --> 01:09:10,500
+It's very fast and very cheap, and
+actually pretty simple to understand.
+
+1371
+01:09:10,500 --> 01:09:13,910
+So any questions as to how the maze
+generator-- the algorithm, at least
+
+1372
+01:09:13,910 --> 01:09:15,590
+as applied to our 2D, array works?
+
+1373
+01:09:15,590 --> 01:09:18,500
+
+
+1374
+01:09:18,500 --> 01:09:19,301
+All right.
+
+1375
+01:09:19,301 --> 01:09:19,800
+Cool.
+
+1376
+01:09:19,800 --> 01:09:22,844
+That's the-- that's
+basically the gist of it.
+
+1377
+01:09:22,844 --> 01:09:26,010
+So we're going to take a break here for
+about five minutes, and then as soon
+
+1378
+01:09:26,010 --> 01:09:28,140
+as we get back we'll
+dive a little bit more
+
+1379
+01:09:28,140 --> 01:09:32,840
+into sort of how the character
+controller works, and the pickup,
+
+1380
+01:09:32,840 --> 01:09:35,700
+and a few other aspects of the game.
+
+1381
+01:09:35,700 --> 01:09:37,649
+All right, welcome back to Lecture 9.
+
+1382
+01:09:37,649 --> 01:09:40,350
+So before the break we
+were talking about the way
+
+1383
+01:09:40,350 --> 01:09:42,810
+that we implemented
+procedural maze generation.
+
+1384
+01:09:42,810 --> 01:09:47,520
+So a fairly simple algorithm
+that creates this sort of hallway
+
+1385
+01:09:47,520 --> 01:09:49,439
+look where we can easily get lost.
+
+1386
+01:09:49,439 --> 01:09:52,319
+But they aren't technically
+mazes in the traditional sense
+
+1387
+01:09:52,319 --> 01:09:57,390
+like you might have seen growing
+up in puzzle books and such.
+
+1388
+01:09:57,390 --> 01:10:00,990
+Another pitch for Catlike Coding,
+because his articles are amazing.
+
+1389
+01:10:00,990 --> 01:10:05,530
+He has another one on how
+he did a maze generator.
+
+1390
+01:10:05,530 --> 01:10:08,230
+And in this one, beyond
+just regular blocks--
+
+1391
+01:10:08,230 --> 01:10:09,060
+oh, I'm sorry.
+
+1392
+01:10:09,060 --> 01:10:13,080
+I didn't have the slide
+there on that thing.
+
+1393
+01:10:13,080 --> 01:10:15,570
+So this is a screenshot
+of another article
+
+1394
+01:10:15,570 --> 01:10:20,229
+from Catlike Coding where he talks about
+how to make his own maze generator.
+
+1395
+01:10:20,229 --> 01:10:22,020
+And the cool thing
+about his is that he has
+
+1396
+01:10:22,020 --> 01:10:24,186
+a bunch of different geometry
+involved in the scene.
+
+1397
+01:10:24,186 --> 01:10:25,320
+It's not just blocks.
+
+1398
+01:10:25,320 --> 01:10:27,900
+He has doors and windows
+and other things.
+
+1399
+01:10:27,900 --> 01:10:30,270
+And his algorithm is a little
+bit different than mine
+
+1400
+01:10:30,270 --> 01:10:32,550
+and produces some pretty
+interesting looking things.
+
+1401
+01:10:32,550 --> 01:10:37,050
+And you can see here, also,
+it has a view of the scene
+
+1402
+01:10:37,050 --> 01:10:40,260
+sort of superimposed on
+the actual scene, which
+
+1403
+01:10:40,260 --> 01:10:44,460
+he does with a trick using two cameras.
+
+1404
+01:10:44,460 --> 01:10:50,010
+So here's another maze slash
+dungeon generator article
+
+1405
+01:10:50,010 --> 01:10:52,822
+that I really like where he
+creates sort of like Dungeons
+
+1406
+01:10:52,822 --> 01:10:54,030
+and Dragons-style generators.
+
+1407
+01:10:54,030 --> 01:10:56,550
+And this is sort of pertinent
+to my interests as a developer
+
+1408
+01:10:56,550 --> 01:11:00,450
+because I really love roguelikes
+and dungeon generators and RPGs,
+
+1409
+01:11:00,450 --> 01:11:03,180
+but he goes into extensive
+detail on how to make
+
+1410
+01:11:03,180 --> 01:11:06,980
+a really nice and
+efficient 2D maze slash
+
+1411
+01:11:06,980 --> 01:11:10,460
+dungeon generator that produces
+really nice looking dungeons.
+
+1412
+01:11:10,460 --> 01:11:13,680
+As you can see here, it's got a very
+variable layout, lots of corridors
+
+1413
+01:11:13,680 --> 01:11:15,039
+and rooms and stuff like that.
+
+1414
+01:11:15,039 --> 01:11:17,580
+So implementing some like this
+in Unity would be really cool,
+
+1415
+01:11:17,580 --> 01:11:20,700
+and there's a plethora
+of generators and assets
+
+1416
+01:11:20,700 --> 01:11:23,182
+like this that will do the
+same kind of thing in Unity
+
+1417
+01:11:23,182 --> 01:11:24,390
+available in the asset store.
+
+1418
+01:11:24,390 --> 01:11:25,960
+So you don't have to make this
+yourself most of the time.
+
+1419
+01:11:25,960 --> 01:11:29,340
+You can create-- you can just go
+find either free or paid assets that
+
+1420
+01:11:29,340 --> 01:11:33,600
+will do all this for you and save
+you a tremendous amount of time.
+
+1421
+01:11:33,600 --> 01:11:36,270
+And how much of them are
+also very customizable, too,
+
+1422
+01:11:36,270 --> 01:11:40,290
+so that you can tailor the generator
+to fit the demand of your game.
+
+1423
+01:11:40,290 --> 01:11:43,290
+So we saw how the lighting
+works in our game.
+
+1424
+01:11:43,290 --> 01:11:48,460
+We've seen the maze, sort of how,
+it's generated, what it looks like.
+
+1425
+01:11:48,460 --> 01:11:51,380
+We have not taken a look yet
+at the character controller.
+
+1426
+01:11:51,380 --> 01:11:53,130
+So we'll briefly just
+take a look at that.
+
+1427
+01:11:53,130 --> 01:11:55,650
+It's actually incredibly
+easy to do in Unity, at least
+
+1428
+01:11:55,650 --> 01:11:58,950
+to get something fairly
+basic up and running.
+
+1429
+01:11:58,950 --> 01:12:04,110
+The way that we get a FPS controller
+in the case of our game is Unity has,
+
+1430
+01:12:04,110 --> 01:12:09,390
+which I alluded to before, a
+set of built-in standard asset
+
+1431
+01:12:09,390 --> 01:12:12,710
+packs that allow people getting
+used to the game engine,
+
+1432
+01:12:12,710 --> 01:12:15,000
+or just trying to
+bootstrap their game, up
+
+1433
+01:12:15,000 --> 01:12:16,860
+and running with some
+very basic components.
+
+1434
+01:12:16,860 --> 01:12:22,050
+Very basic things that are super
+helpful for getting your game running.
+
+1435
+01:12:22,050 --> 01:12:25,890
+So actually we used the prototyping
+standard assets pack for our pickup.
+
+1436
+01:12:25,890 --> 01:12:32,280
+We use the characters one for
+the character controller, the FPS
+
+1437
+01:12:32,280 --> 01:12:34,270
+controller.
+
+1438
+01:12:34,270 --> 01:12:37,640
+So if you're in a fresh project
+and you just go to Import Package
+
+1439
+01:12:37,640 --> 01:12:41,140
+and you import this character thing
+here, it'll import into your game.
+
+1440
+01:12:41,140 --> 01:12:44,700
+So that you can immediately use the
+prefabs that it gives you to create
+
+1441
+01:12:44,700 --> 01:12:46,370
+a character object.
+
+1442
+01:12:46,370 --> 01:12:49,980
+So it will, by default, just
+put it in your assets folder.
+
+1443
+01:12:49,980 --> 01:12:52,440
+Underneath Standard Assets,
+and then Characters,
+
+1444
+01:12:52,440 --> 01:12:54,171
+and then there's a first-person folder.
+
+1445
+01:12:54,171 --> 01:12:55,920
+And within the
+first-person folder there's
+
+1446
+01:12:55,920 --> 01:12:59,790
+a prefabs folder which has the
+FPS controller game object.
+
+1447
+01:12:59,790 --> 01:13:02,430
+And so all you need to do is
+just drag it into the scene,
+
+1448
+01:13:02,430 --> 01:13:05,490
+and then that becomes
+your default camera.
+
+1449
+01:13:05,490 --> 01:13:08,196
+
+
+1450
+01:13:08,196 --> 01:13:09,899
+AUDIENCE: That comes with Unity?
+
+1451
+01:13:09,899 --> 01:13:11,690
+COLTON OGDEN: It comes
+with Unity, correct.
+
+1452
+01:13:11,690 --> 01:13:12,898
+That's just a standard asset.
+
+1453
+01:13:12,898 --> 01:13:15,000
+AUDIENCE: And it's always
+in the prefabs folder?
+
+1454
+01:13:15,000 --> 01:13:18,360
+COLTON OGDEN: It's always in the-- the
+FPS controller will always be in the--
+
+1455
+01:13:18,360 --> 01:13:19,710
+so you have to import it first.
+
+1456
+01:13:19,710 --> 01:13:22,950
+You have to import the asset package.
+
+1457
+01:13:22,950 --> 01:13:24,450
+The characters package.
+
+1458
+01:13:24,450 --> 01:13:27,030
+Once you've imported
+the characters package,
+
+1459
+01:13:27,030 --> 01:13:29,520
+you'll go into Standard
+Assets in your assets folder.
+
+1460
+01:13:29,520 --> 01:13:32,160
+There'll be a new folder
+called Standard Assets.
+
+1461
+01:13:32,160 --> 01:13:37,500
+Within Standard Assets you'll go to
+Characters, then First Person, and then
+
+1462
+01:13:37,500 --> 01:13:40,447
+Prefabs, and then that's where
+you'll find the FPS controller.
+
+1463
+01:13:40,447 --> 01:13:41,280
+AUDIENCE: Thank you.
+
+1464
+01:13:41,280 --> 01:13:42,030
+COLTON OGDEN: Yes.
+
+1465
+01:13:42,030 --> 01:13:42,720
+No problem.
+
+1466
+01:13:42,720 --> 01:13:45,690
+So the FPS controller,
+if we take a look at it--
+
+1467
+01:13:45,690 --> 01:13:47,550
+we talked about it before, briefly.
+
+1468
+01:13:47,550 --> 01:13:52,440
+But effectively, it's
+just a capsule collider,
+
+1469
+01:13:52,440 --> 01:13:56,220
+which is sort of defying
+physics, because it's kinematic.
+
+1470
+01:13:56,220 --> 01:13:58,980
+Kinematic with gravity applied to it.
+
+1471
+01:13:58,980 --> 01:14:01,280
+And it has a camera sort
+of towards the top of it
+
+1472
+01:14:01,280 --> 01:14:04,680
+where the head is to simulate
+the perspective of somebody
+
+1473
+01:14:04,680 --> 01:14:06,450
+from first person view.
+
+1474
+01:14:06,450 --> 01:14:08,340
+And there's some
+programming involved that
+
+1475
+01:14:08,340 --> 01:14:11,010
+allows you to control it
+with the keys and the mouse,
+
+1476
+01:14:11,010 --> 01:14:14,100
+to control the camera's rotation
+with the mouse and the position
+
+1477
+01:14:14,100 --> 01:14:19,610
+of the collider with the WASD keys.
+
+1478
+01:14:19,610 --> 01:14:22,390
+And if you want, you can dig into
+the actual script for it, too.
+
+1479
+01:14:22,390 --> 01:14:26,380
+They're all included with
+the standard assets pack.
+
+1480
+01:14:26,380 --> 01:14:28,289
+When you import that
+into your project, it
+
+1481
+01:14:28,289 --> 01:14:30,580
+comes with all the scripts
+that make all that possible.
+
+1482
+01:14:30,580 --> 01:14:35,050
+I haven't dug through all of them in too
+much detail, but it's all there for you
+
+1483
+01:14:35,050 --> 01:14:37,690
+if curious as to how it works.
+
+1484
+01:14:37,690 --> 01:14:42,810
+And so if you want to get just a
+simple FPS controller in your game,
+
+1485
+01:14:42,810 --> 01:14:46,330
+a character in your game, to walk
+around and play a first person game,
+
+1486
+01:14:46,330 --> 01:14:49,820
+it takes about a minute
+to get up and running.
+
+1487
+01:14:49,820 --> 01:14:52,150
+Now, there's a lot of
+customization that you
+
+1488
+01:14:52,150 --> 01:14:54,460
+can apply to your character
+controller to make it
+
+1489
+01:14:54,460 --> 01:14:59,320
+not just the standard, basic character.
+
+1490
+01:14:59,320 --> 01:15:03,340
+So you can set a walk speed,
+you can set a run speed.
+
+1491
+01:15:03,340 --> 01:15:09,240
+You can set jump speed, you can set
+the sensitivity of the mouse look
+
+1492
+01:15:09,240 --> 01:15:12,970
+on the game-- on the FPS controller.
+
+1493
+01:15:12,970 --> 01:15:16,660
+You can apply what's called FOV kick,
+which means when you're sprinting--
+
+1494
+01:15:16,660 --> 01:15:19,780
+which it allows you to
+sprint with pressing Shift,
+
+1495
+01:15:19,780 --> 01:15:21,880
+which multiplies your speed--
+
+1496
+01:15:21,880 --> 01:15:27,640
+it'll actually-- it'll expand your
+depth of field a little bit to make it
+
+1497
+01:15:27,640 --> 01:15:30,580
+look as if you're kind
+of claustrophobic.
+
+1498
+01:15:30,580 --> 01:15:33,964
+Things kind of go out, and
+so it looks more narrow,
+
+1499
+01:15:33,964 --> 01:15:36,880
+and it kind of gives you that look
+as if you're sprinting down a path,
+
+1500
+01:15:36,880 --> 01:15:39,130
+and you can set just how
+much it increases by.
+
+1501
+01:15:39,130 --> 01:15:41,870
+You can see the curve of
+how that is applied here.
+
+1502
+01:15:41,870 --> 01:15:44,620
+So this is one of the components
+that Unity allows you to do,
+
+1503
+01:15:44,620 --> 01:15:48,460
+is there's a curve object,
+and you can use this curve
+
+1504
+01:15:48,460 --> 01:15:50,750
+to influence various
+things in your game.
+
+1505
+01:15:50,750 --> 01:15:52,660
+I actually haven't used it much, myself.
+
+1506
+01:15:52,660 --> 01:15:56,560
+But if you're looking for
+something to apply a curve to,
+
+1507
+01:15:56,560 --> 01:16:01,510
+Unity has an interface for making
+that visible within your inspector.
+
+1508
+01:16:01,510 --> 01:16:04,390
+Head bob, which means when I
+walk, should the camera kind of
+
+1509
+01:16:04,390 --> 01:16:07,150
+go up and down?
+
+1510
+01:16:07,150 --> 01:16:09,500
+When you do have a head bob,
+what's the curve look like?
+
+1511
+01:16:09,500 --> 01:16:10,737
+So here's another curve.
+
+1512
+01:16:10,737 --> 01:16:12,820
+This is sort of what the
+head bob looks like, kind
+
+1513
+01:16:12,820 --> 01:16:17,710
+of a sine wave but a
+little bit distorted.
+
+1514
+01:16:17,710 --> 01:16:19,590
+And a few other things.
+
+1515
+01:16:19,590 --> 01:16:21,029
+So, for example, footstep sounds.
+
+1516
+01:16:21,029 --> 01:16:24,070
+Maybe you don't like the sounds that
+come by default with the controller,
+
+1517
+01:16:24,070 --> 01:16:25,912
+so you give it your own footstep sounds.
+
+1518
+01:16:25,912 --> 01:16:26,620
+Super easy to do.
+
+1519
+01:16:26,620 --> 01:16:29,080
+Just drag new sounds here.
+
+1520
+01:16:29,080 --> 01:16:30,640
+Jump sound and a landing sound.
+
+1521
+01:16:30,640 --> 01:16:32,920
+Two more sounds that you can add to it.
+
+1522
+01:16:32,920 --> 01:16:37,030
+And that'll allow you to customize most
+of the feel of how your character moves
+
+1523
+01:16:37,030 --> 01:16:41,950
+around in terms of just
+a basic FPS controller.
+
+1524
+01:16:41,950 --> 01:16:47,150
+And so just by applying those very basic
+things, customized them a little bit--
+
+1525
+01:16:47,150 --> 01:16:49,240
+we got lucky with this maze.
+
+1526
+01:16:49,240 --> 01:16:51,940
+And this means that the maze
+went all the way around and then
+
+1527
+01:16:51,940 --> 01:16:54,065
+looped right back to where
+we were and ended there.
+
+1528
+01:16:54,065 --> 01:16:58,180
+So this is-- that's that maze, OK.
+
+1529
+01:16:58,180 --> 01:17:01,040
+I'm going to go ahead
+and turn up the sound.
+
+1530
+01:17:01,040 --> 01:17:04,090
+You can hear the footsteps, right?
+
+1531
+01:17:04,090 --> 01:17:05,710
+Along with the creepy whispering.
+
+1532
+01:17:05,710 --> 01:17:13,000
+But the footsteps are just provided
+to us by the FPS controller,
+
+1533
+01:17:13,000 --> 01:17:16,040
+and again, you can customize
+those to be whatever you want.
+
+1534
+01:17:16,040 --> 01:17:18,040
+And so this gives you the
+ability to walk around
+
+1535
+01:17:18,040 --> 01:17:19,623
+in your scene for a first person view.
+
+1536
+01:17:19,623 --> 01:17:22,090
+It doesn't really give
+you much more than that.
+
+1537
+01:17:22,090 --> 01:17:26,260
+In order to do an FPS where you have
+maybe a gun or a weapon or something,
+
+1538
+01:17:26,260 --> 01:17:29,140
+you need to program some more things
+and it's a lot more complicated.
+
+1539
+01:17:29,140 --> 01:17:33,880
+But for just basic navigation of a
+3D scene, it's a great foundation,
+
+1540
+01:17:33,880 --> 01:17:36,200
+a great way to get started.
+
+1541
+01:17:36,200 --> 01:17:38,780
+So any question as to how
+the FPS controller works?
+
+1542
+01:17:38,780 --> 01:17:41,745
+
+
+1543
+01:17:41,745 --> 01:17:43,120
+There are other controllers, too.
+
+1544
+01:17:43,120 --> 01:17:45,110
+There are third-person controllers.
+
+1545
+01:17:45,110 --> 01:17:47,610
+So if you want to use those.
+
+1546
+01:17:47,610 --> 01:17:50,110
+They don't come with a camera--
+based on my experimentation,
+
+1547
+01:17:50,110 --> 01:17:52,206
+they don't actually come
+with a camera by default.
+
+1548
+01:17:52,206 --> 01:17:54,580
+So I think you have to parent
+a camera to them in the way
+
+1549
+01:17:54,580 --> 01:17:55,900
+that you want for your game.
+
+1550
+01:17:55,900 --> 01:17:59,440
+Like, for example, some games have the
+camera super high above your character
+
+1551
+01:17:59,440 --> 01:18:01,315
+while you're walking
+around, and some of them
+
+1552
+01:18:01,315 --> 01:18:06,250
+have a behind the shoulder look,
+almost like Fortnite or Gears
+
+1553
+01:18:06,250 --> 01:18:08,200
+of War, really close to the character.
+
+1554
+01:18:08,200 --> 01:18:10,530
+And then some kind of have--
+like in Banjo Kazooie,
+
+1555
+01:18:10,530 --> 01:18:12,340
+you could be walking up a
+mountain and so the camera
+
+1556
+01:18:12,340 --> 01:18:15,339
+is kind of like perpendicular to where
+you are, and sort of follows you.
+
+1557
+01:18:15,339 --> 01:18:18,129
+Around so camera programming
+for 3D characters
+
+1558
+01:18:18,129 --> 01:18:20,920
+is a little bit more complicated
+than it is for first person games.
+
+1559
+01:18:20,920 --> 01:18:24,110
+And so that's why I mentioned it
+doesn't come with a camera by default,
+
+1560
+01:18:24,110 --> 01:18:26,179
+so it can be a little
+bit more complicated.
+
+1561
+01:18:26,179 --> 01:18:28,720
+But I do believe there are a
+lot of assets on the asset store
+
+1562
+01:18:28,720 --> 01:18:32,180
+that can help bootstrap you if
+you're getting a programmatic camera
+
+1563
+01:18:32,180 --> 01:18:37,660
+setup going for your character
+in a third-person view.
+
+1564
+01:18:37,660 --> 01:18:38,160
+Yeah.
+
+1565
+01:18:38,160 --> 01:18:40,660
+AUDIENCE: I've noticed when
+you're walking around your maze,
+
+1566
+01:18:40,660 --> 01:18:45,329
+occasionally you're clipping the wall
+and kind of seeing what's behind it.
+
+1567
+01:18:45,329 --> 01:18:46,120
+COLTON OGDEN: Yeah.
+
+1568
+01:18:46,120 --> 01:18:49,286
+That-- I believe that's a result of the
+collider being a little bit too big.
+
+1569
+01:18:49,286 --> 01:18:53,040
+So what he said was that
+walking through the maze,
+
+1570
+01:18:53,040 --> 01:18:55,297
+you can kind of clip through
+the wall a little bit.
+
+1571
+01:18:55,297 --> 01:18:57,130
+Let's see if you can
+actually experience it.
+
+1572
+01:18:57,130 --> 01:18:59,680
+Yeah, like right there.
+
+1573
+01:18:59,680 --> 01:19:00,190
+Yeah.
+
+1574
+01:19:00,190 --> 01:19:04,690
+And that's the-- I believe that's
+just the camera or the collider
+
+1575
+01:19:04,690 --> 01:19:06,610
+being a little bit too large.
+
+1576
+01:19:06,610 --> 01:19:09,100
+And so we could probably get
+rid of that altogether just
+
+1577
+01:19:09,100 --> 01:19:11,450
+by shrinking the collider a little bit.
+
+1578
+01:19:11,450 --> 01:19:13,780
+Just a detail that I didn't iron out.
+
+1579
+01:19:13,780 --> 01:19:16,390
+But you'll see that in a
+lot of games, actually.
+
+1580
+01:19:16,390 --> 01:19:20,530
+A lot of games have clipping
+that you can observe,
+
+1581
+01:19:20,530 --> 01:19:22,180
+depending on how they program the game.
+
+1582
+01:19:22,180 --> 01:19:24,700
+
+
+1583
+01:19:24,700 --> 01:19:25,330
+But, yeah.
+
+1584
+01:19:25,330 --> 01:19:29,320
+Any other questions as to how
+character controllers work,
+
+1585
+01:19:29,320 --> 01:19:34,510
+and how the import process works,
+and how to get it in your scene?
+
+1586
+01:19:34,510 --> 01:19:35,730
+OK.
+
+1587
+01:19:35,730 --> 01:19:36,230
+Cool.
+
+1588
+01:19:36,230 --> 01:19:37,449
+Yeah, it's super easy.
+
+1589
+01:19:37,449 --> 01:19:39,490
+Again, here's what the
+FPS controller looks like.
+
+1590
+01:19:39,490 --> 01:19:41,939
+Capsule collider with a camera.
+
+1591
+01:19:41,939 --> 01:19:43,480
+And then the third-person controller.
+
+1592
+01:19:43,480 --> 01:19:46,354
+By default they give you a pretty
+nice looking model on the left side
+
+1593
+01:19:46,354 --> 01:19:48,349
+there so that you can
+experiment with it.
+
+1594
+01:19:48,349 --> 01:19:50,140
+And then they apparently
+give you an AI one
+
+1595
+01:19:50,140 --> 01:19:52,720
+as well so you can test
+AI in your scene with it,
+
+1596
+01:19:52,720 --> 01:19:57,460
+but I haven't experimented too much with
+that to vouch for how well it works.
+
+1597
+01:19:57,460 --> 01:20:00,760
+So an important aspect
+of today's example
+
+1598
+01:20:00,760 --> 01:20:04,190
+is that we've gone from having just
+one scene to having two scenes.
+
+1599
+01:20:04,190 --> 01:20:09,670
+So I want to illustrate how we sort of
+move between the scenes a little bit.
+
+1600
+01:20:09,670 --> 01:20:13,090
+And also, I realized we didn't
+really cover the dungeon generator
+
+1601
+01:20:13,090 --> 01:20:14,710
+in code detail.
+
+1602
+01:20:14,710 --> 01:20:17,850
+But notice that I have
+exposed a lot of things here.
+
+1603
+01:20:17,850 --> 01:20:21,300
+A floor prefab, wall
+prefab, ceiling prefab.
+
+1604
+01:20:21,300 --> 01:20:23,050
+These are just the
+cubes that are textured
+
+1605
+01:20:23,050 --> 01:20:24,430
+to be our floor, walls, and ceiling.
+
+1606
+01:20:24,430 --> 01:20:27,190
+We can just click and drag them
+from the inspector into our scene,
+
+1607
+01:20:27,190 --> 01:20:29,020
+onto the components there.
+
+1608
+01:20:29,020 --> 01:20:32,154
+We have a character
+controller reference here,
+
+1609
+01:20:32,154 --> 01:20:34,570
+so that we can place the
+character controller in our scene
+
+1610
+01:20:34,570 --> 01:20:37,000
+when we've generated the first block.
+
+1611
+01:20:37,000 --> 01:20:41,350
+We can basically take the transform
+and set its position to whatever
+
+1612
+01:20:41,350 --> 01:20:44,050
+that x z is.
+
+1613
+01:20:44,050 --> 01:20:46,360
+And then a floor parent
+and a walls parent.
+
+1614
+01:20:46,360 --> 01:20:48,820
+So the reason that we have
+parent objects, actually,
+
+1615
+01:20:48,820 --> 01:20:50,260
+which we didn't look at before--
+
+1616
+01:20:50,260 --> 01:20:52,040
+whoops, I've lost track of where my--
+
+1617
+01:20:52,040 --> 01:20:53,140
+there it is.
+
+1618
+01:20:53,140 --> 01:20:55,330
+The reason that we have
+parent objects here
+
+1619
+01:20:55,330 --> 01:20:59,740
+is because when we instantiate
+all of the cubes in our scene,
+
+1620
+01:20:59,740 --> 01:21:04,690
+just sort of just instantiate them
+without really thinking about it,
+
+1621
+01:21:04,690 --> 01:21:06,610
+it ends up--
+
+1622
+01:21:06,610 --> 01:21:07,900
+basically, I'll show you here.
+
+1623
+01:21:07,900 --> 01:21:10,610
+
+
+1624
+01:21:10,610 --> 01:21:14,300
+Well, first of all, I
+don't know what this is.
+
+1625
+01:21:14,300 --> 01:21:18,600
+I think it's-- that's interesting.
+
+1626
+01:21:18,600 --> 01:21:20,350
+Oh, because I clicked
+on the floor parent.
+
+1627
+01:21:20,350 --> 01:21:21,269
+Right, OK.
+
+1628
+01:21:21,269 --> 01:21:23,060
+So you click on the
+walls parent, actually.
+
+1629
+01:21:23,060 --> 01:21:24,070
+I didn't do that yet,
+but it will actually
+
+1630
+01:21:24,070 --> 01:21:27,340
+show you where all of the objects
+that are parented-- or that
+
+1631
+01:21:27,340 --> 01:21:29,720
+are dependent on that parent.
+
+1632
+01:21:29,720 --> 01:21:31,700
+So the floor parent here--
+
+1633
+01:21:31,700 --> 01:21:33,220
+see how many floor blocks there are?
+
+1634
+01:21:33,220 --> 01:21:33,928
+It's quite a lot.
+
+1635
+01:21:33,928 --> 01:21:38,830
+
+
+1636
+01:21:38,830 --> 01:21:42,770
+There's a lot of floor blocks here, and
+in the walls parent there is even more.
+
+1637
+01:21:42,770 --> 01:21:46,780
+There's a lot of walls
+and ceiling blocks,
+
+1638
+01:21:46,780 --> 01:21:50,720
+and if we just generate those
+without assigning them a parent,
+
+1639
+01:21:50,720 --> 01:21:55,300
+it'll just fill up our
+hierarchy there very messily.
+
+1640
+01:21:55,300 --> 01:22:00,170
+And it makes navigating our scene
+during debugging very difficult.
+
+1641
+01:22:00,170 --> 01:22:03,070
+We don't need to see that we have
+a million clones of the floor
+
+1642
+01:22:03,070 --> 01:22:06,310
+or the ceiling blocks
+or the wall blocks.
+
+1643
+01:22:06,310 --> 01:22:11,530
+And so what we do is we just take all
+of the cloned blocks and we just parent
+
+1644
+01:22:11,530 --> 01:22:13,300
+them to an object.
+
+1645
+01:22:13,300 --> 01:22:16,720
+And when you parent something to an
+object, you get that little drop-down.
+
+1646
+01:22:16,720 --> 01:22:19,290
+Like, for example, this
+first-person character.
+
+1647
+01:22:19,290 --> 01:22:23,064
+This FPS controller is the parent
+of this first-person character.
+
+1648
+01:22:23,064 --> 01:22:26,230
+And so those are two separate objects
+that both comprise the FPS controller,
+
+1649
+01:22:26,230 --> 01:22:27,670
+effectively.
+
+1650
+01:22:27,670 --> 01:22:32,950
+A parent is top-level, and its children
+are therefore within this little arrow
+
+1651
+01:22:32,950 --> 01:22:34,360
+here, and it's collapsible.
+
+1652
+01:22:34,360 --> 01:22:37,030
+All of the things within the
+play scene, for example--
+
+1653
+01:22:37,030 --> 01:22:39,690
+the play scene is the
+parent to all of these.
+
+1654
+01:22:39,690 --> 01:22:42,880
+It's sort of like a folder
+hierarchy type of thing.
+
+1655
+01:22:42,880 --> 01:22:44,630
+And so if you want to
+clean up your scene,
+
+1656
+01:22:44,630 --> 01:22:47,750
+if you're instantiating a ton
+of things, just effectively
+
+1657
+01:22:47,750 --> 01:22:51,140
+containerize them by putting
+them into a parent object.
+
+1658
+01:22:51,140 --> 01:22:57,640
+And so we do that in our game with a
+function called create child prefab.
+
+1659
+01:22:57,640 --> 01:23:02,510
+And so what create child prefab does
+is, it does an instantiation as normal.
+
+1660
+01:23:02,510 --> 01:23:07,470
+Creates a prefab, instantiates
+it, gives it a position xyz.
+
+1661
+01:23:07,470 --> 01:23:10,850
+Quaternion dot identity because we
+don't want to apply any rotation to it.
+
+1662
+01:23:10,850 --> 01:23:19,220
+But my prefab dot transform dot
+parent equals parent dot transform.
+
+1663
+01:23:19,220 --> 01:23:22,610
+Effectively linking
+our-- we're assigning
+
+1664
+01:23:22,610 --> 01:23:28,414
+the parent field of that prefab's
+transform to the parent's transform.
+
+1665
+01:23:28,414 --> 01:23:30,830
+And that has the effect of
+basically linking them together
+
+1666
+01:23:30,830 --> 01:23:32,780
+in a parent-child relationship.
+
+1667
+01:23:32,780 --> 01:23:38,090
+And that will allow us to
+collapse and expand a list when
+
+1668
+01:23:38,090 --> 01:23:39,750
+one parent has a bunch of children.
+
+1669
+01:23:39,750 --> 01:23:44,770
+We can expand and contract in the
+hierarchy view and save us a lot of--
+
+1670
+01:23:44,770 --> 01:23:47,270
+save us a bit of a headache in
+terms of navigating our scene
+
+1671
+01:23:47,270 --> 01:23:50,030
+or we instantiate a lot of
+things, which is fairly normal.
+
+1672
+01:23:50,030 --> 01:23:53,430
+
+
+1673
+01:23:53,430 --> 01:23:55,430
+So the actual may--
+
+1674
+01:23:55,430 --> 01:23:56,910
+I'll go over this fairly quickly.
+
+1675
+01:23:56,910 --> 01:23:58,734
+It's a fairly simple algorithm.
+
+1676
+01:23:58,734 --> 01:24:01,650
+And we talked about it on the screen,
+and we don't have a ton of time.
+
+1677
+01:24:01,650 --> 01:24:04,790
+But basically we go z to x.
+
+1678
+01:24:04,790 --> 01:24:08,750
+The reason that we go z to x is
+because in Unity, z and x are
+
+1679
+01:24:08,750 --> 01:24:13,790
+sort of like the ground axes, and a y
+is sort of like that up and down axis.
+
+1680
+01:24:13,790 --> 01:24:16,190
+And so we don't want to
+instantiate-- we're not
+
+1681
+01:24:16,190 --> 01:24:19,827
+really worried about navigating the
+y-axis during our maze generator.
+
+1682
+01:24:19,827 --> 01:24:22,160
+Because all we're going to
+do is instantiate four blocks
+
+1683
+01:24:22,160 --> 01:24:25,400
+on the y-axis during that phase.
+
+1684
+01:24:25,400 --> 01:24:30,470
+So we're basically taking our 2D
+array, and we're iterating over it xy,
+
+1685
+01:24:30,470 --> 01:24:36,110
+and then we're mapping that to
+Unity's xz, If that makes sense.
+
+1686
+01:24:36,110 --> 01:24:41,670
+Because notice the-- this
+is our ground, right?
+
+1687
+01:24:41,670 --> 01:24:46,430
+So where this transform is, you
+can see the ground, how this is x.
+
+1688
+01:24:46,430 --> 01:24:48,320
+The blue is z.
+
+1689
+01:24:48,320 --> 01:24:50,467
+And y is this axis here.
+
+1690
+01:24:50,467 --> 01:24:53,300
+We're generating-- we're effectively
+only concerned about generating
+
+1691
+01:24:53,300 --> 01:24:55,460
+on the ground, and then when
+we generate a wall we just
+
+1692
+01:24:55,460 --> 01:24:57,110
+generate it four blocks high on the y.
+
+1693
+01:24:57,110 --> 01:24:59,300
+We don't think about the y.
+
+1694
+01:24:59,300 --> 01:25:02,990
+So that's why x and y
+for our 2D array, but x
+
+1695
+01:25:02,990 --> 01:25:08,270
+and z for applying that array
+to Unity's 3D coordinate system.
+
+1696
+01:25:08,270 --> 01:25:10,580
+Does that make sense?
+
+1697
+01:25:10,580 --> 01:25:12,110
+OK.
+
+1698
+01:25:12,110 --> 01:25:15,830
+So we're iterating over z and x.
+
+1699
+01:25:15,830 --> 01:25:20,330
+And then we're indexing into
+our map data, z and x, which
+
+1700
+01:25:20,330 --> 01:25:22,910
+is exactly the same thing as y and x.
+
+1701
+01:25:22,910 --> 01:25:25,610
+And then we are creating a child prefab.
+
+1702
+01:25:25,610 --> 01:25:29,150
+If map data z x.
+
+1703
+01:25:29,150 --> 01:25:34,640
+So recall that our map data
+is a 2D array of Booleans.
+
+1704
+01:25:34,640 --> 01:25:39,760
+And so if we have map data z x equal to
+true, that means there's a wall there.
+
+1705
+01:25:39,760 --> 01:25:42,060
+It means that there's
+a true in our array,
+
+1706
+01:25:42,060 --> 01:25:45,930
+so we should instantiate
+a wall at that location.
+
+1707
+01:25:45,930 --> 01:25:49,439
+So we create three wall prefabs,
+assign them to the walls parent
+
+1708
+01:25:49,439 --> 01:25:51,230
+so that they get
+containerized within there
+
+1709
+01:25:51,230 --> 01:25:52,938
+so they don't clog up
+our hierarchy view.
+
+1710
+01:25:52,938 --> 01:25:56,206
+
+
+1711
+01:25:56,206 --> 01:26:01,810
+And then-- let me see here.
+
+1712
+01:26:01,810 --> 01:26:04,430
+
+
+1713
+01:26:04,430 --> 01:26:06,140
+And so if we don't--
+
+1714
+01:26:06,140 --> 01:26:09,550
+So if we've gone to our maze,
+if we're generating our maze,
+
+1715
+01:26:09,550 --> 01:26:14,800
+and we get to our first tile
+that's actually not a wall,
+
+1716
+01:26:14,800 --> 01:26:16,610
+so it's an empty space--
+
+1717
+01:26:16,610 --> 01:26:18,950
+So basically, the else here.
+
+1718
+01:26:18,950 --> 01:26:22,010
+So if mapped data zx is not
+true, it's going to be false.
+
+1719
+01:26:22,010 --> 01:26:26,470
+So if that's the case, and
+if not character placed--
+
+1720
+01:26:26,470 --> 01:26:28,362
+so character placed is just a Boolean.
+
+1721
+01:26:28,362 --> 01:26:29,320
+It's a private Boolean.
+
+1722
+01:26:29,320 --> 01:26:31,180
+We don't want this to be
+visible in our inspector.
+
+1723
+01:26:31,180 --> 01:26:33,555
+There's no purpose for it to
+be visible in our inspector.
+
+1724
+01:26:33,555 --> 01:26:36,880
+This is just a Boolean for
+us to use in our script.
+
+1725
+01:26:36,880 --> 01:26:39,370
+So we set that to false
+by default because we
+
+1726
+01:26:39,370 --> 01:26:40,910
+haven't placed our character yet.
+
+1727
+01:26:40,910 --> 01:26:42,826
+But when we generate our
+maze, we have to make
+
+1728
+01:26:42,826 --> 01:26:45,370
+sure we put our character in a
+spot that there isn't a wall.
+
+1729
+01:26:45,370 --> 01:26:47,578
+Because we obviously don't
+want him trapped in a wall
+
+1730
+01:26:47,578 --> 01:26:50,080
+or clipping through the maze, right?
+
+1731
+01:26:50,080 --> 01:26:54,550
+So if not character placed, we're
+going to set the character controller's
+
+1732
+01:26:54,550 --> 01:26:55,570
+transform.
+
+1733
+01:26:55,570 --> 01:26:58,760
+We're going to sense position and
+rotation, which is a function.
+
+1734
+01:26:58,760 --> 01:27:04,720
+We're going to set it to x
+and then y 1, and then z.
+
+1735
+01:27:04,720 --> 01:27:08,620
+And then no rotation, so
+quaternion dot identity.
+
+1736
+01:27:08,620 --> 01:27:09,860
+And then set that to true.
+
+1737
+01:27:09,860 --> 01:27:12,149
+So therefore, this will
+never be called again.
+
+1738
+01:27:12,149 --> 01:27:14,440
+So this only gets called on
+that very first empty space
+
+1739
+01:27:14,440 --> 01:27:18,520
+that we go through our maze.
+
+1740
+01:27:18,520 --> 01:27:21,610
+And that's it for that.
+
+1741
+01:27:21,610 --> 01:27:26,890
+When we-- no matter what we do, whether
+there's a wall in our maze or not,
+
+1742
+01:27:26,890 --> 01:27:29,860
+we're going to want to generate a
+floor and a ceiling at that space.
+
+1743
+01:27:29,860 --> 01:27:33,325
+So-- that's, of course,
+assuming that generate roof
+
+1744
+01:27:33,325 --> 01:27:37,000
+is true which, recall, we made a
+public Boolean in our inspector
+
+1745
+01:27:37,000 --> 01:27:40,580
+so that I could debug and show you guys
+what the maze looks like from up above.
+
+1746
+01:27:40,580 --> 01:27:42,850
+So if generate roof--
+
+1747
+01:27:42,850 --> 01:27:48,550
+create a child prefab for ceiling
+prefab of x 4 z, so a bit higher up.
+
+1748
+01:27:48,550 --> 01:27:51,760
+And then no matter what,
+always want a floor.
+
+1749
+01:27:51,760 --> 01:27:55,570
+So create a floor prefab at x 0 z.
+
+1750
+01:27:55,570 --> 01:27:56,910
+So down below.
+
+1751
+01:27:56,910 --> 01:27:59,450
+And our character controller
+gets placed at, recall, x 1 z,
+
+1752
+01:27:59,450 --> 01:28:02,020
+so just above the floor.
+
+1753
+01:28:02,020 --> 01:28:05,500
+The assignment is actually--
+part of the assignment
+
+1754
+01:28:05,500 --> 01:28:08,730
+is generate a hole in the floor.
+
+1755
+01:28:08,730 --> 01:28:13,140
+And if there's a hole in the floor and
+the character falls through the hole,
+
+1756
+01:28:13,140 --> 01:28:14,390
+should get a game over, right?
+
+1757
+01:28:14,390 --> 01:28:16,515
+So you're going to need to
+create a game over scene
+
+1758
+01:28:16,515 --> 01:28:18,170
+or we need to transition to that scene.
+
+1759
+01:28:18,170 --> 01:28:22,000
+And then we're going to need to check
+to see whether the character's transform
+
+1760
+01:28:22,000 --> 01:28:25,150
+has gone below a certain amount.
+
+1761
+01:28:25,150 --> 01:28:27,520
+It's all fairly easy stuff to do.
+
+1762
+01:28:27,520 --> 01:28:29,920
+But you'll look to do
+some of that in here.
+
+1763
+01:28:29,920 --> 01:28:33,560
+And then the actual maze
+data function is here.
+
+1764
+01:28:33,560 --> 01:28:36,490
+I won't go over it in detail,
+but it's the algorithm
+
+1765
+01:28:36,490 --> 01:28:40,770
+that we talked about before, where
+we choose direction to move randomly,
+
+1766
+01:28:40,770 --> 01:28:43,240
+and we choose a random
+number of steps to move,
+
+1767
+01:28:43,240 --> 01:28:45,880
+clamp that value within the
+constraints of the maze,
+
+1768
+01:28:45,880 --> 01:28:50,660
+and then set every tile
+that we explore to false.
+
+1769
+01:28:50,660 --> 01:28:52,540
+And that has the effect
+of creating the maze.
+
+1770
+01:28:52,540 --> 01:28:56,280
+And then we just return that data back
+to our function as just a 2D array.
+
+1771
+01:28:56,280 --> 01:28:59,989
+Notice that in C Sharp,
+to create a 2D array,
+
+1772
+01:28:59,989 --> 01:29:02,530
+it's a little bit different than
+in a lot of other languages.
+
+1773
+01:29:02,530 --> 01:29:04,114
+It has its own set of syntax for that.
+
+1774
+01:29:04,114 --> 01:29:06,654
+You have the array syntax that
+you're probably familiar with,
+
+1775
+01:29:06,654 --> 01:29:08,310
+but then you also have this comma.
+
+1776
+01:29:08,310 --> 01:29:12,790
+And that comma is to designate that
+there are two arguments to that index
+
+1777
+01:29:12,790 --> 01:29:13,780
+syntax here.
+
+1778
+01:29:13,780 --> 01:29:18,000
+Just means an x should go here and
+a y should go there, basically.
+
+1779
+01:29:18,000 --> 01:29:19,060
+Or y, x.
+
+1780
+01:29:19,060 --> 01:29:20,720
+And that's 2D array.
+
+1781
+01:29:20,720 --> 01:29:23,740
+And you can make it as many
+degrees as you want to.
+
+1782
+01:29:23,740 --> 01:29:26,300
+Just add more commas to it.
+
+1783
+01:29:26,300 --> 01:29:32,350
+And notice that to actually allocate the
+memory that we want for that 2D array--
+
+1784
+01:29:32,350 --> 01:29:35,170
+new bool, maze size, maze size.
+
+1785
+01:29:35,170 --> 01:29:37,120
+So our maze is always square shaped.
+
+1786
+01:29:37,120 --> 01:29:40,690
+Same-- and you could
+easily make this maze
+
+1787
+01:29:40,690 --> 01:29:43,630
+x, maze y if you wanted
+to, to make it rectangular.
+
+1788
+01:29:43,630 --> 01:29:48,100
+So you need to have two public
+variables instead of one.
+
+1789
+01:29:48,100 --> 01:29:51,170
+And all of this is fairly
+visible to the inspector, too.
+
+1790
+01:29:51,170 --> 01:29:55,480
+In our dungeon generator you can
+see I made a tiles to remove, 350.
+
+1791
+01:29:55,480 --> 01:29:58,360
+So that means that our maze
+is going to cut out 350 tiles,
+
+1792
+01:29:58,360 --> 01:30:01,030
+and as soon as it cuts
+out 350 tiles, it's done.
+
+1793
+01:30:01,030 --> 01:30:03,250
+And then our maze size is 30 by 30.
+
+1794
+01:30:03,250 --> 01:30:06,620
+So that means there's going
+to be 900 tiles in our maze.
+
+1795
+01:30:06,620 --> 01:30:09,100
+So you can tailor this to
+whatever you want in order
+
+1796
+01:30:09,100 --> 01:30:15,850
+to produce sparse or denser
+mazes to your liking.
+
+1797
+01:30:15,850 --> 01:30:21,060
+So any questions as to how
+the code for that works?
+
+1798
+01:30:21,060 --> 01:30:22,900
+More or less.
+
+1799
+01:30:22,900 --> 01:30:25,910
+So now we'll actually get
+to the scenes part of it.
+
+1800
+01:30:25,910 --> 01:30:27,100
+And so transitioning betw--
+
+1801
+01:30:27,100 --> 01:30:29,060
+oh, yeah.
+
+1802
+01:30:29,060 --> 01:30:31,510
+AUDIENCE: I'm thinking,
+like, for a smaller
+
+1803
+01:30:31,510 --> 01:30:32,980
+game like that, that works great.
+
+1804
+01:30:32,980 --> 01:30:35,920
+But for a larger game, wouldn't
+you want to model the walls
+
+1805
+01:30:35,920 --> 01:30:42,300
+as 2D kind of objects, and the
+ceiling, instead of a whole cube?
+
+1806
+01:30:42,300 --> 01:30:43,540
+COLTON OGDEN: Oh, yeah.
+
+1807
+01:30:43,540 --> 01:30:46,750
+So for a small game, is it ideal--
+
+1808
+01:30:46,750 --> 01:30:51,880
+more ideal for the walls to be rendered
+as one discrete object as opposed
+
+1809
+01:30:51,880 --> 01:30:53,840
+to several cubes?
+
+1810
+01:30:53,840 --> 01:30:55,180
+Yeah, absolutely.
+
+1811
+01:30:55,180 --> 01:30:56,380
+That's 100% true.
+
+1812
+01:30:56,380 --> 01:31:00,460
+And actually, Minecraft is an
+example of this sort of idea
+
+1813
+01:31:00,460 --> 01:31:03,040
+that you think would
+work, but they actually
+
+1814
+01:31:03,040 --> 01:31:06,010
+consolidate all their geometry after
+they've generated it in this way
+
+1815
+01:31:06,010 --> 01:31:10,847
+and produce, like, models
+that are more optimized.
+
+1816
+01:31:10,847 --> 01:31:13,180
+You think that you're interacting
+with this world that's
+
+1817
+01:31:13,180 --> 01:31:15,187
+a bunch of these little
+blocks, all separate.
+
+1818
+01:31:15,187 --> 01:31:17,020
+But it's actually one
+big piece of geometry,
+
+1819
+01:31:17,020 --> 01:31:19,900
+and then it dynamically figures out
+where you're hitting and removes
+
+1820
+01:31:19,900 --> 01:31:22,060
+and adds blocks as needed.
+
+1821
+01:31:22,060 --> 01:31:25,026
+And there's some cool videos on
+YouTube as to how to do this in Unity,
+
+1822
+01:31:25,026 --> 01:31:26,650
+too, which I looked at a long time ago.
+
+1823
+01:31:26,650 --> 01:31:27,970
+And it kind of shows you--
+
+1824
+01:31:27,970 --> 01:31:31,600
+you can actually dynamically create
+meshes and vertices and stuff in Unity,
+
+1825
+01:31:31,600 --> 01:31:34,970
+and then create objects that
+way, which is really cool.
+
+1826
+01:31:34,970 --> 01:31:37,620
+But that's a little bit
+more on the advanced side.
+
+1827
+01:31:37,620 --> 01:31:38,560
+But yeah, absolutely.
+
+1828
+01:31:38,560 --> 01:31:43,090
+For an actual implementation of
+this, a simple but more efficient way
+
+1829
+01:31:43,090 --> 01:31:48,070
+to do it would just be to have
+one solid, large, wall object.
+
+1830
+01:31:48,070 --> 01:31:50,590
+That's as tall as you need
+it to be, and maybe as
+
+1831
+01:31:50,590 --> 01:31:54,220
+wide as you need it to be for one
+character, and have that work.
+
+1832
+01:31:54,220 --> 01:31:56,760
+But for simplicity's sake and
+to illustrate the algorithm,
+
+1833
+01:31:56,760 --> 01:32:00,400
+we were just using the cubes.
+
+1834
+01:32:00,400 --> 01:32:01,030
+Yeah, exactly.
+
+1835
+01:32:01,030 --> 01:32:02,500
+But yeah, good point.
+
+1836
+01:32:02,500 --> 01:32:05,270
+That's 100% true.
+
+1837
+01:32:05,270 --> 01:32:07,810
+All right, multiple scenes.
+
+1838
+01:32:07,810 --> 01:32:11,080
+So the way that we do this--
+
+1839
+01:32:11,080 --> 01:32:14,320
+so I'm going to go into my text editor.
+
+1840
+01:32:14,320 --> 01:32:22,290
+Whoops So the-- grab pick-ups script.
+
+1841
+01:32:22,290 --> 01:32:29,640
+So grab pick-ups is a component that's
+attached to the character controller,
+
+1842
+01:32:29,640 --> 01:32:33,600
+because he's going to
+be picking up pick-ups.
+
+1843
+01:32:33,600 --> 01:32:38,100
+And what the grab pick-up
+script effectively does is,
+
+1844
+01:32:38,100 --> 01:32:43,710
+the character controller
+built-in collide
+
+1845
+01:32:43,710 --> 01:32:47,040
+has this function that you can define
+for it called on-controller collider
+
+1846
+01:32:47,040 --> 01:32:51,480
+hits, where anything that collides
+with the controller's collider
+
+1847
+01:32:51,480 --> 01:32:53,700
+will trigger this callback function.
+
+1848
+01:32:53,700 --> 01:32:59,790
+And you can grab the information about
+the object that you collided with
+
+1849
+01:32:59,790 --> 01:33:02,530
+and then perform some
+sort of logic on that.
+
+1850
+01:33:02,530 --> 01:33:05,040
+And so it's actually calling
+this function every single time
+
+1851
+01:33:05,040 --> 01:33:09,951
+we collide with any of the tiles
+or the blocks in our scene as well.
+
+1852
+01:33:09,951 --> 01:33:11,700
+There's just no logic
+to account for them,
+
+1853
+01:33:11,700 --> 01:33:14,820
+so it's just effectively
+an empty function call.
+
+1854
+01:33:14,820 --> 01:33:24,840
+But if it's the case that the
+game object has a tag of pick-up--
+
+1855
+01:33:24,840 --> 01:33:28,460
+which we've set in our Unity editor,
+and I'll show you how to do that--
+
+1856
+01:33:28,460 --> 01:33:32,730
+then we should play a sound
+from our pick-up sound source.
+
+1857
+01:33:32,730 --> 01:33:34,020
+And then we should--
+
+1858
+01:33:34,020 --> 01:33:37,590
+using-- you actually used
+this in the last lecture,
+
+1859
+01:33:37,590 --> 01:33:39,480
+but only within the same scene.
+
+1860
+01:33:39,480 --> 01:33:43,500
+We're going to call scene
+manager dot load scene, play.
+
+1861
+01:33:43,500 --> 01:33:46,440
+And you need Unity engine
+dot scene management.
+
+1862
+01:33:46,440 --> 01:33:49,770
+Using unity engine dot scene
+management at the top of your script
+
+1863
+01:33:49,770 --> 01:33:51,720
+in order to use this.
+
+1864
+01:33:51,720 --> 01:33:54,690
+And load scene effectively
+just will literally just
+
+1865
+01:33:54,690 --> 01:33:56,850
+load a scene by its name.
+
+1866
+01:33:56,850 --> 01:33:58,790
+And we're doing that
+in a couple of places.
+
+1867
+01:33:58,790 --> 01:34:00,165
+So we're actually doing it there.
+
+1868
+01:34:00,165 --> 01:34:04,590
+But remember, we had the title scene,
+which had the same sort of thing.
+
+1869
+01:34:04,590 --> 01:34:08,790
+You press Enter, and you
+load the play scene, right?
+
+1870
+01:34:08,790 --> 01:34:12,600
+So this load scene on input
+component that I created
+
+1871
+01:34:12,600 --> 01:34:17,490
+is attached to a text
+field in the title scene.
+
+1872
+01:34:17,490 --> 01:34:19,870
+And all we're doing
+here is in the update,
+
+1873
+01:34:19,870 --> 01:34:27,850
+we're just saying hey, if input dot
+get access submit is equal to 1,
+
+1874
+01:34:27,850 --> 01:34:29,980
+then scene manager dot load scene play.
+
+1875
+01:34:29,980 --> 01:34:33,480
+Almost the same-- kind of almost
+the same code, only in this case
+
+1876
+01:34:33,480 --> 01:34:35,585
+we're querying Unity's input.
+
+1877
+01:34:35,585 --> 01:34:39,160
+It has a global input manager, get axis.
+
+1878
+01:34:39,160 --> 01:34:41,490
+So it has several axes,
+is how it defines it.
+
+1879
+01:34:41,490 --> 01:34:44,250
+Different methods of input.
+
+1880
+01:34:44,250 --> 01:34:48,610
+And then it defines them by keywords,
+so in this case submit is a keyword.
+
+1881
+01:34:48,610 --> 01:34:52,170
+And you define-- you map those keys--
+
+1882
+01:34:52,170 --> 01:34:55,740
+or you map those keywords to
+specific keys and input sources
+
+1883
+01:34:55,740 --> 01:34:57,330
+on whatever platform you're targeting.
+
+1884
+01:34:57,330 --> 01:35:01,410
+In this case, submit is synonymous
+with either Enter or Return,
+
+1885
+01:35:01,410 --> 01:35:03,300
+depending on which platform we're using.
+
+1886
+01:35:03,300 --> 01:35:07,380
+And it could have other meanings
+if we're exporting this to Xbox
+
+1887
+01:35:07,380 --> 01:35:09,840
+or if we're exporting it
+to the web, or if we're
+
+1888
+01:35:09,840 --> 01:35:11,460
+exporting it to a mobile phone.
+
+1889
+01:35:11,460 --> 01:35:14,740
+There's a lot of
+different ways it changes.
+
+1890
+01:35:14,740 --> 01:35:19,214
+And so the way that it
+checks is it will be 0 or 1,
+
+1891
+01:35:19,214 --> 01:35:21,630
+specifically, so we can say
+if input dot get access submit
+
+1892
+01:35:21,630 --> 01:35:25,840
+equals 1, scene manager load scene play.
+
+1893
+01:35:25,840 --> 01:35:31,290
+And it won't let you do if input dot get
+access submit, because it's explicitly
+
+1894
+01:35:31,290 --> 01:35:33,690
+expecting integer and it
+will throw an error if you're
+
+1895
+01:35:33,690 --> 01:35:35,520
+trying to use it like a Boolean.
+
+1896
+01:35:35,520 --> 01:35:42,870
+So we need to use this equals,
+equals one to test for equivalence.
+
+1897
+01:35:42,870 --> 01:35:44,760
+And that's all we're
+effectively doing there.
+
+1898
+01:35:44,760 --> 01:35:47,290
+
+
+1899
+01:35:47,290 --> 01:35:57,540
+Now, the interesting thing is, when
+we reload the scene for the pick-up
+
+1900
+01:35:57,540 --> 01:36:01,500
+for the maze, there's a soundtrack
+playing in the background.
+
+1901
+01:36:01,500 --> 01:36:05,370
+And we want the soundtrack to
+constantly be playing the same thing
+
+1902
+01:36:05,370 --> 01:36:07,680
+and to loop, right?
+
+1903
+01:36:07,680 --> 01:36:10,650
+The sound effect-- we don't want
+it to start up immediately again
+
+1904
+01:36:10,650 --> 01:36:12,840
+and start up from the
+very beginning again.
+
+1905
+01:36:12,840 --> 01:36:15,900
+We kind of want this
+seamless sort of feel to it.
+
+1906
+01:36:15,900 --> 01:36:18,960
+And so how do we think we
+can solve this problem?
+
+1907
+01:36:18,960 --> 01:36:24,014
+
+
+1908
+01:36:24,014 --> 01:36:25,680
+AUDIENCE: So it doesn't play again when?
+
+1909
+01:36:25,680 --> 01:36:27,727
+When you reload the scene?
+
+1910
+01:36:27,727 --> 01:36:28,560
+COLTON OGDEN: Sorry?
+
+1911
+01:36:28,560 --> 01:36:30,420
+AUDIENCE: You don't want it to start
+over when you reload the scene?
+
+1912
+01:36:30,420 --> 01:36:31,336
+COLTON OGDEN: Correct.
+
+1913
+01:36:31,336 --> 01:36:35,070
+
+
+1914
+01:36:35,070 --> 01:36:37,120
+So any ideas as to how we would do this?
+
+1915
+01:36:37,120 --> 01:36:39,680
+AUDIENCE: Put level one only
+in the beginning or something?
+
+1916
+01:36:39,680 --> 01:36:41,130
+[INAUDIBLE]
+
+1917
+01:36:41,130 --> 01:36:43,830
+COLTON OGDEN: Well, so whenever
+we collide with the pickup,
+
+1918
+01:36:43,830 --> 01:36:46,269
+we reload the scene
+completely from scratch.
+
+1919
+01:36:46,269 --> 01:36:48,810
+And so when you reload a scene,
+it destroys every game object
+
+1920
+01:36:48,810 --> 01:36:51,000
+in the scene, including
+all the objects that
+
+1921
+01:36:51,000 --> 01:36:53,380
+have audio sources attached to them.
+
+1922
+01:36:53,380 --> 01:36:55,650
+And so when it reloads the
+scene, it reinstantiates
+
+1923
+01:36:55,650 --> 01:36:58,691
+all of the game objects in the scene,
+including those with audio sources,
+
+1924
+01:36:58,691 --> 01:37:00,660
+and retriggers their playing.
+
+1925
+01:37:00,660 --> 01:37:03,933
+So what we want to do is
+prevent this from happening.
+
+1926
+01:37:03,933 --> 01:37:07,770
+AUDIENCE: Just have a counter and
+when you get the first pickup then
+
+1927
+01:37:07,770 --> 01:37:09,020
+it goes to 1.
+
+1928
+01:37:09,020 --> 01:37:12,590
+And then you say if less
+than 1, play the sound.
+
+1929
+01:37:12,590 --> 01:37:15,960
+
+
+1930
+01:37:15,960 --> 01:37:20,170
+COLTON OGDEN: That will have the effect
+of-- so you're saying have a counter,
+
+1931
+01:37:20,170 --> 01:37:20,670
+and when--
+
+1932
+01:37:20,670 --> 01:37:21,461
+AUDIENCE: Or, yeah.
+
+1933
+01:37:21,461 --> 01:37:22,430
+True-false would do.
+
+1934
+01:37:22,430 --> 01:37:24,780
+Boolean would be better at this.
+
+1935
+01:37:24,780 --> 01:37:28,050
+COLTON OGDEN: So have a counter or
+true-false when you load the scene,
+
+1936
+01:37:28,050 --> 01:37:29,240
+it starts the music.
+
+1937
+01:37:29,240 --> 01:37:31,490
+But what happens when we
+reload the scene from scratch
+
+1938
+01:37:31,490 --> 01:37:34,026
+and the audio that was
+playing gets deleted?
+
+1939
+01:37:34,026 --> 01:37:37,305
+AUDIENCE: Can you transport
+certain objects between scenes?
+
+1940
+01:37:37,305 --> 01:37:39,930
+COLTON OGDEN: Can you transport
+certain objects between scenes?
+
+1941
+01:37:39,930 --> 01:37:42,210
+Effectively, you can.
+
+1942
+01:37:42,210 --> 01:37:47,440
+There is a function called
+don't destroy on load, actually.
+
+1943
+01:37:47,440 --> 01:37:49,560
+So what that d-- it's
+a Unity function, which
+
+1944
+01:37:49,560 --> 01:37:54,490
+allows you to preserve an
+object as it is between scenes.
+
+1945
+01:37:54,490 --> 01:38:01,620
+So if you don't want your object with
+the music to destroy itself and then
+
+1946
+01:38:01,620 --> 01:38:04,140
+reinstantiate on load--
+
+1947
+01:38:04,140 --> 01:38:07,530
+well, technically, just
+don't destroy itself.
+
+1948
+01:38:07,530 --> 01:38:10,257
+Just do don't destroy on
+load at the game object.
+
+1949
+01:38:10,257 --> 01:38:12,840
+And so this don't destroy, we
+apply this to our audio source--
+
+1950
+01:38:12,840 --> 01:38:14,480
+our whisper source, it's called--
+
+1951
+01:38:14,480 --> 01:38:15,780
+in the scene.
+
+1952
+01:38:15,780 --> 01:38:19,950
+The only problem with this
+is if we reinstantiate--
+
+1953
+01:38:19,950 --> 01:38:23,490
+or if we don't destroy on load this
+object, it's going to persevere.
+
+1954
+01:38:23,490 --> 01:38:26,220
+But when we reload the scene,
+it's going instantiate a new one.
+
+1955
+01:38:26,220 --> 01:38:28,795
+So what's the effect
+of this going to be?
+
+1956
+01:38:28,795 --> 01:38:31,420
+We're going to have two audio
+sources playing at the same time.
+
+1957
+01:38:31,420 --> 01:38:32,920
+What happens when we do another one?
+
+1958
+01:38:32,920 --> 01:38:35,670
+You're going to have three audio
+sources playing at the same time.
+
+1959
+01:38:35,670 --> 01:38:37,381
+So for every time you
+go to a next level,
+
+1960
+01:38:37,381 --> 01:38:39,630
+you're going to add the same
+audio track to the scene.
+
+1961
+01:38:39,630 --> 01:38:43,150
+It's going to be very
+annoying very quickly.
+
+1962
+01:38:43,150 --> 01:38:47,000
+The way that we avoid this happening
+is by making what's called a singleton.
+
+1963
+01:38:47,000 --> 01:38:50,640
+So what a singleton is is a
+class that can only effectively
+
+1964
+01:38:50,640 --> 01:38:52,110
+be instantiated one time.
+
+1965
+01:38:52,110 --> 01:38:54,630
+
+
+1966
+01:38:54,630 --> 01:39:02,445
+And we do this by creating a static
+variable here called don't destroy.
+
+1967
+01:39:02,445 --> 01:39:06,940
+
+
+1968
+01:39:06,940 --> 01:39:09,420
+No, we call it instance, which
+is of type don't destroy.
+
+1969
+01:39:09,420 --> 01:39:12,150
+So it's this component here, right?
+
+1970
+01:39:12,150 --> 01:39:15,270
+And so the don't destroy
+class as a whole has
+
+1971
+01:39:15,270 --> 01:39:17,280
+this static variable called instance.
+
+1972
+01:39:17,280 --> 01:39:20,870
+And we set it to null by default.
+And we haven't instantiated
+
+1973
+01:39:20,870 --> 01:39:23,710
+a don't destroy component yet.
+
+1974
+01:39:23,710 --> 01:39:28,620
+And what this ensures, in
+our scene, by the logic
+
+1975
+01:39:28,620 --> 01:39:31,750
+we have in the awake function, awake
+is almost the same thing as start.
+
+1976
+01:39:31,750 --> 01:39:34,500
+It just means whenever--
+you can pause an object
+
+1977
+01:39:34,500 --> 01:39:37,560
+and it will awake from its pause state.
+
+1978
+01:39:37,560 --> 01:39:41,830
+But awake also gets called when
+an object gets instantiated.
+
+1979
+01:39:41,830 --> 01:39:48,030
+So if the instance is set to null
+on awake, instance equals this,
+
+1980
+01:39:48,030 --> 01:39:49,500
+so this don't destroy.
+
+1981
+01:39:49,500 --> 01:39:51,660
+So whatever this is
+being called from, this
+
+1982
+01:39:51,660 --> 01:39:53,410
+don't destroy will be the instance.
+
+1983
+01:39:53,410 --> 01:39:56,130
+Whenever the first don't destroy
+component is in our scene.
+
+1984
+01:39:56,130 --> 01:39:58,710
+The very first maze that we generate.
+
+1985
+01:39:58,710 --> 01:40:01,530
+The sound source instance will be this.
+
+1986
+01:40:01,530 --> 01:40:04,800
+And then we set don't destroy
+on load for the game object that
+
+1987
+01:40:04,800 --> 01:40:12,120
+is holding that don't destroy or don't
+destroy component, that audio source.
+
+1988
+01:40:12,120 --> 01:40:18,360
+But if the instance is not equal
+to this, so if we've awoken
+
+1989
+01:40:18,360 --> 01:40:20,870
+and this is level 2,
+for example, instance
+
+1990
+01:40:20,870 --> 01:40:27,150
+is going to be set to the don't destroy
+component on the don't destroy on load
+
+1991
+01:40:27,150 --> 01:40:29,700
+object that we created
+in the first maze.
+
+1992
+01:40:29,700 --> 01:40:32,270
+Because we did this logic here.
+
+1993
+01:40:32,270 --> 01:40:37,630
+And so it's going to try and instantiate
+a second don't destroy component.
+
+1994
+01:40:37,630 --> 01:40:40,170
+It's going to destroy
+another sound source.
+
+1995
+01:40:40,170 --> 01:40:41,730
+But instance is not going to be null.
+
+1996
+01:40:41,730 --> 01:40:45,690
+Instance is going to be
+equal to that first object.
+
+1997
+01:40:45,690 --> 01:40:51,130
+So we say, if instance is not
+equal to this, destroy game object.
+
+1998
+01:40:51,130 --> 01:40:54,660
+So this is going to be from the
+standpoint of the second don't
+
+1999
+01:40:54,660 --> 01:40:56,157
+destroy that got created.
+
+2000
+01:40:56,157 --> 01:40:58,440
+AUDIENCE: So a singleton
+basically persists.
+
+2001
+01:40:58,440 --> 01:41:00,900
+COLTON OGDEN: The singleton
+will persist indefinitely
+
+2002
+01:41:00,900 --> 01:41:02,640
+upon its first instantiation.
+
+2003
+01:41:02,640 --> 01:41:04,770
+And there will only
+ever be one singleton.
+
+2004
+01:41:04,770 --> 01:41:07,174
+This is a very basic,
+very common pattern
+
+2005
+01:41:07,174 --> 01:41:09,090
+in software engineering
+for ensuring they only
+
+2006
+01:41:09,090 --> 01:41:12,510
+have one object of a given type
+present throughout your entire project.
+
+2007
+01:41:12,510 --> 01:41:15,180
+
+
+2008
+01:41:15,180 --> 01:41:18,720
+But this is how we prevent multiple
+sound sources from being instantiated.
+
+2009
+01:41:18,720 --> 01:41:21,810
+We always ensure that only
+one object with that component
+
+2010
+01:41:21,810 --> 01:41:25,830
+gets instantiated at once, and any
+future instantiations of that object
+
+2011
+01:41:25,830 --> 01:41:28,890
+get destroyed immediately, assuming
+that they aren't that first object.
+
+2012
+01:41:28,890 --> 01:41:31,560
+If they are that first
+object, instance will not--
+
+2013
+01:41:31,560 --> 01:41:34,450
+instance will equal this, and
+so it will still skip this part,
+
+2014
+01:41:34,450 --> 01:41:36,920
+and so it will stay alive.
+
+2015
+01:41:36,920 --> 01:41:40,129
+So any questions as to how the
+persevering through multiple scenes
+
+2016
+01:41:40,129 --> 01:41:41,170
+works for a sound source?
+
+2017
+01:41:41,170 --> 01:41:44,130
+
+
+2018
+01:41:44,130 --> 01:41:46,790
+OK.
+
+2019
+01:41:46,790 --> 01:41:48,210
+That's how we get multiple scenes.
+
+2020
+01:41:48,210 --> 01:41:48,952
+So fog.
+
+2021
+01:41:48,952 --> 01:41:51,410
+We looked at fog already, but
+I have a few screenshots here
+
+2022
+01:41:51,410 --> 01:41:55,400
+to kind of help illustrate what
+fog has looked like over the years.
+
+2023
+01:41:55,400 --> 01:41:57,800
+So fog looks pretty
+unconvincing in this screenshot.
+
+2024
+01:41:57,800 --> 01:42:00,170
+This is Turok for the N64.
+
+2025
+01:42:00,170 --> 01:42:03,740
+It's just-- kind of looks as if, you
+know, sort of at a certain distance,
+
+2026
+01:42:03,740 --> 01:42:06,560
+a very dense sheet of fog has appeared.
+
+2027
+01:42:06,560 --> 01:42:10,900
+And you can actually make this
+happen in Unity by setting the--
+
+2028
+01:42:10,900 --> 01:42:12,950
+there's a curve, a fog
+curve that I believe you
+
+2029
+01:42:12,950 --> 01:42:15,732
+can manipulate that will effectively--
+
+2030
+01:42:15,732 --> 01:42:18,440
+the algorithm that determines how
+the color gets summed to things
+
+2031
+01:42:18,440 --> 01:42:22,280
+far away is very fast as
+opposed to gradual or linear.
+
+2032
+01:42:22,280 --> 01:42:24,440
+So you can make it just
+exponential, effectively,
+
+2033
+01:42:24,440 --> 01:42:27,830
+and make it look as if the
+fog is incredibly dense
+
+2034
+01:42:27,830 --> 01:42:30,320
+and starts almost at a
+very fixed spot and have
+
+2035
+01:42:30,320 --> 01:42:33,600
+the rest of this area in
+front of you look normal.
+
+2036
+01:42:33,600 --> 01:42:35,240
+Here is another example--
+
+2037
+01:42:35,240 --> 01:42:37,970
+Star Wars Shadows of the Empire,
+one of my favorite N64 games
+
+2038
+01:42:37,970 --> 01:42:39,650
+which has the same look.
+
+2039
+01:42:39,650 --> 01:42:43,190
+And so in this era, you can see
+fog is very distinguishable.
+
+2040
+01:42:43,190 --> 01:42:46,040
+Very artificial looking,
+because it's very tinted.
+
+2041
+01:42:46,040 --> 01:42:47,570
+In this case it looks very blue.
+
+2042
+01:42:47,570 --> 01:42:50,630
+In this case it looks very pale blue.
+
+2043
+01:42:50,630 --> 01:42:52,070
+This is Silent Hill.
+
+2044
+01:42:52,070 --> 01:42:55,400
+And Silent Hill looks
+realer, more realistic,
+
+2045
+01:42:55,400 --> 01:42:58,340
+but kind of the same thing at play here.
+
+2046
+01:42:58,340 --> 01:43:05,180
+You have a very pale gray metallic blue
+color, and the density in this case
+
+2047
+01:43:05,180 --> 01:43:06,460
+is very high.
+
+2048
+01:43:06,460 --> 01:43:09,060
+The density is much higher.
+
+2049
+01:43:09,060 --> 01:43:13,430
+Well, maybe close to as high as it is
+in our game that we're showing today.
+
+2050
+01:43:13,430 --> 01:43:16,190
+But it's effectively the same
+thing, just with a different color.
+
+2051
+01:43:16,190 --> 01:43:20,480
+And they use it to great effect in here,
+not only for sort of this aesthetic
+
+2052
+01:43:20,480 --> 01:43:24,230
+to make you look as if you're
+in some sort of desolate town.
+
+2053
+01:43:24,230 --> 01:43:27,715
+But also to dynamically load objects
+or to prevent rendering objects
+
+2054
+01:43:27,715 --> 01:43:29,090
+that are a certain distance away.
+
+2055
+01:43:29,090 --> 01:43:31,825
+And to optimize performance
+on hardware that was severely
+
+2056
+01:43:31,825 --> 01:43:33,950
+limited at the time, which
+was Playstation 1, which
+
+2057
+01:43:33,950 --> 01:43:36,560
+is a fairly weak console.
+
+2058
+01:43:36,560 --> 01:43:40,610
+And then here is Shadow of the
+Colossus for PS4, which just came out
+
+2059
+01:43:40,610 --> 01:43:42,770
+not too long ago, and we
+can see fog is still being
+
+2060
+01:43:42,770 --> 01:43:44,717
+used but it looks photo-realistic.
+
+2061
+01:43:44,717 --> 01:43:46,550
+And there's probably a
+lot more that they're
+
+2062
+01:43:46,550 --> 01:43:48,530
+doing they probably have
+several layers of fog,
+
+2063
+01:43:48,530 --> 01:43:52,700
+they probably have textures
+and transparent objects
+
+2064
+01:43:52,700 --> 01:43:56,240
+that are simulating fog, and a lot
+of more complicated things like that.
+
+2065
+01:43:56,240 --> 01:43:58,020
+Fog that only hangs
+at a certain distance
+
+2066
+01:43:58,020 --> 01:43:59,810
+so it looks like fog
+going over the lake.
+
+2067
+01:43:59,810 --> 01:44:02,250
+There's a lot of things
+here, but it's the same idea.
+
+2068
+01:44:02,250 --> 01:44:04,625
+And they probably have the
+same sort of foundational base
+
+2069
+01:44:04,625 --> 01:44:07,344
+fog present throughout the scene.
+
+2070
+01:44:07,344 --> 01:44:09,510
+And then here's our game,
+just to show how it looks.
+
+2071
+01:44:09,510 --> 01:44:10,740
+You can barely even see it.
+
+2072
+01:44:10,740 --> 01:44:12,980
+But it does give you
+this sort of, like, lost
+
+2073
+01:44:12,980 --> 01:44:17,840
+in a really dangerous maze feeling,
+which-- and it's super easy to do.
+
+2074
+01:44:17,840 --> 01:44:21,470
+And it can save you performance
+and it can add a lot of aesthetic
+
+2075
+01:44:21,470 --> 01:44:23,000
+to your game.
+
+2076
+01:44:23,000 --> 01:44:27,070
+And so the last big thing we'll talk
+about today is Unity 2D, actually.
+
+2077
+01:44:27,070 --> 01:44:28,925
+So I'm going to go back into--
+
+2078
+01:44:28,925 --> 01:44:29,945
+oh, questions about fog.
+
+2079
+01:44:29,945 --> 01:44:31,820
+I know that was a pretty
+high-level overview.
+
+2080
+01:44:31,820 --> 01:44:33,800
+Over looked at we
+looked at how it applies
+
+2081
+01:44:33,800 --> 01:44:39,540
+in the settings and questions as to how
+it works or how to get work in Unity?
+
+2082
+01:44:39,540 --> 01:44:40,910
+OK.
+
+2083
+01:44:40,910 --> 01:44:45,350
+So we're going to go ahead
+and look at our title scene.
+
+2084
+01:44:45,350 --> 01:44:47,730
+And so we looked at
+this earlier, briefly,
+
+2085
+01:44:47,730 --> 01:44:50,140
+but I want to go ahead and
+show you the components.
+
+2086
+01:44:50,140 --> 01:44:51,890
+So I'm going to take
+a look at our canvas.
+
+2087
+01:44:51,890 --> 01:44:54,859
+If you double-click on
+something you'll zoom out.
+
+2088
+01:44:54,859 --> 01:44:57,650
+And so it will automatically detect
+sort of what your resolution is
+
+2089
+01:44:57,650 --> 01:45:01,220
+and scale the canvas
+accordingly in your scene view.
+
+2090
+01:45:01,220 --> 01:45:02,850
+There's a 2D button here.
+
+2091
+01:45:02,850 --> 01:45:06,460
+I'm going to go ahead and
+go to my default layout.
+
+2092
+01:45:06,460 --> 01:45:09,974
+I'm going to click on the canvas.
+
+2093
+01:45:09,974 --> 01:45:12,890
+Notice that it shifted things a
+little bit because now I have a larger
+
+2094
+01:45:12,890 --> 01:45:15,340
+window that's going to be rendered to.
+
+2095
+01:45:15,340 --> 01:45:19,220
+I'm going to click on the canvas,
+and then I'm going to go to 2D mode.
+
+2096
+01:45:19,220 --> 01:45:22,670
+And then notice when you
+click on 2D and 3D mode,
+
+2097
+01:45:22,670 --> 01:45:26,690
+you go instantly into seeing
+it as if you're manipulating it
+
+2098
+01:45:26,690 --> 01:45:28,610
+in a 2D engine versus a 3D engine.
+
+2099
+01:45:28,610 --> 01:45:31,300
+And then going back to 3D, now
+it's a three-dimensional plane
+
+2100
+01:45:31,300 --> 01:45:32,930
+that you're actually looking at.
+
+2101
+01:45:32,930 --> 01:45:37,220
+So in 2D mode, you can easily sort of
+navigate it, right click and drag it
+
+2102
+01:45:37,220 --> 01:45:38,492
+around.
+
+2103
+01:45:38,492 --> 01:45:40,970
+I'm going to go here, like this.
+
+2104
+01:45:40,970 --> 01:45:44,120
+And these are very simple
+components that you can just
+
+2105
+01:45:44,120 --> 01:45:45,980
+interact with as a GUI.
+
+2106
+01:45:45,980 --> 01:45:50,030
+Now, the main thing that you
+need to get any of this to work
+
+2107
+01:45:50,030 --> 01:45:52,470
+is the canvas, which is here.
+
+2108
+01:45:52,470 --> 01:45:58,760
+So if you right click and then go to UI,
+you can go to canvas, if you want to,
+
+2109
+01:45:58,760 --> 01:46:02,010
+or you can just add any of
+these things that you want,
+
+2110
+01:46:02,010 --> 01:46:04,400
+and it will automatically
+add a canvas for you.
+
+2111
+01:46:04,400 --> 01:46:09,300
+Because a canvas is necessary for
+all of the Unity UI rendering stuff.
+
+2112
+01:46:09,300 --> 01:46:12,380
+So if I were to just add
+a text on an empty scene,
+
+2113
+01:46:12,380 --> 01:46:17,810
+it'll just create a new brand
+new canvas and an event system.
+
+2114
+01:46:17,810 --> 01:46:23,240
+The event system is just how Unity
+talks to the canvas and all the UI
+
+2115
+01:46:23,240 --> 01:46:27,170
+elements of your canvas, given mouse
+and keyboard input and stuff like that.
+
+2116
+01:46:27,170 --> 01:46:31,460
+It's nothing that you necessarily
+have to worry about or use.
+
+2117
+01:46:31,460 --> 01:46:36,440
+But the canvas is the sort of
+overall container for all GUI stuff
+
+2118
+01:46:36,440 --> 01:46:37,400
+that you do.
+
+2119
+01:46:37,400 --> 01:46:40,350
+Now if I click on the tile
+text or the enter text,
+
+2120
+01:46:40,350 --> 01:46:42,481
+notice that they are
+children of the canvas.
+
+2121
+01:46:42,481 --> 01:46:43,730
+So they are within the canvas.
+
+2122
+01:46:43,730 --> 01:46:45,170
+The canvas is their parent.
+
+2123
+01:46:45,170 --> 01:46:46,940
+The title text, I can move it around.
+
+2124
+01:46:46,940 --> 01:46:48,710
+Notice that it snaps.
+
+2125
+01:46:48,710 --> 01:46:51,430
+it's got my snapping functionality.
+
+2126
+01:46:51,430 --> 01:46:54,420
+I can set it up there,
+it will snap to the top.
+
+2127
+01:46:54,420 --> 01:46:55,430
+It'll-- yeah.
+
+2128
+01:46:55,430 --> 01:46:56,570
+It's pretty handy.
+
+2129
+01:46:56,570 --> 01:46:59,420
+You can scale the bounding box.
+
+2130
+01:46:59,420 --> 01:47:02,240
+It doesn't scale the
+actual text, but the--
+
+2131
+01:47:02,240 --> 01:47:06,230
+notice that I do have
+right justification,
+
+2132
+01:47:06,230 --> 01:47:08,480
+centering, left justification.
+
+2133
+01:47:08,480 --> 01:47:11,190
+Those sorts of helping--
+
+2134
+01:47:11,190 --> 01:47:12,880
+those sort of features.
+
+2135
+01:47:12,880 --> 01:47:16,910
+I can increase the font size
+via slider, so I can immediately
+
+2136
+01:47:16,910 --> 01:47:19,790
+see without having to
+edit some code and then
+
+2137
+01:47:19,790 --> 01:47:23,660
+reload the project what changing
+some of these values will look like.
+
+2138
+01:47:23,660 --> 01:47:25,820
+I can easily change
+the color in real time,
+
+2139
+01:47:25,820 --> 01:47:27,800
+so I can get a sense of how that looks.
+
+2140
+01:47:27,800 --> 01:47:32,870
+If you wanted some sort of
+slimy, Dread50 look, I guess.
+
+2141
+01:47:32,870 --> 01:47:36,110
+And you can also assign materials
+to as well, which is kind of cool.
+
+2142
+01:47:36,110 --> 01:47:39,070
+Which I haven't explored too much
+in detail, but you have that option.
+
+2143
+01:47:39,070 --> 01:47:46,130
+If you want to give it a material
+instead of a color, materialed font.
+
+2144
+01:47:46,130 --> 01:47:48,860
+Because ultimately, all
+this stuff is still 3D,
+
+2145
+01:47:48,860 --> 01:47:50,930
+but Unity presents it in
+a way that makes it look
+
+2146
+01:47:50,930 --> 01:47:52,460
+as if you're interacting with it in 2D.
+
+2147
+01:47:52,460 --> 01:47:53,000
+It's pretty nice.
+
+2148
+01:47:53,000 --> 01:47:55,333
+AUDIENCE: When you put it in
+2D form, when you hit play,
+
+2149
+01:47:55,333 --> 01:47:56,970
+it's going to open up to that?
+
+2150
+01:47:56,970 --> 01:47:57,720
+COLTON OGDEN: Yep.
+
+2151
+01:47:57,720 --> 01:48:00,740
+AUDIENCE: And then how do you
+transition to the rest of the game?
+
+2152
+01:48:00,740 --> 01:48:03,031
+COLTON OGDEN: So the transition
+to the rest of the game
+
+2153
+01:48:03,031 --> 01:48:06,740
+is in the load scene on input here.
+
+2154
+01:48:06,740 --> 01:48:09,480
+So the script that we looked at earlier.
+
+2155
+01:48:09,480 --> 01:48:11,630
+So this is assigned to
+one of those text labels.
+
+2156
+01:48:11,630 --> 01:48:12,960
+So I just gave it to the--
+
+2157
+01:48:12,960 --> 01:48:14,090
+I forget.
+
+2158
+01:48:14,090 --> 01:48:15,370
+I think it's the Enter text.
+
+2159
+01:48:15,370 --> 01:48:19,610
+So I gave it this load scene on input,
+just because it's the Enter text,
+
+2160
+01:48:19,610 --> 01:48:22,197
+it seemed appropriate.
+
+2161
+01:48:22,197 --> 01:48:23,780
+Could put it on anything in the scene.
+
+2162
+01:48:23,780 --> 01:48:24,710
+It doesn't matter.
+
+2163
+01:48:24,710 --> 01:48:26,600
+As long as it has this
+update function, which
+
+2164
+01:48:26,600 --> 01:48:30,995
+then has this if input dot get access
+submit equals 1, and then recall--
+
+2165
+01:48:30,995 --> 01:48:33,530
+
+
+2166
+01:48:33,530 --> 01:48:37,640
+go into the Project Settings, input.
+
+2167
+01:48:37,640 --> 01:48:41,430
+All these axes here are
+defined for you automatically.
+
+2168
+01:48:41,430 --> 01:48:45,200
+And then you can choose what they
+map to, but submit, as you can see,
+
+2169
+01:48:45,200 --> 01:48:47,880
+positive button is return.
+
+2170
+01:48:47,880 --> 01:48:51,440
+So if submit is equal to 1, when you
+press Return it will be equal to 1,
+
+2171
+01:48:51,440 --> 01:48:52,880
+effectively.
+
+2172
+01:48:52,880 --> 01:48:55,130
+And it gets mapped to other
+buttons, depending on what
+
+2173
+01:48:55,130 --> 01:48:59,250
+input sources you have on your device.
+
+2174
+01:48:59,250 --> 01:49:01,550
+But you can check what
+it is on your computer
+
+2175
+01:49:01,550 --> 01:49:04,190
+just by going to Axes
+in your Input Manager.
+
+2176
+01:49:04,190 --> 01:49:07,580
+So it's, once again, Edit,
+Project Settings, Input.
+
+2177
+01:49:07,580 --> 01:49:09,423
+And then you can see all the axes here.
+
+2178
+01:49:09,423 --> 01:49:12,595
+AUDIENCE: So that, the 2D scene,
+that's just a scene in itself.
+
+2179
+01:49:12,595 --> 01:49:14,720
+COLTON OGDEN: That's a
+scene in itself, completely.
+
+2180
+01:49:14,720 --> 01:49:17,534
+It has a camera, so we are--
+
+2181
+01:49:17,534 --> 01:49:19,325
+the camera renders--
+the thing about canvas
+
+2182
+01:49:19,325 --> 01:49:21,170
+is it's kind of separate
+from the camera,
+
+2183
+01:49:21,170 --> 01:49:25,590
+so it gets rendered onto whatever
+the camera's rendering separately.
+
+2184
+01:49:25,590 --> 01:49:28,100
+But the camera in this
+case, what I've done,
+
+2185
+01:49:28,100 --> 01:49:30,980
+because if by default we just
+render the camera and the UI,
+
+2186
+01:49:30,980 --> 01:49:32,450
+it's going to look just like this.
+
+2187
+01:49:32,450 --> 01:49:35,420
+It's going to look like the sky
+with Dread50 and Press Enter.
+
+2188
+01:49:35,420 --> 01:49:40,170
+That's not the aesthetic that
+we want, so I take the camera,
+
+2189
+01:49:40,170 --> 01:49:41,960
+and then you can give it a background.
+
+2190
+01:49:41,960 --> 01:49:45,910
+So by default, the background
+is that sky, is the skybox.
+
+2191
+01:49:45,910 --> 01:49:48,630
+And so I set clear flags.
+
+2192
+01:49:48,630 --> 01:49:50,710
+Clear flags are same
+thing as background.
+
+2193
+01:49:50,710 --> 01:49:54,270
+So whatever, there's no
+geometry or anything.
+
+2194
+01:49:54,270 --> 01:49:57,900
+Clear-- this clear
+color, clear flag, this
+
+2195
+01:49:57,900 --> 01:50:01,042
+gets drawn to before any
+geometry in the scene, basically.
+
+2196
+01:50:01,042 --> 01:50:03,600
+
+
+2197
+01:50:03,600 --> 01:50:05,940
+So clear flags, solid
+color in this case,
+
+2198
+01:50:05,940 --> 01:50:08,250
+and then just black,
+using a color picker.
+
+2199
+01:50:08,250 --> 01:50:11,220
+So super easy, super nice.
+
+2200
+01:50:11,220 --> 01:50:16,000
+And then this UI, this canvas, will
+get drawn on top of this camera.
+
+2201
+01:50:16,000 --> 01:50:20,850
+So that's what produces the sort
+of combined effect of having the UI
+
+2202
+01:50:20,850 --> 01:50:22,950
+text and then the black background.
+
+2203
+01:50:22,950 --> 01:50:25,860
+And then that Enter Text,
+having that component,
+
+2204
+01:50:25,860 --> 01:50:30,090
+that checks for the submit input because
+that's what Enter and Return map to.
+
+2205
+01:50:30,090 --> 01:50:39,346
+That is what lets us transition from
+the current scene to the play scene.
+
+2206
+01:50:39,346 --> 01:50:41,220
+And so there are a lot
+of other cool features
+
+2207
+01:50:41,220 --> 01:50:45,540
+that these labels and such have.
+
+2208
+01:50:45,540 --> 01:50:49,170
+For example, being able to
+set its anchor position.
+
+2209
+01:50:49,170 --> 01:50:53,310
+So depending on what device you're
+shipping to, you might want--
+
+2210
+01:50:53,310 --> 01:50:57,690
+you know you're going to have multiple
+screen sizes and screen resolutions.
+
+2211
+01:50:57,690 --> 01:51:01,830
+So you can say, I want
+this label to always
+
+2212
+01:51:01,830 --> 01:51:06,870
+be at the very top middle of
+my scene, and I can do this
+
+2213
+01:51:06,870 --> 01:51:11,550
+by clicking this little box here,
+which is the anchor point selector,
+
+2214
+01:51:11,550 --> 01:51:13,360
+and then just clicking that.
+
+2215
+01:51:13,360 --> 01:51:16,560
+And so that will always anchor
+Dread50's text to that top middle,
+
+2216
+01:51:16,560 --> 01:51:18,610
+no matter what our resolution is.
+
+2217
+01:51:18,610 --> 01:51:21,510
+It will always be there.
+
+2218
+01:51:21,510 --> 01:51:28,080
+And there's a lot that
+you can do on top of that.
+
+2219
+01:51:28,080 --> 01:51:31,740
+And you can do that with any UI
+component, just relative positioning
+
+2220
+01:51:31,740 --> 01:51:33,210
+depending on the resolution.
+
+2221
+01:51:33,210 --> 01:51:35,712
+And the nice thing about
+Unity, too, if you go to Game,
+
+2222
+01:51:35,712 --> 01:51:37,920
+you can actually choose--
+sorry, in the second menu--
+
+2223
+01:51:37,920 --> 01:51:39,780
+you can choose a lot of aspect ratios.
+
+2224
+01:51:39,780 --> 01:51:42,030
+So 5:04 doesn't look that great.
+
+2225
+01:51:42,030 --> 01:51:43,920
+4:03 doesn't look that great.
+
+2226
+01:51:43,920 --> 01:51:48,910
+16:10, 16:9, and then standalone.
+
+2227
+01:51:48,910 --> 01:51:55,140
+So standalone is the default
+export size of your platform.
+
+2228
+01:51:55,140 --> 01:51:58,770
+But you can choo-- you can have it--
+
+2229
+01:51:58,770 --> 01:52:02,220
+you can test different resolutions,
+and you can also add more, too.
+
+2230
+01:52:02,220 --> 01:52:07,230
+You can add a fixed resolution
+if you want, or aspect ratio.
+
+2231
+01:52:07,230 --> 01:52:09,899
+And do a lot of cool things that way.
+
+2232
+01:52:09,899 --> 01:52:12,940
+So you don't have to necessarily test
+it physically on different devices.
+
+2233
+01:52:12,940 --> 01:52:14,898
+Although it's very good
+to so you can make sure
+
+2234
+01:52:14,898 --> 01:52:17,020
+that you're not blowing
+up your hardware.
+
+2235
+01:52:17,020 --> 01:52:19,420
+But you have that option.
+
+2236
+01:52:19,420 --> 01:52:27,090
+So any questions as to how Unity
+2D works and how the canvas works
+
+2237
+01:52:27,090 --> 01:52:30,600
+or how we've gotten
+the simple UI to work?
+
+2238
+01:52:30,600 --> 01:52:33,630
+Part of the assignment will be--
+and we'll take a look at that now,
+
+2239
+01:52:33,630 --> 01:52:35,010
+actually.
+
+2240
+01:52:35,010 --> 01:52:38,710
+So assignment 9, we talked about this
+already, about the gaps in the floor.
+
+2241
+01:52:38,710 --> 01:52:41,370
+But this will be part of
+the maze generator, right?
+
+2242
+01:52:41,370 --> 01:52:43,170
+Because it's where we
+generate, ultimately.
+
+2243
+01:52:43,170 --> 01:52:46,470
+Or, the generates--
+the maze instantiator.
+
+2244
+01:52:46,470 --> 01:52:50,340
+The actual part of the maze generator
+that creates the physical maze.
+
+2245
+01:52:50,340 --> 01:52:52,210
+But create gaps in the floor.
+
+2246
+01:52:52,210 --> 01:52:56,740
+And then when the player falls through,
+approximately two blocks below, which
+
+2247
+01:52:56,740 --> 01:52:57,570
+you can set--
+
+2248
+01:52:57,570 --> 01:53:01,190
+check the transform is-- the y
+position is less than a certain amount.
+
+2249
+01:53:01,190 --> 01:53:04,500
+It should be less than 0.
+
+2250
+01:53:04,500 --> 01:53:07,810
+I think it's based on
+the top part of it.
+
+2251
+01:53:07,810 --> 01:53:11,050
+Then you should transition to a
+new screen that says Game Over.
+
+2252
+01:53:11,050 --> 01:53:14,160
+So create a new scene, very
+similar to the first scene
+
+2253
+01:53:14,160 --> 01:53:16,710
+that we looked at, which
+was just the title screen,
+
+2254
+01:53:16,710 --> 01:53:18,570
+and you can probably copy most of that.
+
+2255
+01:53:18,570 --> 01:53:21,720
+But that scene should say
+Game Over, and then pressing
+
+2256
+01:53:21,720 --> 01:53:25,890
+Enter there should load the tile scene.
+
+2257
+01:53:25,890 --> 01:53:29,050
+And then, lastly, add a
+text object to the play
+
+2258
+01:53:29,050 --> 01:53:32,610
+scene that just keeps track of how
+many levels you've navigated through.
+
+2259
+01:53:32,610 --> 01:53:35,610
+And you can probably do this with
+some kind of static variable.
+
+2260
+01:53:35,610 --> 01:53:39,090
+But any solution that
+accomplishes it is welcome.
+
+2261
+01:53:39,090 --> 01:53:43,050
+But altogether, all pretty
+easy pieces to put together.
+
+2262
+01:53:43,050 --> 01:53:46,191
+That was this week, which was
+Dread Halls and our first foray
+
+2263
+01:53:46,191 --> 01:53:47,190
+into first-person games.
+
+2264
+01:53:47,190 --> 01:53:48,870
+Next week we'll look at Portal.
+
+2265
+01:53:48,870 --> 01:53:52,920
+It won't look necessarily this good,
+but it will look similar to this.
+
+2266
+01:53:52,920 --> 01:53:55,260
+This is a screenshot from Portal itself.
+
+2267
+01:53:55,260 --> 01:53:58,140
+But we'll look at how we
+can render to textures,
+
+2268
+01:53:58,140 --> 01:54:01,414
+how we can cast rays from our
+character, our first person controller,
+
+2269
+01:54:01,414 --> 01:54:04,080
+how we can actually make it look
+as if we have a weapon or a gun
+
+2270
+01:54:04,080 --> 01:54:06,600
+or a portal gun, which
+is not too difficult.
+
+2271
+01:54:06,600 --> 01:54:12,870
+You just have two parent, basically, a
+model to your first-person controller.
+
+2272
+01:54:12,870 --> 01:54:16,837
+And then, when we walk through a portal,
+how do we transition from one portal
+
+2273
+01:54:16,837 --> 01:54:17,670
+to the other portal?
+
+2274
+01:54:17,670 --> 01:54:22,620
+So just a-- you know teleport,
+your transform to another position.
+
+2275
+01:54:22,620 --> 01:54:24,180
+But that was that.
+
+2276
+01:54:24,180 --> 01:54:27,960
+Next week is Portal, and I
+will see you all next time.
+
+2277
+01:54:27,960 --> 01:54:29,344
