@@ -309,3 +309,156 @@ The Diamond is implemented as Coin subclass so it reuses the `Update`
 logic. Actually, Coin could also be made more configurable and reused
 as a diamond (I could add a "value" field and make it 1 for coin and
 5 for diamond).
+
+# Lecture 9: Dreadhalls
+
+It has two scenes:
+- Title scene is a flat picture, similar to the Helicopter background
+- Game scene is empty, with no light source, FPS controller and some objects to attach scripts to
+
+Multiple scenes work similarly to multiple game states in love2d games, same idea of isolating specific game states into separate entities.
+
+The game scene has "fog". It creates atmosphere as well as works as optimization since we do not have to render the scene for a far distance around the player.
+
+The player is represented by capsule object with camera attached to where the player head is. This is handled by FPS controller.
+
+Unity has different kinds of players in standards assets - with physics, no physics, etc.
+
+## Materials and textures
+
+We can attach a material to any object to define its visual properties.
+The material has "albido" property where we can specify a texture or a color.
+
+Note: in the lecture there was a problem with attaching material to the object (the object did not get new visual appearence automatically).
+It looks like this is some bug in the imported asset with materials - some materials work correctly (like wall_A, floor_A and ceiling_A), but other materials do not apply texture to the object.
+We can also attach texture manually by dragging a texture into the small box near the "albido" property.
+
+Texturing complex objects is not easy. There was an example of a knight and a flat texture that can be applied to 3D object (this is called UV mapping).
+
+We can not just apply a regular texture to a complex object. For example, if we have a table and apply a standard texture to it, it will not look good.
+
+When we create a model in 3D modeling software, it usually also allows to export a material with special texture for the modeled object.
+
+Material is a shader (program running on the graphic card) and parameters of the shader exposed as material settings.
+Material also represents physical properties, for example, if it is slippery when you walk on it.
+
+More information:
+- https://www.pluralsight.com/courses/3ds-max-uv-mapping-fundamentals
+- https://catlikecoding.com/unity/tutorials/rendering/part-9/
+
+## Light sources
+
+Point light emits light in all directions. Good for things like lamps, street lights, etc. We can change the color of the light.
+
+Spot light emits light in a single direction. It can have "cookies" - a shape that light will shine thorough like a batman logo.
+
+Directional light - casts light in a specific direction, but throughout the entire scene, like sun. It does not matter where exactly is the light source is, it will work the same for all objects in the scene.
+
+Area light - light that is emitted from the surface of an object in the specified direction. Computationally expensive. For this reason area light is usually baked (precomputed and saved), which also means that we cannot dynamically affect the baked lightning.
+
+Bump map is created by illuminating 3D objects and getting a flat image of that illumination. It allows to simulate a 3D contour on a flat surface.
+When bump map is applied, we do not have actual 3D objects there, but the lightning system "thinks" that objects are there and calculates lightning accordingly.
+
+Note: normal map and bump map is the same thing.
+
+In unity editor, we have a "normal map" property for the material.
+We can drag a normal map texture into this property to apply it. There is also a number associated with the normal map texture we can make it more "bumpy" by increasing that number.
+
+About lightning:
+- https://catlikecoding.com/unity/tutorials/rendering/part-15/
+- https://docs.unity3d.com/Manual/Lighting.html
+- https://en.wikipedia.org/wiki/Normal_mapping
+
+Global lightning settings in Unity editor: window -> rendering -> lightning settings (unity 2018.4.28f1).
+
+We use "Environment lightning", source=color for this game.
+We also have "fog" enabled here. It is possible to set the color for the fog.
+
+If we start the game, we can see the generated maze in the scene, but it looks like a box (there is roof, so we can not see inside it).
+
+How to make the maze easier to see:
+- disable fog in lightning settings
+- add directional source to the scene
+- disable "generate roof" setting for the DungeonGenerator.
+
+## Maze
+
+We have 2D array representing the maze.
+We start with array full of walls and we add some corridors to it.
+
+Maze generation:
+- Do not touch external walls
+- Choose a starting point
+- Randomly choose the move direction - x or y
+- Randomly choose the direction - +1 or -1
+- Remove the wall in the tile we arrived to
+- Repeat until we cleared given amount of tiles
+
+Improvement to make the maze less random:
+- Also randomly choose length of the move - from 1 to (maze length)-2
+- Remove walls in tiles we go through
+
+This way we get longer corridors and more organized maze structure.
+
+Related links:
+- [Maze, a Unity C# Tutorial](https://catlikecoding.com/unity/tutorials/maze/) 
+- https://journal.stuffwithstuff.com/2014/12/21/rooms-and-mazes/
+- Unity asset store also has some maze generators
+
+## Character controller
+
+The FPSController used in this game was imported from Unity asset packages.
+Assets -> Import Package -> Characters. The imported object goes into the Assets/Standard Assets/Characters/First Person/Prefabs folder.
+There is also source code (scripts) for the FPSController in the Scripts folder (near the Prefabs).
+The FPSController exposes many configuration parameters available in the editor.
+
+## Level generator
+
+The level generator is in Assets/Scripts/LevelGenerator.cs.
+It has a bunch of references to `GameObject` like floorPrefab, wallPrefab and characterController, so we can configure these in the editor.
+
+Two special properties are floorParent and wallsParent.
+These are needed to just group generated floor and wall objects under these parents. There are too many objects generated and it would be hard to inspect the game in Unity editor if they were not placed under these parents (so these parents do not affect the game object, they needed to group related objects in unity editor).
+There is a helper `CreateChildPrefab` to create new object based on prefab and attach it to the given parent object.
+
+The generator creates the maze as a X-Y array and then transfers it to Unity's X and Z axis (X-Z represent the surface in Unity and Y is for up/down axis). For the maze generator each block is 4 units high along the Y and we do not care about Y coordinate otherwise.
+
+```
+     y
+     ^
+ z   |
+  \  |
+   \ |
+    \|______x
+
+```
+
+## Scene loading and reloading
+
+The script is in Assets/GrabPickups.cs.
+It is attached to the PickupController.
+The script handles collision with the game object that has a "Pickup" tag - in that case it plays the pickup sound and reloads the "Play" scene by invoking `SceneManager.LoadScene("Play")`.
+
+The same `SceneManager.LoadScene("Play")` call is used in title scene script to start the game. In the LoadSceneOnInput.cs we have `Input.GetAxis("Submit") == 1` condition which gets triggered when we press enter. The "Input" is a global Unity object and we can manage its settings (for example, change the key the Submit reacts to) in Edit -> Project Settings -> Input.
+
+Note: when we reload the scene, all objects are get destroyed and re-created. It would mean, for example, that audio track gets interrupted and restarted again. We do not want that interruption and solving it by using  "don't destroy on load" Unity function.
+
+This is implemented via `DontDestroy` behavior (component) that is attached to the audio source (any object this component is attached to would not be destroyed on scene reload).
+We also implement a kind of singleton pattern in this behavior by keeping a reference to the first object source, keeping it on scene reload, but letting it destroy other instances of this object, so we do not get multiple copies of it.
+
+Note: does it mean that we still may have multiple instances of the audio source at some points in the game lifecycle? Maybe these points are too short and we do not hear the effect of it?
+Answer: yes, we destroy other instances almost immediately as the process is handled in the `Awake` method that is also called on object instantiation.
+
+## Unity 2D mode
+
+There is a button in the bar above the scene to switch to 2D mode.
+To start working with 2D scene we need to add a canvas (or, if we add any of the 2D objects, Unity will create a canvas object automatically). For example, if we right click in the Hierarchy pane and then add UI -> Text, it will create a canvas and a text object on it.
+It also creates an `EventSystem` object that is used to communicate with the canvas (for example, handle mouse or keyboard input).
+
+To show the title screen on the black background (instead of standard view of ground and sky), we change the camera settings - set "Clear Flags" to "Solid Color" and then select the black color in "Background" field.
+
+## Assignment 9
+
+Create gaps in the floor 2 blocks deep. When the player falls into the gap, display "Game Over" text. Pressing "Enter" in this state restarts the Title scene.
+
+Add a "text" object to the Play scene to show how many levels we passed.
