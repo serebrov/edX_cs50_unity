@@ -77,8 +77,6 @@ Information from the [project page](https://cs50.harvard.edu/games/2018/projects
 
 Unity notes:
 
-* Rotating the scene: hold "Option" + mouse
-  * Use the x-y-z in the top right corner to make it straight
 * Inspector values can be changed by mouse drag:
   * Hover the label near the field and drag left or right
 * We can play the game in the editor and we can pause it at any time
@@ -89,6 +87,16 @@ Unity notes:
     actually affecting actual game settings. Bad side: if we actually fixed
     something, we need to remember what it was, stop the playback and the
     re-apply changes.
+
+Moving in the scene:
+* Rotating the scene: hold "Option" + left click + mouse
+* Use the x-y-z control in the top right corner to make it straight
+  * Click the middle cube to change the perspective to isometric and back
+* Move: hold right button
+  * AWSD - move left/forward/backward/right
+  * QE - move up/down
+
+Related docs: https://docs.unity3d.com/Manual/SceneViewNavigation.html
 
 ## Helicopter implementation
 
@@ -276,10 +284,10 @@ Specification:
 
 ## Submission
 
-Key points for the demo (not specified):
+Key points for the demo:
 
-* Pick up the diamond
-* Speed reset
+* Level counter increase
+* Fall through hole/game over
 
 Submission:
 
@@ -462,3 +470,43 @@ To show the title screen on the black background (instead of standard view of gr
 Create gaps in the floor 2 blocks deep. When the player falls into the gap, display "Game Over" text. Pressing "Enter" in this state restarts the Title scene.
 
 Add a "text" object to the Play scene to show how many levels we passed.
+
+### Specification
+
+* Spawn holes in the floor of the maze that the player can fall through (but not too many; just three or four per maze is probably sufficient, depending on maze size).
+  * This should be very easy and only a few lines of code.
+  * The LevelGenerator script will be the place to look here; we aren’t keeping track of floors or ceilings in the actual maze data being generated, so best to take a look at where the blocks are being insantiated (using the comments to help find!).
+* When the player falls through any holes, transition to a “Game Over” screen similar to the Title Screen, implemented as a separate scene.
+  * When the player presses “Enter” in the “Game Over” scene, they should be brought back to the title.
+  * Recall which part of a Unity GameObject maintains control over its position, rotation, and scale? This will be the key to testing for a game over; identify which axis in Unity is up and down in our game world, and then simply check whether our character controller has gone below some given amount (lower than the ceiling block, presumably).
+  * Another fairly easy piece to put together, though you should probably create a MonoBehaviour for this one (something like DespawnOnHeight)! The “Game Over” scene that you should transition to can effectively be a copy of the Title scene, just with different wording for the Text labels.
+  * Do note that transitioning from the Play to the Game Over and then to the Title will result in the Play scene’s music overlapping with the Title scene’s music, since the Play scene’s music is set to never destroy on load; therefore, how can we go about destroying the audio source object (named WhisperSource) at the right time to avoid the overlap?
+* Add a Text label to the Play scene that keeps track of which maze they’re in, incrementing each time they progress to the next maze.
+  * This can be implemented as a static variable, but it should be reset to 0 if they get a Game Over.
+  * This one should be fairly easy and can be accomplished using static variables; recall that they don’t reset on scene reload. Where might be a good place to store it?
+
+## Submission
+
+Key points for the demo:
+
+* Pick up the diamond
+* Speed reset
+
+Submission:
+
+```sh
+# git clone ssh://github.com/me50/serebrov.git
+cd serebrov
+git checkout main
+gco -b games50/projects/2018/x/dreadhalls
+cp -r ../unity_cs50/dreadhalls_9/* .
+git add .
+git commit -m "Dreadhalls submission"
+
+git push origin HEAD
+```
+
+Github link: https://github.com/me50/serebrov/blob/games50/projects/2018/x/dreadhalls/Assets/Scripts
+Youtube demo: https://youtu.be/YAS5Pb2ISXU
+
+Notes:
