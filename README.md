@@ -510,3 +510,15 @@ Github link: https://github.com/me50/serebrov/blob/games50/projects/2018/x/dread
 Youtube demo: https://youtu.be/YAS5Pb2ISXU
 
 Notes:
+Holes are implemented in the LevelGenerator, as suggested.
+
+GameOver check is in the GameOverOnFall.cs script, attached to the FPSConroller object.
+The static audio source object is also destroyed here (in GameOverOnFall.cs).
+
+Maze count is implemented in MazeCount.cs script, attached to the UI text on the Play scene. The count is increased in the GrabPickups.cs script and reset to 0 in GameOverOnFall.cs.
+
+The maze count is in the left top corner.
+
+There is a typo in the specification:
+"The LevelGenerator script will be the place to look here; ..., so best to take a look at where the blocks are being insantiated ..,.".
+"insantiated" should be "instantiated"
