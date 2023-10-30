@@ -14,6 +14,7 @@ public class GrabPickups : MonoBehaviour {
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		if (hit.gameObject.tag == "Pickup") {
 			pickupSoundSource.Play();
+			MazeCount.increment();
 			SceneManager.LoadScene("Play");
 		}
 	}

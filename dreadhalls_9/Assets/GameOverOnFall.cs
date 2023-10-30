@@ -19,6 +19,7 @@ public class GameOverOnFall : MonoBehaviour
 			if (ts.position.y < -10)
 			{
 				// Game Over
+				MazeCount.reset();
 				SceneManager.LoadScene("GameOver");
 				// Destroy the static audio source
 				if (DontDestroy.instance) {
