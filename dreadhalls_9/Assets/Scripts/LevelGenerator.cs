@@ -55,11 +55,24 @@ public class LevelGenerator : MonoBehaviour {
 
 					// flag as placed so we never consider placing again
 					characterPlaced = true;
+
+					// always create floor under character
+					CreateChildPrefab(floorPrefab, floorParent, x, 0, z);
+				} else {
+					// randomly spawn a hole in the floor,
+					// with 15/mazeSize chance
+					// note: some holes will be under walls, but we
+					// usually still get some on the way
+					var holeChance = 15f / (mazeSize * mazeSize);
+
+					if (Random.value > holeChance) {
+						// no hole, create floor
+						CreateChildPrefab(floorPrefab, floorParent, x, 0, z);
+					}
+					// else: let it be a hole
 				}
 
-				// create floor and ceiling
-				CreateChildPrefab(floorPrefab, floorParent, x, 0, z);
-
+				// create ceiling
 				if (generateRoof) {
 					CreateChildPrefab(ceilingPrefab, wallsParent, x, 4, z);
 				}
