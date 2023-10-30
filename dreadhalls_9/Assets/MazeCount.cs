@@ -7,14 +7,14 @@ public class MazeCount : MonoBehaviour
 {
 
 	// make this static so it's visible across all instances
-	public static int count = 1;
+	public static int count = 0;
 
 	public static void increment() {
 		count++;
 	}
 
 	public static void reset() {
-		count = 1;
+		count = 0;
 	}
 
     // Start is called before the first frame update
