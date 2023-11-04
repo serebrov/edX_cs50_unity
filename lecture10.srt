@@ -1,0 +1,8481 @@
+1
+00:00:00,000 --> 00:00:03,451
+[MUSIC PLAYING]
+
+2
+00:00:03,451 --> 00:00:16,201
+
+
+3
+00:00:16,201 --> 00:00:17,200
+COLTON OGDEN: All right.
+
+4
+00:00:17,200 --> 00:00:19,210
+Welcome to GD50.
+
+5
+00:00:19,210 --> 00:00:20,517
+This is lecture 10.
+
+6
+00:00:20,517 --> 00:00:22,100
+Today we'll be talking about "Portal."
+
+7
+00:00:22,100 --> 00:00:25,030
+So "Portal" is a very iconic
+game, I think most of us
+
+8
+00:00:25,030 --> 00:00:26,380
+have probably seen it before.
+
+9
+00:00:26,380 --> 00:00:32,590
+The gist is you have a portal gun, a gun
+that shoots these elliptical portals.
+
+10
+00:00:32,590 --> 00:00:34,570
+If you look through
+one, you can effectively
+
+11
+00:00:34,570 --> 00:00:38,035
+see what is coming out the other one,
+which is pretty cool, and vise versa.
+
+12
+00:00:38,035 --> 00:00:39,910
+And then, if you walk
+in between the portals,
+
+13
+00:00:39,910 --> 00:00:42,070
+you'll actually be
+teleported to the other side.
+
+14
+00:00:42,070 --> 00:00:44,470
+And so, they achieve a lot
+of really interesting effects
+
+15
+00:00:44,470 --> 00:00:46,510
+with some pretty cool tricks and stuff.
+
+16
+00:00:46,510 --> 00:00:48,880
+And actually Valve
+themselves will be coming
+
+17
+00:00:48,880 --> 00:00:51,280
+to give a talk on a
+lot of the technology
+
+18
+00:00:51,280 --> 00:00:53,140
+that they used on the second.
+
+19
+00:00:53,140 --> 00:00:55,960
+So we can get a glimpse into
+their version of "Portal."
+
+20
+00:00:55,960 --> 00:00:59,077
+My version of "Portal" is
+a bit simpler, but we'll
+
+21
+00:00:59,077 --> 00:01:00,910
+look at a lot of the
+same sort of principles
+
+22
+00:01:00,910 --> 00:01:03,860
+and see how I accomplished
+a lot of the same things.
+
+23
+00:01:03,860 --> 00:01:07,150
+So this is also the last
+lecture of the semester,
+
+24
+00:01:07,150 --> 00:01:08,780
+and we've covered a lot of ground.
+
+25
+00:01:08,780 --> 00:01:11,270
+I have a few screenshots here
+to show some of the games
+
+26
+00:01:11,270 --> 00:01:12,270
+that we've talked about.
+
+27
+00:01:12,270 --> 00:01:15,760
+The very first game was "Pong,"
+and we've come sort of a long way.
+
+28
+00:01:15,760 --> 00:01:20,410
+We have gone through very simple
+arcadey Atari-like games like this,
+
+29
+00:01:20,410 --> 00:01:22,960
+and have gone and created
+worlds effectively.
+
+30
+00:01:22,960 --> 00:01:25,800
+And now we're in 3D, we're doing
+all kinds of awesome stuff.
+
+31
+00:01:25,800 --> 00:01:28,662
+But this was where we
+started the course.
+
+32
+00:01:28,662 --> 00:01:31,120
+And it's kind of fun to look
+back and see where we've come.
+
+33
+00:01:31,120 --> 00:01:34,690
+So here, we talked about scoring
+and just effectively drawing shapes
+
+34
+00:01:34,690 --> 00:01:38,050
+onto the screen, then we transition
+to "Flappy Bird" or "50 Bird,"
+
+35
+00:01:38,050 --> 00:01:40,570
+and we had sprites and characters.
+
+36
+00:01:40,570 --> 00:01:44,380
+And we talked about scrolling and
+infinite level procedural generation
+
+37
+00:01:44,380 --> 00:01:47,291
+type algorithms, and that was fun.
+
+38
+00:01:47,291 --> 00:01:49,540
+We took things a step higher
+than that with "Breakout"
+
+39
+00:01:49,540 --> 00:01:52,300
+where we had the same
+sort of procedural ideas
+
+40
+00:01:52,300 --> 00:01:54,790
+in the context of a
+very famous arcade game.
+
+41
+00:01:54,790 --> 00:01:57,910
+We talked about particle
+systems and some arcade style
+
+42
+00:01:57,910 --> 00:01:59,649
+physics and high scores.
+
+43
+00:01:59,649 --> 00:02:00,940
+Then we went into puzzle games.
+
+44
+00:02:00,940 --> 00:02:03,520
+We talked about Match Three"
+and how to actually calculate
+
+45
+00:02:03,520 --> 00:02:07,090
+what goes on to determine
+whether we have gotten a match
+
+46
+00:02:07,090 --> 00:02:09,430
+and how to clear blocks
+and how to tween things,
+
+47
+00:02:09,430 --> 00:02:13,639
+do operations over time,
+sort of this A synchronicity.
+
+48
+00:02:13,639 --> 00:02:16,180
+Then we went into probably what
+is my favorite lecture, which
+
+49
+00:02:16,180 --> 00:02:17,888
+was "Super Mario
+Brothers," and we talked
+
+50
+00:02:17,888 --> 00:02:20,740
+about how to create procedural
+worlds that all look very different
+
+51
+00:02:20,740 --> 00:02:22,510
+with some very simple algorithms.
+
+52
+00:02:22,510 --> 00:02:26,110
+And then we had triggers and
+events sort of happening.
+
+53
+00:02:26,110 --> 00:02:29,470
+Then "Legend of Zelda" came, and we
+had this infinite dungeon algorithm.
+
+54
+00:02:29,470 --> 00:02:31,210
+And we had enemies
+walking around that we
+
+55
+00:02:31,210 --> 00:02:36,080
+could use a sword on, so it felt more
+like an actual action game, action RPG.
+
+56
+00:02:36,080 --> 00:02:41,380
+Then took a brief look at physics in the
+context of Box 2D with "Angry Birds,"
+
+57
+00:02:41,380 --> 00:02:43,960
+and I still remember the
+ball pit example was probably
+
+58
+00:02:43,960 --> 00:02:45,430
+my favorite part of that.
+
+59
+00:02:45,430 --> 00:02:48,700
+And then probably the most
+complicated example of the semester
+
+60
+00:02:48,700 --> 00:02:52,540
+was "Pokemon," where we actually
+had a semi full turn based
+
+61
+00:02:52,540 --> 00:02:57,370
+parallel system, and random encounters,
+and like a little world where there's
+
+62
+00:02:57,370 --> 00:03:00,970
+actually two main stages to our
+world where there was the field
+
+63
+00:03:00,970 --> 00:03:05,920
+and the battle scene, which is a
+very common thing to have in RPGs.
+
+64
+00:03:05,920 --> 00:03:08,590
+Following "Pokemon," which was
+the most complicated codebase,
+
+65
+00:03:08,590 --> 00:03:11,980
+we went into Unity, which
+was our first foray into 3D.
+
+66
+00:03:11,980 --> 00:03:14,380
+And even though we were
+just exploring 2.5D,
+
+67
+00:03:14,380 --> 00:03:17,500
+we still got a chance to look at how
+does the Unity engine work and how do
+
+68
+00:03:17,500 --> 00:03:19,780
+we get actual 3D models onto the screen?
+
+69
+00:03:19,780 --> 00:03:22,870
+And we put together a very simple
+"Flappy Bird" esque game so
+
+70
+00:03:22,870 --> 00:03:25,900
+that we could sort of
+recycle prior ideas.
+
+71
+00:03:25,900 --> 00:03:29,290
+Last week, we looked at "Dread 50,"
+which was sort of a Dreadhall's horror
+
+72
+00:03:29,290 --> 00:03:31,540
+inspired game where we
+got to look at lighting
+
+73
+00:03:31,540 --> 00:03:36,760
+and how to actually transition between
+scenes and use some basic UI in Unity.
+
+74
+00:03:36,760 --> 00:03:41,170
+And today, we'll be talking about
+how to create a game similar to this,
+
+75
+00:03:41,170 --> 00:03:42,610
+although much simpler.
+
+76
+00:03:42,610 --> 00:03:45,130
+Today is mostly just a tech
+demo more than anything else.
+
+77
+00:03:45,130 --> 00:03:47,570
+But this is a screenshot of
+the actual game "Portal."
+
+78
+00:03:47,570 --> 00:03:50,410
+And as you can see, they do a
+lot of really cool fancy things.
+
+79
+00:03:50,410 --> 00:03:52,272
+They have a portal on
+sort of a slope, they
+
+80
+00:03:52,272 --> 00:03:54,980
+have another portal coming out of
+the front wall over back there.
+
+81
+00:03:54,980 --> 00:03:58,105
+There are different colors so you can
+differentiate between left and right,
+
+82
+00:03:58,105 --> 00:03:59,350
+orange and blue.
+
+83
+00:03:59,350 --> 00:04:02,170
+They have sort of this
+object here on the side,
+
+84
+00:04:02,170 --> 00:04:05,700
+and I believe that's to shoot
+cubes out, which this here
+
+85
+00:04:05,700 --> 00:04:08,080
+is a cube which you can
+then grab with your gun
+
+86
+00:04:08,080 --> 00:04:11,079
+and then shoot it through portals and
+see it come in and out of portals,
+
+87
+00:04:11,079 --> 00:04:12,850
+which is pretty cool.
+
+88
+00:04:12,850 --> 00:04:17,019
+And we'll talk today about how to create
+a simple version of this, primarily
+
+89
+00:04:17,019 --> 00:04:20,260
+just the aspect of how do I create a
+portal that looks out of another scene
+
+90
+00:04:20,260 --> 00:04:23,170
+and see it updating in real time?
+
+91
+00:04:23,170 --> 00:04:26,140
+And how do I teleport and get
+back and forth between the portals
+
+92
+00:04:26,140 --> 00:04:29,710
+and carry a weapon and then shoot a ray
+that will actually place a portal where
+
+93
+00:04:29,710 --> 00:04:31,454
+I want to in the game world?
+
+94
+00:04:31,454 --> 00:04:33,370
+So today, some of the
+topics we'll talk about.
+
+95
+00:04:33,370 --> 00:04:34,810
+So one, holding a weapon.
+
+96
+00:04:34,810 --> 00:04:36,880
+So we've used a first
+person controller, and this
+
+97
+00:04:36,880 --> 00:04:39,250
+is a very easy and simple thing to do.
+
+98
+00:04:39,250 --> 00:04:41,060
+But it helps illustrate
+what parenting is.
+
+99
+00:04:41,060 --> 00:04:42,300
+And so we'll talk about that.
+
+100
+00:04:42,300 --> 00:04:45,760
+Ray casting is the actual shooting
+out of a ray from your object
+
+101
+00:04:45,760 --> 00:04:47,175
+to Z direction forward.
+
+102
+00:04:47,175 --> 00:04:50,050
+So you have an X and a Y, which are
+sort of the angle at which you're
+
+103
+00:04:50,050 --> 00:04:50,690
+moving around.
+
+104
+00:04:50,690 --> 00:04:55,870
+But then you have Z, which if
+you're using the forward vector
+
+105
+00:04:55,870 --> 00:04:59,140
+from your character, it's going
+to be forward in the z-axis
+
+106
+00:04:59,140 --> 00:05:00,770
+wherever you're looking effectively.
+
+107
+00:05:00,770 --> 00:05:06,040
+And so that allows us to cast a ray,
+in that sense, which just means shoot
+
+108
+00:05:06,040 --> 00:05:08,740
+a straight line, an invisible
+straight line from that point,
+
+109
+00:05:08,740 --> 00:05:11,070
+and wherever that point
+intersects with an object,
+
+110
+00:05:11,070 --> 00:05:13,394
+we can get some information
+about that and then do
+
+111
+00:05:13,394 --> 00:05:14,560
+whatever work we need to do.
+
+112
+00:05:14,560 --> 00:05:18,587
+In this case, take a portal prefab and
+just affix it to the wall, basically.
+
+113
+00:05:18,587 --> 00:05:20,670
+Rotate it from its default
+position, and then just
+
+114
+00:05:20,670 --> 00:05:23,010
+put it flat up against the wall.
+
+115
+00:05:23,010 --> 00:05:29,350
+Texture masking is how we're going
+to achieve this portal effect, right?
+
+116
+00:05:29,350 --> 00:05:34,110
+Because when we create what's called a
+render texture in Unity, which here's
+
+117
+00:05:34,110 --> 00:05:36,780
+the third bullet, a render
+texture just means a texture
+
+118
+00:05:36,780 --> 00:05:39,060
+that we're rendering to with a camera.
+
+119
+00:05:39,060 --> 00:05:42,501
+So rather than have a texture be an
+asset in your game, in your hierarchy
+
+120
+00:05:42,501 --> 00:05:44,250
+with something that
+you made in Photoshop,
+
+121
+00:05:44,250 --> 00:05:47,040
+you can actually dynamically
+create it at runtime
+
+122
+00:05:47,040 --> 00:05:48,820
+with what the camera is seeing.
+
+123
+00:05:48,820 --> 00:05:50,820
+And Unity gives this to
+you for free very easily
+
+124
+00:05:50,820 --> 00:05:54,570
+with what's called a render texture,
+which is just another asset type.
+
+125
+00:05:54,570 --> 00:05:57,780
+And then texture masking is
+effectively the same thing
+
+126
+00:05:57,780 --> 00:06:02,850
+as stenciling where we can choose
+certain pixels of an object to delete.
+
+127
+00:06:02,850 --> 00:06:06,960
+In this case, we create a texture that's
+white in the center and then black
+
+128
+00:06:06,960 --> 00:06:10,380
+around the edges in an elliptical shape.
+
+129
+00:06:10,380 --> 00:06:13,770
+And what that allows us to do
+is tell it with a simple shader,
+
+130
+00:06:13,770 --> 00:06:17,482
+don't render these pixels when you
+actually render the render texture,
+
+131
+00:06:17,482 --> 00:06:18,940
+just render the ones in the middle.
+
+132
+00:06:18,940 --> 00:06:21,481
+And so, that's how we achieve
+an ellipse, just by effectively
+
+133
+00:06:21,481 --> 00:06:23,910
+discarding the pixels in the outer rim.
+
+134
+00:06:23,910 --> 00:06:28,740
+Decals is an idea in 3D games
+where a decal is just something
+
+135
+00:06:28,740 --> 00:06:32,170
+that you affix a texture or some
+object that you affixed to a surface.
+
+136
+00:06:32,170 --> 00:06:34,794
+In this case, we'll be using
+decals to act as our portal.
+
+137
+00:06:34,794 --> 00:06:36,960
+So our portals are actually
+just going to be decals.
+
+138
+00:06:36,960 --> 00:06:39,990
+They're just meshes with a
+render texture affixed to them.
+
+139
+00:06:39,990 --> 00:06:44,340
+And then all we need to do is just slap
+them onto a wall whenever we shoot it,
+
+140
+00:06:44,340 --> 00:06:46,350
+and we get a ray that
+intersects with the wall.
+
+141
+00:06:46,350 --> 00:06:49,436
+And that will have the
+effect of actually making
+
+142
+00:06:49,436 --> 00:06:52,310
+it look like we're putting a portal
+on a wall, when in reality, we're
+
+143
+00:06:52,310 --> 00:06:55,350
+just taking a mesh and we're kind of
+just like slapping it onto a wall.
+
+144
+00:06:55,350 --> 00:06:58,470
+Some other examples of decals that
+you've probably seen in other games
+
+145
+00:06:58,470 --> 00:07:02,190
+are, for example, bullet holes,
+which use the same principle.
+
+146
+00:07:02,190 --> 00:07:04,920
+Teleporting is very easy,
+although the FPS controller sort
+
+147
+00:07:04,920 --> 00:07:06,400
+of complicates things a little bit.
+
+148
+00:07:06,400 --> 00:07:11,040
+So we'll talk about how and about sort
+of solving the problem of teleporting
+
+149
+00:07:11,040 --> 00:07:13,350
+in a way that makes sense.
+
+150
+00:07:13,350 --> 00:07:18,390
+It's usually just as simple as setting
+something's transforms position
+
+151
+00:07:18,390 --> 00:07:20,850
+to another transforms
+position, setting the rotation
+
+152
+00:07:20,850 --> 00:07:23,100
+to the transforms rotation.
+
+153
+00:07:23,100 --> 00:07:25,960
+But the FPS controller
+cashes its rotation data,
+
+154
+00:07:25,960 --> 00:07:27,960
+so in order to that
+teleport cleanly you sort of
+
+155
+00:07:27,960 --> 00:07:29,692
+have to override some default behavior.
+
+156
+00:07:29,692 --> 00:07:31,650
+And lastly, we'll take
+a look at some new tools
+
+157
+00:07:31,650 --> 00:07:35,580
+that Unity has introduced with
+2018 0.1 Pro Builder and Pro
+
+158
+00:07:35,580 --> 00:07:38,910
+Grids, which allow you to actually
+model geometry in the scene.
+
+159
+00:07:38,910 --> 00:07:42,540
+And this is what the assignment
+is going to be focused on.
+
+160
+00:07:42,540 --> 00:07:47,670
+Because going forward, I foresee it
+being a major part of modern unity
+
+161
+00:07:47,670 --> 00:07:49,710
+development and or prototyping.
+
+162
+00:07:49,710 --> 00:07:54,420
+The ability to model your scene in Unity
+without needing a third party program
+
+163
+00:07:54,420 --> 00:07:57,812
+heavily optimizes the
+actual creation process
+
+164
+00:07:57,812 --> 00:07:59,520
+and allows you to do
+easy, what's called,
+
+165
+00:07:59,520 --> 00:08:05,634
+"gray boxing," meaning create a level in
+your game engine and then prototype it,
+
+166
+00:08:05,634 --> 00:08:08,550
+test it, make sure that it's actually
+game playable right off the bat.
+
+167
+00:08:08,550 --> 00:08:10,264
+That's called "gray boxing."
+
+168
+00:08:10,264 --> 00:08:11,430
+But first, let's get a demo.
+
+169
+00:08:11,430 --> 00:08:14,955
+So does anybody want to come up here
+and play my implementation of "Portal?"
+
+170
+00:08:14,955 --> 00:08:21,674
+
+
+171
+00:08:21,674 --> 00:08:25,035
+So James is landlocked.
+
+172
+00:08:25,035 --> 00:08:26,660
+All right James, you're not landlocked.
+
+173
+00:08:26,660 --> 00:08:27,160
+Let's go.
+
+174
+00:08:27,160 --> 00:08:31,250
+
+
+175
+00:08:31,250 --> 00:08:34,100
+All right, so I'm going to
+go ahead and set that up.
+
+176
+00:08:34,100 --> 00:08:37,699
+
+
+177
+00:08:37,699 --> 00:08:39,740
+And so disclaimer, there's
+actually a bug in this
+
+178
+00:08:39,740 --> 00:08:43,190
+as well, so I'm curious to see
+if you can spot what the bug is.
+
+179
+00:08:43,190 --> 00:08:46,920
+Go ahead and hit play
+as soon as you're ready.
+
+180
+00:08:46,920 --> 00:08:50,880
+And then the mouse on the right
+will be your angle your portal.
+
+181
+00:08:50,880 --> 00:08:55,060
+So we see here I have a character
+with a portal gun created.
+
+182
+00:08:55,060 --> 00:08:58,590
+So James, if you shoot a wall with the
+left mouse, that will create a portal.
+
+183
+00:08:58,590 --> 00:09:00,720
+And then if use the right mouse--
+
+184
+00:09:00,720 --> 00:09:04,200
+so that's one other bug.
+
+185
+00:09:04,200 --> 00:09:06,420
+So let's go ahead and restart
+the program, actually.
+
+186
+00:09:06,420 --> 00:09:10,080
+
+
+187
+00:09:10,080 --> 00:09:12,910
+So that's one bug.
+
+188
+00:09:12,910 --> 00:09:17,880
+And so, if we avoid stepping
+into a portal that's there--
+
+189
+00:09:17,880 --> 00:09:21,280
+and this this could be
+fixed in a couple of ways.
+
+190
+00:09:21,280 --> 00:09:25,280
+So now you have two
+portals basically created.
+
+191
+00:09:25,280 --> 00:09:30,520
+Do you see what's wrong with the portal
+as it is here, both of these portals
+
+192
+00:09:30,520 --> 00:09:31,020
+actually?
+
+193
+00:09:31,020 --> 00:09:34,960
+
+
+194
+00:09:34,960 --> 00:09:37,960
+Oh actually, no, I'm sorry, these
+portals are actually completely right.
+
+195
+00:09:37,960 --> 00:09:39,880
+But walk through them.
+
+196
+00:09:39,880 --> 00:09:41,230
+And I will show you--
+
+197
+00:09:41,230 --> 00:09:43,420
+OK, so you can see it
+works pretty well, right?
+
+198
+00:09:43,420 --> 00:09:47,710
+You can not only see your character
+rendering completely or moving
+
+199
+00:09:47,710 --> 00:09:51,865
+in real time when the other texture,
+but you can jump through them
+
+200
+00:09:51,865 --> 00:09:52,740
+or walk through them.
+
+201
+00:09:52,740 --> 00:09:54,810
+You can jump with spacebar
+if you want, and that'll
+
+202
+00:09:54,810 --> 00:09:56,280
+teleport you throughout
+the other end so you
+
+203
+00:09:56,280 --> 00:09:58,260
+see from the perspective
+of the other portal.
+
+204
+00:09:58,260 --> 00:10:00,210
+But if we try shooting
+one of the other walls
+
+205
+00:10:00,210 --> 00:10:03,370
+for instance, like one
+of these white walls,
+
+206
+00:10:03,370 --> 00:10:07,140
+you can see something weird
+happens with this particular wall.
+
+207
+00:10:07,140 --> 00:10:10,170
+Anything strike you as
+odd about that portal?
+
+208
+00:10:10,170 --> 00:10:10,980
+Anybody?
+
+209
+00:10:10,980 --> 00:10:12,550
+It's upside down.
+
+210
+00:10:12,550 --> 00:10:17,890
+And so if you walk through it
+though, it works perfectly fine.
+
+211
+00:10:17,890 --> 00:10:21,749
+Now the reason that it's upside down,
+I spent probably like 10, 15 hours
+
+212
+00:10:21,749 --> 00:10:23,790
+trying to figure out why
+this is, it's in a state
+
+213
+00:10:23,790 --> 00:10:25,690
+of what's called "gimbal lock."
+
+214
+00:10:25,690 --> 00:10:30,210
+So this prefab right here, there's
+three axis of rotation in 3D space.
+
+215
+00:10:30,210 --> 00:10:35,400
+And if you perform a
+rotation in some odd way,
+
+216
+00:10:35,400 --> 00:10:37,480
+there are these things
+called oiler angles,
+
+217
+00:10:37,480 --> 00:10:40,890
+which are your angles of rotation
+about the x,y and z-axis.
+
+218
+00:10:40,890 --> 00:10:43,650
+And you can sort of
+think of them as sort
+
+219
+00:10:43,650 --> 00:10:46,290
+of being able to rotate
+interdependently.
+
+220
+00:10:46,290 --> 00:10:49,830
+But there is a situation
+in which you can--
+
+221
+00:10:49,830 --> 00:10:53,220
+for some reason, Unity's internal
+representation of a rotation
+
+222
+00:10:53,220 --> 00:10:55,590
+can get messed up by
+manipulating these angles.
+
+223
+00:10:55,590 --> 00:10:58,260
+And so, you can actually
+lock two axes together such
+
+224
+00:10:58,260 --> 00:11:02,850
+that rotating-- like for example,
+in this case, it's Z and Y,
+
+225
+00:11:02,850 --> 00:11:04,410
+they both rotate each other.
+
+226
+00:11:04,410 --> 00:11:09,360
+And so you're unable to get, in this
+particular case, the portal to rotate
+
+227
+00:11:09,360 --> 00:11:13,620
+about the axis that lets it look
+like its right side up based
+
+228
+00:11:13,620 --> 00:11:15,420
+on the wall's surface normal.
+
+229
+00:11:15,420 --> 00:11:19,530
+And so, had I maybe another week,
+I probably could have debugged it,
+
+230
+00:11:19,530 --> 00:11:20,880
+but I had to leave it in.
+
+231
+00:11:20,880 --> 00:11:22,430
+Unfortunately, I ran out of time.
+
+232
+00:11:22,430 --> 00:11:27,030
+But the interesting thing is if
+you do shoot that same wall--
+
+233
+00:11:27,030 --> 00:11:29,850
+so try and shoot that
+wall, the other wall with--
+
+234
+00:11:29,850 --> 00:11:34,019
+like put both portal on the
+buggy wall, so the right wall.
+
+235
+00:11:34,019 --> 00:11:36,060
+It's only that wall, by
+the way, for some reason.
+
+236
+00:11:36,060 --> 00:11:40,470
+So notice that now its right side up.
+
+237
+00:11:40,470 --> 00:11:43,290
+So if you shoot both portals on
+the same wall, that buggie wall,
+
+238
+00:11:43,290 --> 00:11:44,580
+they do get right side up.
+
+239
+00:11:44,580 --> 00:11:47,430
+And I for the life of me couldn't
+ascertain exactly as to why.
+
+240
+00:11:47,430 --> 00:11:49,410
+I know it's gimbal lock.
+
+241
+00:11:49,410 --> 00:11:52,394
+Unfortunately, I was unable
+to debug it quite in time.
+
+242
+00:11:52,394 --> 00:11:54,810
+But every other wall, including
+the ceiling and the floor,
+
+243
+00:11:54,810 --> 00:11:56,632
+will work if you shoot
+a portal up on them.
+
+244
+00:11:56,632 --> 00:11:59,340
+So you can create one up there,
+and then you can jump through it.
+
+245
+00:11:59,340 --> 00:12:04,050
+See how it's looking down, and
+then it'll put you at the top.
+
+246
+00:12:04,050 --> 00:12:09,160
+And altogether, minus the weird single
+wall that gimbal locks the portal,
+
+247
+00:12:09,160 --> 00:12:11,370
+we have a pretty
+functional implementation
+
+248
+00:12:11,370 --> 00:12:13,950
+of a very basic portal game, right?
+
+249
+00:12:13,950 --> 00:12:17,022
+We have this model here is
+parenting to the camera.
+
+250
+00:12:17,022 --> 00:12:19,980
+So it's always going to look in the
+exact same direction as the camera.
+
+251
+00:12:19,980 --> 00:12:23,970
+We shoot a ray from the
+tip of the gun, and then
+
+252
+00:12:23,970 --> 00:12:27,510
+whenever that ray intersects with a
+plane, in this case any of these walls,
+
+253
+00:12:27,510 --> 00:12:29,760
+we get the information
+about the intersection
+
+254
+00:12:29,760 --> 00:12:35,530
+and we flip the portal
+decal so that it's
+
+255
+00:12:35,530 --> 00:12:38,700
+the same angle as the wall rotation.
+
+256
+00:12:38,700 --> 00:12:43,020
+And then what happens when we actually
+collide with one of the portals just
+
+257
+00:12:43,020 --> 00:12:45,570
+in code if we were to think
+about how to implement
+
+258
+00:12:45,570 --> 00:12:48,432
+the behavior that goes on here?
+
+259
+00:12:48,432 --> 00:12:49,640
+It's transporting the player.
+
+260
+00:12:49,640 --> 00:12:53,210
+And it's doing effectively setting
+the player's transformed position
+
+261
+00:12:53,210 --> 00:12:56,900
+to the same transform
+position as the portal.
+
+262
+00:12:56,900 --> 00:12:59,960
+Now, if we do the same
+thing on the rotation,
+
+263
+00:12:59,960 --> 00:13:04,700
+the FPS controller's
+rotation gets a bit skewed
+
+264
+00:13:04,700 --> 00:13:09,240
+if you mess with it's X and Z
+rotation, the default controller.
+
+265
+00:13:09,240 --> 00:13:13,860
+So all we do for now is we just keep
+those values, the X and Y rotation,
+
+266
+00:13:13,860 --> 00:13:15,560
+but we just change the Y rotation.
+
+267
+00:13:15,560 --> 00:13:19,830
+Y rotation is its position in
+space like this effectively.
+
+268
+00:13:19,830 --> 00:13:22,340
+So that allows us to get
+when we jump out of the wall,
+
+269
+00:13:22,340 --> 00:13:26,240
+we notice that he's flat from it, but
+if we jump through any of the wall
+
+270
+00:13:26,240 --> 00:13:29,360
+portals-- so if you create
+a portal on the wall here,
+
+271
+00:13:29,360 --> 00:13:34,240
+and then jump through it, you'll
+notice that you're sort of angled
+
+272
+00:13:34,240 --> 00:13:36,120
+at the right--
+
+273
+00:13:36,120 --> 00:13:38,970
+and the reason that it's skewed is
+because this one is upside down.
+
+274
+00:13:38,970 --> 00:13:42,600
+And so it's flipping the camera
+that's rendering the texture
+
+275
+00:13:42,600 --> 00:13:44,100
+and it's looking a little bit weird.
+
+276
+00:13:44,100 --> 00:13:48,930
+But when you jump through, it
+basically keeps your X and Z,
+
+277
+00:13:48,930 --> 00:13:51,600
+but rotates your Y position
+so that you come out
+
+278
+00:13:51,600 --> 00:13:55,320
+looking as if you went straight through
+the portal, rather than by default,
+
+279
+00:13:55,320 --> 00:13:58,949
+it has you look back at the portal that
+you came out of, which is a bit weird.
+
+280
+00:13:58,949 --> 00:14:00,990
+Or whatever direction you
+were walking through it
+
+281
+00:14:00,990 --> 00:14:02,948
+when you went through the portal.
+
+282
+00:14:02,948 --> 00:14:07,400
+AUDIENCE: How are you getting the mirror
+[INAUDIBLE] so you can see yourself?
+
+283
+00:14:07,400 --> 00:14:11,140
+COLTON OGDEN: That's just default
+because it's a render texture.
+
+284
+00:14:11,140 --> 00:14:14,830
+So there's a camera actually
+behind each of these portals.
+
+285
+00:14:14,830 --> 00:14:17,170
+So the prefab is a mesh
+with a render texture.
+
+286
+00:14:17,170 --> 00:14:19,150
+And then behind it, there's a camera.
+
+287
+00:14:19,150 --> 00:14:22,330
+And so, the camera is rendering in real
+time what's in front of the portal,
+
+288
+00:14:22,330 --> 00:14:23,980
+basically, from behind it.
+
+289
+00:14:23,980 --> 00:14:28,450
+And so it's seeing your model
+from both of these portals,
+
+290
+00:14:28,450 --> 00:14:30,730
+both cameras are seeing your
+model, and so it shows up
+
+291
+00:14:30,730 --> 00:14:35,150
+in the render texture
+on the other portal.
+
+292
+00:14:35,150 --> 00:14:39,910
+So it's effectively like looking at
+two video cameras instead of a portal.
+
+293
+00:14:39,910 --> 00:14:41,740
+It's sort of a trick.
+
+294
+00:14:41,740 --> 00:14:43,930
+And this is a very crude
+implementation of "Portal,"
+
+295
+00:14:43,930 --> 00:14:47,650
+the actual game uses a much more
+sophisticated algorithm for--
+
+296
+00:14:47,650 --> 00:14:50,950
+and it also tracks your
+position with the camera
+
+297
+00:14:50,950 --> 00:14:53,140
+so that based on your
+angle of rotation, you'll
+
+298
+00:14:53,140 --> 00:14:56,007
+actually see something
+different on the texture there.
+
+299
+00:14:56,007 --> 00:14:58,840
+But it's a lot more complicated to
+put something like that together.
+
+300
+00:14:58,840 --> 00:15:02,089
+I have some resources that I've included
+in the lecture in the assignment that
+
+301
+00:15:02,089 --> 00:15:04,960
+will show you actually how to do that.
+
+302
+00:15:04,960 --> 00:15:10,500
+But it would take many, many more hours
+than I had to put this demo together.
+
+303
+00:15:10,500 --> 00:15:12,250
+AUDIENCE: Yeah, right
+now it's just fixed.
+
+304
+00:15:12,250 --> 00:15:12,930
+COLTON OGDEN: Yeah it's fixed.
+
+305
+00:15:12,930 --> 00:15:14,638
+If you actually look
+at it from the side,
+
+306
+00:15:14,638 --> 00:15:17,050
+you'll notice that it's
+just a flat texture.
+
+307
+00:15:17,050 --> 00:15:18,140
+There's no perspective.
+
+308
+00:15:18,140 --> 00:15:19,840
+Ultimately, its perspective.
+
+309
+00:15:19,840 --> 00:15:22,270
+And there's an awesome
+video that I'm going
+
+310
+00:15:22,270 --> 00:15:25,720
+to show later in the slides by a
+YouTuber named Braxis where he actually
+
+311
+00:15:25,720 --> 00:15:31,720
+implements a perspective correct
+shader that allows you to see,
+
+312
+00:15:31,720 --> 00:15:33,730
+and with camera tracking of the player.
+
+313
+00:15:33,730 --> 00:15:36,190
+Like both cameras will track
+the position of the player,
+
+314
+00:15:36,190 --> 00:15:39,250
+as well as render a texture.
+
+315
+00:15:39,250 --> 00:15:42,640
+And the result of that is because the
+cameras are changing their position,
+
+316
+00:15:42,640 --> 00:15:45,220
+it's sort of like changing the
+angle at which the scene is
+
+317
+00:15:45,220 --> 00:15:48,220
+being rendered onto the portal mesh.
+
+318
+00:15:48,220 --> 00:15:51,050
+But also the way that it's being
+drawn is a little bit different,
+
+319
+00:15:51,050 --> 00:15:52,870
+and so he has a really
+cool shader that does that.
+
+320
+00:15:52,870 --> 00:15:54,250
+And then Vavle, when
+they present, they'll
+
+321
+00:15:54,250 --> 00:15:57,440
+actually show how they went about
+doing it, which is even more complex,
+
+322
+00:15:57,440 --> 00:16:02,410
+but it looks really good and is a
+lot more technically interesting.
+
+323
+00:16:02,410 --> 00:16:06,610
+But yeah, that's my sort
+bare bones implementation
+
+324
+00:16:06,610 --> 00:16:09,230
+of what makes "Portal" work.
+
+325
+00:16:09,230 --> 00:16:13,690
+And it's somewhat fun to
+walk through these portals
+
+326
+00:16:13,690 --> 00:16:15,670
+and just sort of play around with it.
+
+327
+00:16:15,670 --> 00:16:21,310
+Now the reason that if you just walk
+into a blue portal it doesn't work
+
+328
+00:16:21,310 --> 00:16:24,700
+is because the portals are actually
+stored off screen until you use them.
+
+329
+00:16:24,700 --> 00:16:28,144
+
+
+330
+00:16:28,144 --> 00:16:29,310
+I'll open up the scene here.
+
+331
+00:16:29,310 --> 00:16:30,890
+Oh, by the way, thanks
+James for coming up to demo.
+
+332
+00:16:30,890 --> 00:16:31,780
+I appreciate it.
+
+333
+00:16:31,780 --> 00:16:35,650
+So the portals are over here, right?
+
+334
+00:16:35,650 --> 00:16:37,370
+Both of them are right here.
+
+335
+00:16:37,370 --> 00:16:41,540
+And so what that does is when
+you only shoot one of them,
+
+336
+00:16:41,540 --> 00:16:44,170
+the other one is still out here,
+so when you walk through it
+
+337
+00:16:44,170 --> 00:16:46,300
+you end up just teleporting
+outside the level.
+
+338
+00:16:46,300 --> 00:16:49,090
+And in order to not have that
+happen, what you really need to do
+
+339
+00:16:49,090 --> 00:16:51,760
+is have a flag on both
+of them that just says
+
+340
+00:16:51,760 --> 00:16:54,372
+don't teleport unless you've
+been shot once, right?
+
+341
+00:16:54,372 --> 00:16:56,830
+And that will prevent that sort
+of behavior from happening.
+
+342
+00:16:56,830 --> 00:17:01,600
+Simple fix, but an entertaining
+one to take a look at.
+
+343
+00:17:01,600 --> 00:17:05,260
+And that is my crude
+implementation of "Portal."
+
+344
+00:17:05,260 --> 00:17:10,510
+It's far from being anywhere near
+as polished as the actual game.
+
+345
+00:17:10,510 --> 00:17:13,270
+And there is the slight
+weird wall that gimbal
+
+346
+00:17:13,270 --> 00:17:17,680
+locks the portal, which I would like
+to figure out why exactly that is.
+
+347
+00:17:17,680 --> 00:17:19,920
+But everything else is sort of in here.
+
+348
+00:17:19,920 --> 00:17:25,000
+Now, it doesn't include something
+like shooting blocks through it,
+
+349
+00:17:25,000 --> 00:17:26,950
+but the same sort of
+principles would apply
+
+350
+00:17:26,950 --> 00:17:30,280
+because all we're effectively
+doing on the portal is saying--
+
+351
+00:17:30,280 --> 00:17:32,170
+it's basically a trigger, right?
+
+352
+00:17:32,170 --> 00:17:35,590
+It's got a box collider on it, and
+it says if I collide with something,
+
+353
+00:17:35,590 --> 00:17:39,700
+and in this case the player, I
+want to teleport that collider
+
+354
+00:17:39,700 --> 00:17:42,512
+to the other portal, which means
+that the portals sort of have
+
+355
+00:17:42,512 --> 00:17:43,720
+to link to each other, right?
+
+356
+00:17:43,720 --> 00:17:45,970
+One portal has to have a
+reference to the other portal
+
+357
+00:17:45,970 --> 00:17:48,640
+so that it can say, "Teleport
+to the linked portal."
+
+358
+00:17:48,640 --> 00:17:51,397
+And vise versa, the link
+portal should have a reference
+
+359
+00:17:51,397 --> 00:17:53,230
+to the other portals
+that can say, "Teleport
+
+360
+00:17:53,230 --> 00:17:55,090
+back if you collide with this."
+
+361
+00:17:55,090 --> 00:17:58,630
+And so, if we have another object-- like
+say, we shoot a cube into the portal,
+
+362
+00:17:58,630 --> 00:18:03,010
+it would also get teleported
+to the other portal, right?
+
+363
+00:18:03,010 --> 00:18:06,240
+And the other consideration for
+that is like if its a rigid body
+
+364
+00:18:06,240 --> 00:18:08,500
+and it has physics applied
+to it, for example,
+
+365
+00:18:08,500 --> 00:18:11,950
+let's say its going like 10
+on the X and it teleports
+
+366
+00:18:11,950 --> 00:18:16,122
+to a portal that's perpendicular to
+it and it's still going 10 to the X,
+
+367
+00:18:16,122 --> 00:18:17,830
+then as soon as it
+shoots out the portal,
+
+368
+00:18:17,830 --> 00:18:19,990
+it's going to go straight left,
+which isn't the behavior we want.
+
+369
+00:18:19,990 --> 00:18:21,470
+We want it to go forward.
+
+370
+00:18:21,470 --> 00:18:27,400
+So linear velocity
+needs to be calibrated
+
+371
+00:18:27,400 --> 00:18:28,961
+to go in a different direction.
+
+372
+00:18:28,961 --> 00:18:31,460
+Didn't have enough time to put
+a full demo of that together,
+
+373
+00:18:31,460 --> 00:18:33,400
+but if you were curious,
+in a nutshell, that's
+
+374
+00:18:33,400 --> 00:18:35,900
+sort of like what you would
+need to do in order to implement
+
+375
+00:18:35,900 --> 00:18:40,540
+some basic physics with "Portal."
+
+376
+00:18:40,540 --> 00:18:41,434
+So holding a weapon.
+
+377
+00:18:41,434 --> 00:18:43,350
+Based on this screen
+shot, can anybody tell me
+
+378
+00:18:43,350 --> 00:18:46,830
+how they think I went from
+just a plain FBS controller,
+
+379
+00:18:46,830 --> 00:18:50,522
+to an FBS controller holding a gun.
+
+380
+00:18:50,522 --> 00:18:53,480
+AUDIENCE: Can you
+stick a gun, like one--
+
+381
+00:18:53,480 --> 00:18:59,359
+do they call it colored pixels--
+one unit in front of the camera?
+
+382
+00:18:59,359 --> 00:19:00,150
+COLTON OGDEN: Yeah.
+
+383
+00:19:00,150 --> 00:19:04,210
+There's not really a notion
+necessarily of pixels in 3D space
+
+384
+00:19:04,210 --> 00:19:06,340
+because that changes
+depending on your resolution.
+
+385
+00:19:06,340 --> 00:19:09,460
+But yes, Unity units--
+
+386
+00:19:09,460 --> 00:19:13,210
+it's effectively equivalent
+to a meter, and you can change
+
+387
+00:19:13,210 --> 00:19:16,660
+what it represents in Unity settings.
+
+388
+00:19:16,660 --> 00:19:17,260
+But yeah.
+
+389
+00:19:17,260 --> 00:19:19,700
+I mean, it doesn't necessarily
+have to be one unit.
+
+390
+00:19:19,700 --> 00:19:21,250
+It can be an arbitrary amount.
+
+391
+00:19:21,250 --> 00:19:25,000
+And what it really was me going
+into here with this model.
+
+392
+00:19:25,000 --> 00:19:27,440
+By the way, I got this model
+on the Assess Store for free.
+
+393
+00:19:27,440 --> 00:19:29,290
+So the Assess Store is an
+awesome place if you're looking
+
+394
+00:19:29,290 --> 00:19:31,070
+to just quickly prototype your game.
+
+395
+00:19:31,070 --> 00:19:35,197
+They didn't have any obvious portal
+gun lookalikes that looked really good.
+
+396
+00:19:35,197 --> 00:19:37,780
+So I was like, "Oh, this guns
+got like the same kind of color.
+
+397
+00:19:37,780 --> 00:19:38,696
+I'll just choose this.
+
+398
+00:19:38,696 --> 00:19:41,170
+It's like a sci-fi kind of gun."
+
+399
+00:19:41,170 --> 00:19:44,440
+But as you can see,
+there's a hierarchy here.
+
+400
+00:19:44,440 --> 00:19:53,520
+Now, how are we keeping the gun
+affixed to where the camera is looking,
+
+401
+00:19:53,520 --> 00:19:54,424
+do we know?
+
+402
+00:19:54,424 --> 00:19:59,364
+AUDIENCE: You do the same thing as
+you do with the first person shooter
+
+403
+00:19:59,364 --> 00:20:06,359
+code is you have the camera
+follow the gun or vice versa.
+
+404
+00:20:06,359 --> 00:20:08,400
+COLTON OGDEN: You have
+the camera follow the gun.
+
+405
+00:20:08,400 --> 00:20:10,317
+Do you have any guesses
+to how we're doing?
+
+406
+00:20:10,317 --> 00:20:12,150
+It's actually a really,
+really simple thing.
+
+407
+00:20:12,150 --> 00:20:17,030
+
+
+408
+00:20:17,030 --> 00:20:19,970
+AUDIENCE: I know i'm
+doing it, but [INAUDIBLE]
+
+409
+00:20:19,970 --> 00:20:21,410
+COLTON OGDEN: So all we're doing--
+
+410
+00:20:21,410 --> 00:20:22,556
+Oh, Steven.
+
+411
+00:20:22,556 --> 00:20:28,780
+AUDIENCE: I was going to say do
+you set the cameras to transform
+
+412
+00:20:28,780 --> 00:20:31,070
+as [INAUDIBLE].
+
+413
+00:20:31,070 --> 00:20:34,754
+
+
+414
+00:20:34,754 --> 00:20:37,420
+Do the guns transform with an
+offset, like in the same direction
+
+415
+00:20:37,420 --> 00:20:38,829
+but with a position offset?
+
+416
+00:20:38,829 --> 00:20:39,620
+COLTON OGDEN: Yeah.
+
+417
+00:20:39,620 --> 00:20:40,119
+Kind of.
+
+418
+00:20:40,119 --> 00:20:44,230
+Except the guns transform to the cameras
+transform, but just with an offset.
+
+419
+00:20:44,230 --> 00:20:46,430
+And that is effectively
+what we're doing.
+
+420
+00:20:46,430 --> 00:20:48,380
+And in order to accomplish
+that, it's really
+
+421
+00:20:48,380 --> 00:20:52,430
+as simple as just making
+it a child of that thing.
+
+422
+00:20:52,430 --> 00:20:55,760
+So this is the first person
+character controller.
+
+423
+00:20:55,760 --> 00:20:57,600
+It's got a camera attached to it.
+
+424
+00:20:57,600 --> 00:21:01,640
+Anything that you make a
+child of something else,
+
+425
+00:21:01,640 --> 00:21:06,090
+it's going to have the same
+transform changes applied to it,
+
+426
+00:21:06,090 --> 00:21:07,520
+including rotation.
+
+427
+00:21:07,520 --> 00:21:11,000
+So by making the gun just a child
+of the first person character, which
+
+428
+00:21:11,000 --> 00:21:12,419
+is where the camera is here--
+
+429
+00:21:12,419 --> 00:21:14,210
+first person character,
+by the way, is just
+
+430
+00:21:14,210 --> 00:21:16,590
+a subcomponent of the FPS
+controller, which I renamed
+
+431
+00:21:16,590 --> 00:21:19,190
+to portal gun FPS controller here.
+
+432
+00:21:19,190 --> 00:21:21,500
+The portal gun, anytime
+this first person character
+
+433
+00:21:21,500 --> 00:21:24,770
+is rotated, which is the camera,
+so anytime the camera is rotated,
+
+434
+00:21:24,770 --> 00:21:28,820
+it applies that rotation to the
+portal gun here, this gun mesh.
+
+435
+00:21:28,820 --> 00:21:30,390
+And so, that gives you the effect.
+
+436
+00:21:30,390 --> 00:21:36,546
+So what you do is you start
+it off in 3D space like this.
+
+437
+00:21:36,546 --> 00:21:39,170
+You're looking at your game scene,
+and you have your character.
+
+438
+00:21:39,170 --> 00:21:41,360
+And then you move your
+gun object around.
+
+439
+00:21:41,360 --> 00:21:45,839
+In this case, let's go
+to layouts two by three.
+
+440
+00:21:45,839 --> 00:21:47,130
+So you can see it in real time.
+
+441
+00:21:47,130 --> 00:21:50,088
+This is the game view, this is what
+it's going to look like on Startup.
+
+442
+00:21:50,088 --> 00:21:55,760
+I'm going to go over
+to my editor view here.
+
+443
+00:21:55,760 --> 00:22:00,710
+And I'm just going to grab
+the actual gun component here,
+
+444
+00:22:00,710 --> 00:22:02,450
+the gun object I should say.
+
+445
+00:22:02,450 --> 00:22:05,310
+Go and position it, and I
+can just move it, right?
+
+446
+00:22:05,310 --> 00:22:10,227
+And so this is how you can change where
+your gun is relative to the camera.
+
+447
+00:22:10,227 --> 00:22:12,560
+And this is going to affect
+sort of how it feels, right?
+
+448
+00:22:12,560 --> 00:22:15,470
+Like I could put it here and it's kind
+of a little lower, I could put it here,
+
+449
+00:22:15,470 --> 00:22:17,780
+it feels a little weird obviously
+because it doesn't have a hand on it.
+
+450
+00:22:17,780 --> 00:22:19,690
+So it almost looks like a VR game.
+
+451
+00:22:19,690 --> 00:22:23,090
+And that's kind of what VR games
+do is they take your hand positions
+
+452
+00:22:23,090 --> 00:22:26,930
+and then the gun transform is
+locked to basically where your hand
+
+453
+00:22:26,930 --> 00:22:28,889
+controllers are.
+
+454
+00:22:28,889 --> 00:22:30,930
+In this case, all I did
+was I just positioned it.
+
+455
+00:22:30,930 --> 00:22:34,200
+I said, "I like how it looks right
+here, so I'm just going to do that."
+
+456
+00:22:34,200 --> 00:22:37,074
+And as soon as I make it a child of
+the first person character, which
+
+457
+00:22:37,074 --> 00:22:40,200
+is the camera, it's just going to
+get all the rotations applied to it.
+
+458
+00:22:40,200 --> 00:22:45,500
+So anytime we make any rotations to
+the camera, which I'm doing here,
+
+459
+00:22:45,500 --> 00:22:49,340
+it stays exactly
+aligned with the camera.
+
+460
+00:22:49,340 --> 00:22:52,310
+This applies to any operation
+that you do in Unity
+
+461
+00:22:52,310 --> 00:22:55,650
+when you make any sort of
+transform position scale changes.
+
+462
+00:22:55,650 --> 00:22:59,210
+They all get propagated down the chain.
+
+463
+00:22:59,210 --> 00:23:01,340
+All the objects that are
+children of an object that
+
+464
+00:23:01,340 --> 00:23:05,024
+get transform operations applied to them
+will have the same transform operations
+
+465
+00:23:05,024 --> 00:23:05,690
+applied to them.
+
+466
+00:23:05,690 --> 00:23:07,680
+Sort of like this
+recursive kind of effect.
+
+467
+00:23:07,680 --> 00:23:08,814
+Yeah?
+
+468
+00:23:08,814 --> 00:23:11,766
+AUDIENCE: So if you import
+the first person controller,
+
+469
+00:23:11,766 --> 00:23:14,718
+[INAUDIBLE] has jump and
+moves left and right.
+
+470
+00:23:14,718 --> 00:23:21,114
+And then you just move your asset, your
+gun, to be underneath that controller,
+
+471
+00:23:21,114 --> 00:23:22,120
+it would just follow?
+
+472
+00:23:22,120 --> 00:23:23,036
+COLTON OGDEN: Correct.
+
+473
+00:23:23,036 --> 00:23:27,070
+So if you just import the vanilla FPS
+controller, and then just make the gun.
+
+474
+00:23:27,070 --> 00:23:30,160
+Specifically, the gun needs to be
+a child of this, the first person
+
+475
+00:23:30,160 --> 00:23:32,230
+character bit because
+that has the camera.
+
+476
+00:23:32,230 --> 00:23:34,960
+And recall, the camera is what's
+driving our rotation, right?
+
+477
+00:23:34,960 --> 00:23:37,422
+Because we're moving the
+camera's rotation with our mouse.
+
+478
+00:23:37,422 --> 00:23:39,130
+That is ultimately
+going to determine how
+
+479
+00:23:39,130 --> 00:23:40,720
+the transform gets applied to the gun.
+
+480
+00:23:40,720 --> 00:23:42,310
+But yes.
+
+481
+00:23:42,310 --> 00:23:45,970
+And so whenever we're doing anything in
+Unity-- and you'll do a lot of things
+
+482
+00:23:45,970 --> 00:23:49,936
+where one things movement or scale or
+rotation should apply to another thing,
+
+483
+00:23:49,936 --> 00:23:52,060
+just remember that's usually
+just as easy as making
+
+484
+00:23:52,060 --> 00:23:54,730
+it a child of something else.
+
+485
+00:23:54,730 --> 00:24:00,500
+So any other questions as to how we've
+gone about implementing the weapon?
+
+486
+00:24:00,500 --> 00:24:01,580
+All right.
+
+487
+00:24:01,580 --> 00:24:02,530
+So ray casting.
+
+488
+00:24:02,530 --> 00:24:06,620
+So ray casting is a nice feature
+that Unity gives you for free.
+
+489
+00:24:06,620 --> 00:24:09,980
+It's part of the physics
+sort of name space in Unity.
+
+490
+00:24:09,980 --> 00:24:11,960
+Part of the scripting API.
+
+491
+00:24:11,960 --> 00:24:15,560
+And what it allows you
+to do is effectively
+
+492
+00:24:15,560 --> 00:24:18,080
+look at from whatever
+transform you're operating at,
+
+493
+00:24:18,080 --> 00:24:21,210
+or whatever transform you
+give it as the source,
+
+494
+00:24:21,210 --> 00:24:25,280
+so whatever point you give it as the
+source, you can tell a direction,
+
+495
+00:24:25,280 --> 00:24:27,620
+give it a vector as a direction.
+
+496
+00:24:27,620 --> 00:24:31,040
+In this case, what we're doing is
+we're saying transform.forward.
+
+497
+00:24:31,040 --> 00:24:33,920
+And transform.forward
+just means basically
+
+498
+00:24:33,920 --> 00:24:37,200
+wherever we're looking X and Y, and
+then straight in the Z direction.
+
+499
+00:24:37,200 --> 00:24:39,290
+So if you're doing it
+on a camera, it's always
+
+500
+00:24:39,290 --> 00:24:41,130
+going to be exactly
+what you're looking at.
+
+501
+00:24:41,130 --> 00:24:43,270
+It's always going to be
+exactly forward on the--
+
+502
+00:24:43,270 --> 00:24:47,270
+transform.foward on a camera is always
+going to be like center of the screen
+
+503
+00:24:47,270 --> 00:24:48,780
+wherever you're looking at.
+
+504
+00:24:48,780 --> 00:24:52,040
+And so if we cast a ray from
+the point of our character--
+
+505
+00:24:52,040 --> 00:24:54,530
+or actually we're doing it
+from the point of our gun,
+
+506
+00:24:54,530 --> 00:24:59,780
+to the transform.forward-- like a line
+going from our player to transform
+
+507
+00:24:59,780 --> 00:25:06,020
+the forward vector of its character,
+the forward vector of our camera,
+
+508
+00:25:06,020 --> 00:25:09,110
+it's going to have the effect of--
+
+509
+00:25:09,110 --> 00:25:11,330
+we can shoot something, right?
+
+510
+00:25:11,330 --> 00:25:16,250
+We can create a ray cast and then affix
+something wherever that ray intersects.
+
+511
+00:25:16,250 --> 00:25:19,000
+And it'll be at the exact
+center of our camera view.
+
+512
+00:25:19,000 --> 00:25:20,390
+Does that make sense?
+
+513
+00:25:20,390 --> 00:25:24,950
+So you shoot a line from your
+z-axis, which is your forward vector.
+
+514
+00:25:24,950 --> 00:25:26,990
+And then based on how
+you've rotated the camera,
+
+515
+00:25:26,990 --> 00:25:30,840
+X and Y are the X and Y part of
+that, and Z is always forward,
+
+516
+00:25:30,840 --> 00:25:34,010
+that'll let you shoot things or
+cast rays directly in front of you.
+
+517
+00:25:34,010 --> 00:25:37,460
+And you can cast rays between any
+object and from any source point
+
+518
+00:25:37,460 --> 00:25:40,070
+with any sort of direction you want.
+
+519
+00:25:40,070 --> 00:25:42,440
+But it's particularly
+pertinent in the context
+
+520
+00:25:42,440 --> 00:25:45,069
+of how we've shot it from our gun.
+
+521
+00:25:45,069 --> 00:25:47,610
+And so here is a screenshot
+actually of what that looks like.
+
+522
+00:25:47,610 --> 00:25:49,970
+And so the nice thing
+about Unity actually
+
+523
+00:25:49,970 --> 00:25:55,100
+is it has a function
+called or debug.drawray,
+
+524
+00:25:55,100 --> 00:25:58,400
+which I'll show you here.
+
+525
+00:25:58,400 --> 00:26:03,860
+I implemented it in a
+component called debug ray,
+
+526
+00:26:03,860 --> 00:26:10,334
+so that you can actually see where
+a ray is being cast in your scene
+
+527
+00:26:10,334 --> 00:26:11,750
+and eliminate any ambiguity there.
+
+528
+00:26:11,750 --> 00:26:15,350
+So you can see draw ray,
+transform.position, and then
+
+529
+00:26:15,350 --> 00:26:18,560
+we just say
+transform.transfromdirection,
+
+530
+00:26:18,560 --> 00:26:25,610
+vector3.forward, and then times 1,000
+just means 1,000 units from that point.
+
+531
+00:26:25,610 --> 00:26:28,220
+And then color.red.
+
+532
+00:26:28,220 --> 00:26:31,320
+And so what that will do
+is-- only in the editor view,
+
+533
+00:26:31,320 --> 00:26:33,320
+so this doesn't apply
+in the actual game.
+
+534
+00:26:33,320 --> 00:26:38,000
+This is just a debug
+call, debug.drawray.
+
+535
+00:26:38,000 --> 00:26:42,180
+And so it'll render in this scene
+up here, just not done here.
+
+536
+00:26:42,180 --> 00:26:44,750
+So if we hit play, I
+actually have all the portals
+
+537
+00:26:44,750 --> 00:26:47,910
+rendering a debug ray from their
+forward transform and from my gun.
+
+538
+00:26:47,910 --> 00:26:51,170
+So you can see it there, I'm
+just doing a debug.drawray
+
+539
+00:26:51,170 --> 00:26:57,530
+with just transform.foward and using my
+transform.position as the source point.
+
+540
+00:26:57,530 --> 00:27:00,520
+And notice that Z arrow.
+
+541
+00:27:00,520 --> 00:27:03,650
+It's always following the
+same direction, right?
+
+542
+00:27:03,650 --> 00:27:05,975
+X and Y are sort of
+changing the backplanes
+
+543
+00:27:05,975 --> 00:27:11,990
+sort are like how that's rotated,
+but Z is always forward, right?
+
+544
+00:27:11,990 --> 00:27:14,400
+And so that's the ray
+coming from our gun.
+
+545
+00:27:14,400 --> 00:27:19,715
+And if we shoot a portal there and
+there, I have those also set to--
+
+546
+00:27:19,715 --> 00:27:21,840
+let me pause so I can rotate
+the view a little bit.
+
+547
+00:27:21,840 --> 00:27:24,840
+I have those also set to draw a
+ray from their forward position.
+
+548
+00:27:24,840 --> 00:27:30,930
+So those are also drawing a ray
+from what's their transform.foward,
+
+549
+00:27:30,930 --> 00:27:33,990
+their directional vector.
+
+550
+00:27:33,990 --> 00:27:35,100
+But yeah, ray casting.
+
+551
+00:27:35,100 --> 00:27:40,950
+It's pretty easy just to get some
+pretty simple collision tests this way
+
+552
+00:27:40,950 --> 00:27:44,020
+with guns, with a lot
+of different things.
+
+553
+00:27:44,020 --> 00:27:47,790
+But primarily, you'll see this used
+for like calculating whether something
+
+554
+00:27:47,790 --> 00:27:49,170
+is blocking something else.
+
+555
+00:27:49,170 --> 00:27:52,950
+Like if a car is moving and maybe it
+detects another car, like in "Grand
+
+556
+00:27:52,950 --> 00:27:54,154
+Theft Auto," for example.
+
+557
+00:27:54,154 --> 00:27:56,820
+And your car is driving down the
+center of the road or something
+
+558
+00:27:56,820 --> 00:28:00,180
+and it wants to know whether there's
+a car two units in front of it
+
+559
+00:28:00,180 --> 00:28:00,810
+or something.
+
+560
+00:28:00,810 --> 00:28:03,090
+You just cast a ray and
+see if there's any geometry
+
+561
+00:28:03,090 --> 00:28:04,970
+there from its forward vector, right?
+
+562
+00:28:04,970 --> 00:28:07,170
+Transform.position,
+car.position, and then
+
+563
+00:28:07,170 --> 00:28:10,260
+get its forward vector, which
+will be its Z direction.
+
+564
+00:28:10,260 --> 00:28:13,140
+And then it depends on whether
+or maybe your game is top down,
+
+565
+00:28:13,140 --> 00:28:17,000
+maybe it's not your forward vector,
+maybe it's your Y vector in that case.
+
+566
+00:28:17,000 --> 00:28:20,640
+But that will effectively give you--
+not only that you've got a collision,
+
+567
+00:28:20,640 --> 00:28:24,000
+but also tell you where the
+collision is too, which is nice.
+
+568
+00:28:24,000 --> 00:28:33,750
+And we do that in the portal gun
+script where we call physics@raycast.
+
+569
+00:28:33,750 --> 00:28:36,860
+So this is the function, by the
+way, to actually do the ray cast.
+
+570
+00:28:36,860 --> 00:28:38,860
+The interesting thing
+about ray casting in Unity
+
+571
+00:28:38,860 --> 00:28:41,740
+is that it returns a struct object.
+
+572
+00:28:41,740 --> 00:28:45,492
+And so, you need to declare
+this hit object, which
+
+573
+00:28:45,492 --> 00:28:47,950
+will tell you all the information
+about the hit, like where
+
+574
+00:28:47,950 --> 00:28:50,890
+it was, whether it was
+a hit to begin with,
+
+575
+00:28:50,890 --> 00:28:55,420
+and what the normal was on the surface
+that it collided with, so the angle
+
+576
+00:28:55,420 --> 00:29:00,610
+at which that sort of
+plane was projecting out.
+
+577
+00:29:00,610 --> 00:29:06,640
+And then, you call physics@raycast with
+the position and a transform direction.
+
+578
+00:29:06,640 --> 00:29:09,640
+And then, you pass in out hit.
+
+579
+00:29:09,640 --> 00:29:15,190
+So out is interesting because it is
+sort of C Sharp's way of allowing you
+
+580
+00:29:15,190 --> 00:29:17,440
+to return multiple values to something.
+
+581
+00:29:17,440 --> 00:29:20,320
+So out is going to be
+an object, in this case,
+
+582
+00:29:20,320 --> 00:29:23,440
+it's going to be our ray cast hit
+that we declared up here, right?
+
+583
+00:29:23,440 --> 00:29:27,610
+Which is a struct, which recall is just
+a collection of variables like in C
+
+584
+00:29:27,610 --> 00:29:30,210
+or C++.
+
+585
+00:29:30,210 --> 00:29:34,750
+And out hit just means that normally we
+pass in these values to the function,
+
+586
+00:29:34,750 --> 00:29:36,790
+they don't get manipulated, right?
+
+587
+00:29:36,790 --> 00:29:40,810
+But we pass in this
+variable as out, which
+
+588
+00:29:40,810 --> 00:29:42,620
+will allow this function
+to actually change
+
+589
+00:29:42,620 --> 00:29:45,670
+the data inside this hit variable.
+
+590
+00:29:45,670 --> 00:29:48,550
+And so the result of that
+is hit from this point
+
+591
+00:29:48,550 --> 00:29:51,076
+forward contains all of the
+information about the ray
+
+592
+00:29:51,076 --> 00:29:55,150
+cast that we just triggered.
+
+593
+00:29:55,150 --> 00:29:57,160
+And when we call
+mathf.inifity, that just
+
+594
+00:29:57,160 --> 00:30:02,140
+means ray cast to infinity,
+which is until forever and ever.
+
+595
+00:30:02,140 --> 00:30:04,180
+And Unity obviously
+doesn't check infinitely
+
+596
+00:30:04,180 --> 00:30:08,980
+whether something is colliding with
+something, it optimizes the right way.
+
+597
+00:30:08,980 --> 00:30:13,360
+But you can use that just if you
+don't want to necessarily specify I
+
+598
+00:30:13,360 --> 00:30:16,335
+want to check two units or five units
+or a thousand units front of me.
+
+599
+00:30:16,335 --> 00:30:18,460
+I want to just check forever
+and see if it collides
+
+600
+00:30:18,460 --> 00:30:19,960
+with something in your scene, right?
+
+601
+00:30:19,960 --> 00:30:22,480
+
+
+602
+00:30:22,480 --> 00:30:25,700
+And then as you can see here once
+we have detected a collision,
+
+603
+00:30:25,700 --> 00:30:28,150
+we play a portal sound,
+we get the right portal,
+
+604
+00:30:28,150 --> 00:30:30,520
+and then we set the portal's
+transform and rotation
+
+605
+00:30:30,520 --> 00:30:32,780
+based upon the hits point and rotation.
+
+606
+00:30:32,780 --> 00:30:36,229
+And that's pretty much all that's
+involved in shooting the gun.
+
+607
+00:30:36,229 --> 00:30:38,020
+And you can take a look
+through here if you
+
+608
+00:30:38,020 --> 00:30:41,020
+want to get a sense of how it
+works, and maybe explore also
+
+609
+00:30:41,020 --> 00:30:45,220
+the physics.raycast
+section of the API just
+
+610
+00:30:45,220 --> 00:30:48,350
+to understand what exactly it
+returns and what you can do with it.
+
+611
+00:30:48,350 --> 00:30:50,230
+But in this case, this
+is how we're using
+
+612
+00:30:50,230 --> 00:30:53,350
+it to detect whether we've
+intersected with the wall.
+
+613
+00:30:53,350 --> 00:30:56,470
+So it'll intersect
+with any sort of mesh.
+
+614
+00:30:56,470 --> 00:30:59,530
+And then when it does, it will
+tell you exactly how it did.
+
+615
+00:30:59,530 --> 00:31:02,450
+So that is what ray casting is.
+
+616
+00:31:02,450 --> 00:31:07,034
+Ray casting has another name for like
+old school games like "Wolfenstein."
+
+617
+00:31:07,034 --> 00:31:08,950
+The method of rendering
+was called ray casting
+
+618
+00:31:08,950 --> 00:31:15,700
+where you would generate a ray
+from every pixel of the screen
+
+619
+00:31:15,700 --> 00:31:19,090
+effectively, although it was mostly
+just every line of the screen.
+
+620
+00:31:19,090 --> 00:31:22,460
+And you would just look up and down for
+everywhere it intersected in the scene,
+
+621
+00:31:22,460 --> 00:31:24,710
+and then just draw a texture there.
+
+622
+00:31:24,710 --> 00:31:28,731
+And so that would generate
+a world that looked 3D,
+
+623
+00:31:28,731 --> 00:31:31,480
+but you couldn't move up and down
+because it was always generating
+
+624
+00:31:31,480 --> 00:31:32,813
+all the rays completely forward.
+
+625
+00:31:32,813 --> 00:31:36,130
+And so you were locked onto two axis.
+
+626
+00:31:36,130 --> 00:31:38,135
+But ray casting is different in Unity.
+
+627
+00:31:38,135 --> 00:31:40,270
+Ray casting is just
+literally casting a ray
+
+628
+00:31:40,270 --> 00:31:45,190
+in 3D space versus the sort
+of 2D space that it was
+
+629
+00:31:45,190 --> 00:31:47,230
+casting in games like "Wolfenstein."
+
+630
+00:31:47,230 --> 00:31:54,810
+Here's another screenshot of normals
+from our portals casting out rays.
+
+631
+00:31:54,810 --> 00:31:58,690
+And I want to look up and see if I can
+find a picture of what "Wolfenstein"
+
+632
+00:31:58,690 --> 00:31:59,190
+looked like.
+
+633
+00:31:59,190 --> 00:32:02,180
+
+
+634
+00:32:02,180 --> 00:32:08,760
+I'm pretty sure most folks are
+probably familiar with not the new one.
+
+635
+00:32:08,760 --> 00:32:10,620
+Yeah, "Wolfenstein 3D."
+
+636
+00:32:10,620 --> 00:32:14,010
+So this was "Wolfenstein."
+
+637
+00:32:14,010 --> 00:32:18,470
+So old school, but this sort
+of ray casting was different.
+
+638
+00:32:18,470 --> 00:32:24,300
+It would basically shoot rays from every
+single line of the screen up and down.
+
+639
+00:32:24,300 --> 00:32:26,760
+And it would detect, based
+on the level geometry-- which
+
+640
+00:32:26,760 --> 00:32:28,051
+was very simple level geometry.
+
+641
+00:32:28,051 --> 00:32:31,650
+It was just basically whether there
+was a wall there or not, true or false,
+
+642
+00:32:31,650 --> 00:32:34,100
+kind of like a 2D image.
+
+643
+00:32:34,100 --> 00:32:36,120
+And it would draw,
+based on how far away it
+
+644
+00:32:36,120 --> 00:32:38,790
+was, that particular
+point of the geometry,
+
+645
+00:32:38,790 --> 00:32:43,959
+it would just draw pixels from a
+specific texture at a specific point.
+
+646
+00:32:43,959 --> 00:32:46,000
+And they had to interpolate
+where in the texture.
+
+647
+00:32:46,000 --> 00:32:47,550
+It was a little more complicated.
+
+648
+00:32:47,550 --> 00:32:52,860
+But in case you see ray casting
+used in those two different senses--
+
+649
+00:32:52,860 --> 00:32:56,100
+in the case of old school
+game engines, in the case
+
+650
+00:32:56,100 --> 00:33:07,790
+of modern Unity sort of ray casting,
+that is what is involved in that.
+
+651
+00:33:07,790 --> 00:33:12,070
+So any questions as to how
+in a nutshell the ray casting
+
+652
+00:33:12,070 --> 00:33:16,005
+works in the context of our game here?
+
+653
+00:33:16,005 --> 00:33:18,750
+AUDIENCE: Are we going to
+be using the [INAUDIBLE]??
+
+654
+00:33:18,750 --> 00:33:21,510
+COLTON OGDEN: So unfortunately, no.
+
+655
+00:33:21,510 --> 00:33:24,360
+The Oculus does not work on Mac.
+
+656
+00:33:24,360 --> 00:33:26,110
+They do not have Mac support.
+
+657
+00:33:26,110 --> 00:33:30,780
+And so we were unable to
+get a version of it working.
+
+658
+00:33:30,780 --> 00:33:34,980
+We don't have the means to necessarily
+transport given how much time we had.
+
+659
+00:33:34,980 --> 00:33:39,460
+Now getting VR working in
+Unity is actually very easy.
+
+660
+00:33:39,460 --> 00:33:43,860
+If I recall correctly, I have
+to just remember the exact menu.
+
+661
+00:33:43,860 --> 00:33:48,900
+I had sort of anticipated
+talking about this before.
+
+662
+00:33:48,900 --> 00:33:51,920
+I think it's player XR settings.
+
+663
+00:33:51,920 --> 00:33:52,950
+Yeah, that's it is.
+
+664
+00:33:52,950 --> 00:33:55,050
+So it's incredibly easy.
+
+665
+00:33:55,050 --> 00:33:58,560
+If you want to do a game in VR in
+Unity, and you have a PC, out of the box
+
+666
+00:33:58,560 --> 00:34:00,270
+is very easy just to get it working.
+
+667
+00:34:00,270 --> 00:34:06,090
+All you need to do is go to Edit
+Project Settings, and then go to Player.
+
+668
+00:34:06,090 --> 00:34:11,070
+And then in the XR settings-- so Unity
+has deamed all of its VR AR stuff
+
+669
+00:34:11,070 --> 00:34:13,460
+as XR.
+
+670
+00:34:13,460 --> 00:34:15,670
+And you click Virtual
+Reality Supported Here.
+
+671
+00:34:15,670 --> 00:34:19,280
+And you have your Oculus Rift
+or Vibe or whatever plugged in,
+
+672
+00:34:19,280 --> 00:34:22,389
+it'll just work with the
+camera right out of the gate.
+
+673
+00:34:22,389 --> 00:34:23,352
+So it's pretty easy.
+
+674
+00:34:23,352 --> 00:34:25,560
+You may have to install
+drivers on your computer such
+
+675
+00:34:25,560 --> 00:34:28,060
+that your computer knows that
+you have an Oculus plugged in,
+
+676
+00:34:28,060 --> 00:34:30,239
+but assuming that's all
+set up, your project
+
+677
+00:34:30,239 --> 00:34:33,046
+is as easy as just
+clicking this checkbox.
+
+678
+00:34:33,046 --> 00:34:36,004
+AUDIENCE: Which headsets
+does this support?
+
+679
+00:34:36,004 --> 00:34:41,540
+COLTON OGDEN: HoloLens, Oculus
+Rift, and I'm pretty sure the Vive.
+
+680
+00:34:41,540 --> 00:34:43,550
+90% sure the Vive.
+
+681
+00:34:43,550 --> 00:34:46,429
+I'm not 100%, we can Google it though.
+
+682
+00:34:46,429 --> 00:34:47,810
+Let's see.
+
+683
+00:34:47,810 --> 00:34:48,389
+Unity 5.
+
+684
+00:34:48,389 --> 00:34:51,097
+AUDIENCE: Is there a special
+developer version of those headsets,
+
+685
+00:34:51,097 --> 00:34:52,745
+or is it [INAUDIBLE]?
+
+686
+00:34:52,745 --> 00:34:56,390
+
+
+687
+00:34:56,390 --> 00:34:57,890
+COLTON OGDEN: It looks like it does.
+
+688
+00:34:57,890 --> 00:34:59,514
+It looks like it definitely does, yeah.
+
+689
+00:34:59,514 --> 00:35:02,450
+And of course, VR Windows PC is very--
+
+690
+00:35:02,450 --> 00:35:03,170
+I apologize.
+
+691
+00:35:03,170 --> 00:35:08,720
+I totally thought going into the
+course that Oculus worked on a Mac.
+
+692
+00:35:08,720 --> 00:35:11,769
+But as of even October, they
+were like it's not going
+
+693
+00:35:11,769 --> 00:35:13,310
+to work on any MacBook ever released.
+
+694
+00:35:13,310 --> 00:35:17,270
+So only on a PC, unfortunately.
+
+695
+00:35:17,270 --> 00:35:20,014
+That said, if you do have a
+PC, super easy to get working.
+
+696
+00:35:20,014 --> 00:35:22,430
+And it looks like this is
+actually a pretty cool tutorial.
+
+697
+00:35:22,430 --> 00:35:25,790
+I haven't looked at this,
+but I tend to like Ray--
+
+698
+00:35:25,790 --> 00:35:28,280
+I don't know if his name is
+Wenderlich or Wenderlich,
+
+699
+00:35:28,280 --> 00:35:31,940
+but he makes really good game
+programming tutorials in general.
+
+700
+00:35:31,940 --> 00:35:36,620
+So because we're co-incidentally
+here, if you guys are curious,
+
+701
+00:35:36,620 --> 00:35:39,890
+I really like this website
+for basic tutorial stuff.
+
+702
+00:35:39,890 --> 00:35:42,873
+AUDIENCE: Are there other
+[INAUDIBLE] coming back?
+
+703
+00:35:42,873 --> 00:35:44,129
+You have Vive.
+
+704
+00:35:44,129 --> 00:35:47,000
+COLTON OGDEN: We have Vive.
+
+705
+00:35:47,000 --> 00:35:51,090
+Well, the thing about Vive is you need
+to install ceiling mounted cameras
+
+706
+00:35:51,090 --> 00:35:52,380
+in order for it to work.
+
+707
+00:35:52,380 --> 00:35:54,420
+So that's kind of out of the equation.
+
+708
+00:35:54,420 --> 00:36:00,215
+We have the Gear VR, but we would need
+to export it to mobile and test it.
+
+709
+00:36:00,215 --> 00:36:02,100
+I didn't anticipate it
+not working for Mac,
+
+710
+00:36:02,100 --> 00:36:03,870
+and so it kind of came up a bit late.
+
+711
+00:36:03,870 --> 00:36:04,860
+And so, it's on me.
+
+712
+00:36:04,860 --> 00:36:05,560
+I apologize.
+
+713
+00:36:05,560 --> 00:36:09,830
+But if you are doing a PC game in
+Oculus and you want some assistance,
+
+714
+00:36:09,830 --> 00:36:11,087
+I'm happy to help out.
+
+715
+00:36:11,087 --> 00:36:14,420
+It looks like it's very easy just to get
+working with the default FPS controller
+
+716
+00:36:14,420 --> 00:36:15,200
+camera.
+
+717
+00:36:15,200 --> 00:36:19,220
+So definitely reach out if
+you're developing Oculus
+
+718
+00:36:19,220 --> 00:36:20,918
+and need some assistance.
+
+719
+00:36:20,918 --> 00:36:24,200
+
+
+720
+00:36:24,200 --> 00:36:31,879
+Maybe for the our next Unity course,
+we can have a big sort of VR day
+
+721
+00:36:31,879 --> 00:36:33,170
+where we bring in all the guns.
+
+722
+00:36:33,170 --> 00:36:35,821
+
+
+723
+00:36:35,821 --> 00:36:36,320
+But, yeah.
+
+724
+00:36:36,320 --> 00:36:41,780
+Back to ray casting and what
+we were just talking about.
+
+725
+00:36:41,780 --> 00:36:47,660
+Shooting a ray on your z-axis based on
+your rotation, get information from it,
+
+726
+00:36:47,660 --> 00:36:50,540
+and then sort of what we
+do is we flip the portal
+
+727
+00:36:50,540 --> 00:36:55,430
+based on the hit.rotation of the
+surface that we collided with.
+
+728
+00:36:55,430 --> 00:36:58,070
+And that's effectively all
+the ray casting that we
+
+729
+00:36:58,070 --> 00:37:01,520
+need to worry about for "Portal."
+
+730
+00:37:01,520 --> 00:37:05,390
+But the actual making of "Portal" is
+probably the most interesting part
+
+731
+00:37:05,390 --> 00:37:06,380
+of this whole project.
+
+732
+00:37:06,380 --> 00:37:10,590
+And so let's go ahead and
+go back into present mode.
+
+733
+00:37:10,590 --> 00:37:19,530
+So a rendered texture is the fundamental
+way at which we go about doing it.
+
+734
+00:37:19,530 --> 00:37:22,100
+And there are various
+ways to accomplish doing
+
+735
+00:37:22,100 --> 00:37:24,650
+it, some that are more
+technically challenging
+
+736
+00:37:24,650 --> 00:37:26,510
+and look a lot nicer than others.
+
+737
+00:37:26,510 --> 00:37:29,510
+I did a sort of simple
+version of it just
+
+738
+00:37:29,510 --> 00:37:32,455
+to get to a proof of
+concept out of the gate.
+
+739
+00:37:32,455 --> 00:37:35,330
+But Unity makes it really easy just
+to get a simple render texture up
+
+740
+00:37:35,330 --> 00:37:36,170
+and running.
+
+741
+00:37:36,170 --> 00:37:41,710
+So a rendered texture is,
+recall, just a texture in Unity.
+
+742
+00:37:41,710 --> 00:37:44,540
+So it's an asset, it's an Unity
+asset that you can create.
+
+743
+00:37:44,540 --> 00:37:46,580
+The difference between
+a rendered texture
+
+744
+00:37:46,580 --> 00:37:51,234
+and a texture that you might have
+imported from like Photoshop or Gimp,
+
+745
+00:37:51,234 --> 00:37:53,150
+is that a rendered texture
+can be rendered to.
+
+746
+00:37:53,150 --> 00:37:57,470
+And typically, this is used for things
+like cameras being rendered to it.
+
+747
+00:37:57,470 --> 00:38:00,570
+Although, from what I understand,
+you can render anything to it.
+
+748
+00:38:00,570 --> 00:38:03,090
+So you can create procedural
+textures this way as well.
+
+749
+00:38:03,090 --> 00:38:07,550
+But in this example
+here, we're essentially
+
+750
+00:38:07,550 --> 00:38:09,950
+creating a screen into
+which we're looking
+
+751
+00:38:09,950 --> 00:38:12,950
+at the viewpoint of our
+other portal, right?
+
+752
+00:38:12,950 --> 00:38:14,940
+From its forward direction.
+
+753
+00:38:14,940 --> 00:38:18,440
+So we can see what it will look
+like once we walk out of the portal
+
+754
+00:38:18,440 --> 00:38:21,920
+and go into the next area.
+
+755
+00:38:21,920 --> 00:38:24,710
+So I have some in the slides, if
+you want to download the slides.
+
+756
+00:38:24,710 --> 00:38:25,910
+They're here.
+
+757
+00:38:25,910 --> 00:38:28,090
+You can see exactly how to
+create a render texture,
+
+758
+00:38:28,090 --> 00:38:31,470
+so literally just create and then render
+texture that creates a render texture.
+
+759
+00:38:31,470 --> 00:38:35,300
+These are the settings that I used
+for the actual render texture.
+
+760
+00:38:35,300 --> 00:38:39,920
+So what would happen, do we think,
+if we use like a low res render
+
+761
+00:38:39,920 --> 00:38:42,258
+texture, just logically?
+
+762
+00:38:42,258 --> 00:38:45,610
+
+
+763
+00:38:45,610 --> 00:38:50,740
+Or let's say my rendered texture
+was like 200 pixels by 200 pixels?
+
+764
+00:38:50,740 --> 00:38:56,225
+And the resolution of
+our game is like 10 EDP?
+
+765
+00:38:56,225 --> 00:38:58,710
+AUDIENCE: Will that just be blown up?
+
+766
+00:38:58,710 --> 00:39:00,670
+COLTON OGDEN: It won't
+be blown up because what
+
+767
+00:39:00,670 --> 00:39:03,930
+we're doing is we're taking a mesh,
+and we're affixing the texture to it.
+
+768
+00:39:03,930 --> 00:39:07,490
+So it'll just scale to fill the mesh.
+
+769
+00:39:07,490 --> 00:39:11,389
+But what will it look
+like when it's rendered?
+
+770
+00:39:11,389 --> 00:39:13,180
+Because it's rendering
+a 200 pixel texture.
+
+771
+00:39:13,180 --> 00:39:16,240
+
+
+772
+00:39:16,240 --> 00:39:19,730
+It'll apixelate it,
+it'll look really nasty.
+
+773
+00:39:19,730 --> 00:39:22,220
+And so in order to fix that
+problem, typically what you'll
+
+774
+00:39:22,220 --> 00:39:26,350
+do-- a smart way to do it, would be
+to dynamically figure out at runtime
+
+775
+00:39:26,350 --> 00:39:28,100
+what's the resolution
+of your game, right?
+
+776
+00:39:28,100 --> 00:39:31,670
+If it's going to be rendered in
+various resolutions up to 4K,
+
+777
+00:39:31,670 --> 00:39:34,220
+maybe down to 720p.
+
+778
+00:39:34,220 --> 00:39:38,560
+And then create a render texture
+that is the size of your game.
+
+779
+00:39:38,560 --> 00:39:41,810
+And then by doing that, it will ensure
+that no matter what your resolution is,
+
+780
+00:39:41,810 --> 00:39:45,860
+it will always be 1:1 pixel ratio, even
+if you're right up close to it, right?
+
+781
+00:39:45,860 --> 00:39:48,020
+It will fill up your whole screen.
+
+782
+00:39:48,020 --> 00:39:49,880
+In this case, we went
+for a simpler method
+
+783
+00:39:49,880 --> 00:39:53,624
+so we didn't have to do any dynamic
+instantiation of the rendered texture,
+
+784
+00:39:53,624 --> 00:39:54,790
+which you can absolutely do.
+
+785
+00:39:54,790 --> 00:39:56,940
+And it is the more robust way to do it.
+
+786
+00:39:56,940 --> 00:39:59,780
+But in this case, I
+just chose 1024x1024,
+
+787
+00:39:59,780 --> 00:40:03,500
+figuring that that was going to be
+good enough for demonstration purposes.
+
+788
+00:40:03,500 --> 00:40:04,970
+And most of these other settings--
+
+789
+00:40:04,970 --> 00:40:07,386
+I believe actually all these
+other settings are completely
+
+790
+00:40:07,386 --> 00:40:08,880
+default render texture settings.
+
+791
+00:40:08,880 --> 00:40:11,920
+The only ones that changed were
+this is 256x256 by default,
+
+792
+00:40:11,920 --> 00:40:14,600
+and it just looks really pixelated
+and nasty, especially when
+
+793
+00:40:14,600 --> 00:40:15,766
+you're right up close to it.
+
+794
+00:40:15,766 --> 00:40:18,410
+
+
+795
+00:40:18,410 --> 00:40:20,510
+And then all we need to do--
+
+796
+00:40:20,510 --> 00:40:25,770
+so once we've created a rendered
+texture in our scene, in our assets--
+
+797
+00:40:25,770 --> 00:40:28,134
+so here, I'm going to go to textures.
+
+798
+00:40:28,134 --> 00:40:30,550
+This is where I'm showing all
+my textures, whether they're
+
+799
+00:40:30,550 --> 00:40:32,090
+rendered textures or not.
+
+800
+00:40:32,090 --> 00:40:34,310
+I have these two render textures here.
+
+801
+00:40:34,310 --> 00:40:36,019
+And so, these are by
+default, they're not
+
+802
+00:40:36,019 --> 00:40:39,184
+going to be mapped to anything because
+they're just empty rendered textures.
+
+803
+00:40:39,184 --> 00:40:40,910
+We've effectively
+allocated them and said
+
+804
+00:40:40,910 --> 00:40:44,220
+something will be rendering to these
+later, but for now they're just empty,
+
+805
+00:40:44,220 --> 00:40:45,490
+there's placeholders, right?
+
+806
+00:40:45,490 --> 00:40:50,060
+They're like blank screens, but
+the TV hasn't been turned on yet.
+
+807
+00:40:50,060 --> 00:40:58,580
+In order to actually render to
+them, we go into whatever camera
+
+808
+00:40:58,580 --> 00:41:02,570
+we want to render it to,
+render to the render texture.
+
+809
+00:41:02,570 --> 00:41:05,270
+Because we're effectively
+taking these render textures,
+
+810
+00:41:05,270 --> 00:41:07,850
+and we're rendering a camera
+view onto them, right?
+
+811
+00:41:07,850 --> 00:41:10,920
+Each of the portals has a camera
+behind it looking out from it.
+
+812
+00:41:10,920 --> 00:41:13,280
+And so we want to take
+that camera's view,
+
+813
+00:41:13,280 --> 00:41:16,914
+and we want to render that
+onto the other portal's face.
+
+814
+00:41:16,914 --> 00:41:18,830
+The other portal's render
+texture, the texture
+
+815
+00:41:18,830 --> 00:41:21,360
+that we're going to put onto it.
+
+816
+00:41:21,360 --> 00:41:26,390
+And so, all we need to do is
+say, "Here's my orange portal.
+
+817
+00:41:26,390 --> 00:41:28,520
+I have my camera here.
+
+818
+00:41:28,520 --> 00:41:32,280
+Every camera has a target
+texture just right out the gate."
+
+819
+00:41:32,280 --> 00:41:35,510
+So you can just say, "OK, I'm going
+to take my orange portal texture,
+
+820
+00:41:35,510 --> 00:41:37,710
+my render texture that
+has been instantiated
+
+821
+00:41:37,710 --> 00:41:40,692
+so it knows that it's going to be
+able to receive an input source.
+
+822
+00:41:40,692 --> 00:41:42,650
+And I'm going to just
+click and drag it there."
+
+823
+00:41:42,650 --> 00:41:43,525
+And it's that simple.
+
+824
+00:41:43,525 --> 00:41:46,910
+Now whenever you run the game, you'll
+notice that your render texture
+
+825
+00:41:46,910 --> 00:41:47,865
+updates.
+
+826
+00:41:47,865 --> 00:41:50,240
+I'm not sure if it updates in
+real time in the inspector,
+
+827
+00:41:50,240 --> 00:41:54,110
+but it renders if you're
+showing it on to a--
+
+828
+00:41:54,110 --> 00:41:56,080
+yeah, it doesn't render
+in the inspector,
+
+829
+00:41:56,080 --> 00:41:59,930
+but it will update if you
+affix it to any other surface.
+
+830
+00:41:59,930 --> 00:42:01,870
+And so, what we're doing
+is we're affixing it
+
+831
+00:42:01,870 --> 00:42:05,386
+to the meshes that are
+associated with each portal.
+
+832
+00:42:05,386 --> 00:42:06,677
+James, did you have a question?
+
+833
+00:42:06,677 --> 00:42:07,591
+AUDIENCE: Yeah.
+
+834
+00:42:07,591 --> 00:42:09,419
+How did you make the texture?
+
+835
+00:42:09,419 --> 00:42:11,340
+COLTON OGDEN: Oh sure,
+the render texture?
+
+836
+00:42:11,340 --> 00:42:14,020
+So I just right click,
+and then I go to create,
+
+837
+00:42:14,020 --> 00:42:16,149
+and then to render texture right here.
+
+838
+00:42:16,149 --> 00:42:18,940
+And that will give you most of the
+settings that you need to get up
+
+839
+00:42:18,940 --> 00:42:21,231
+and running with it, and you
+can assign it to a camera.
+
+840
+00:42:21,231 --> 00:42:23,730
+But the important thing is
+do consider your resolution
+
+841
+00:42:23,730 --> 00:42:24,730
+for your render texture.
+
+842
+00:42:24,730 --> 00:42:28,109
+Make sure that it's high enough so that
+your game won't look pixelated when
+
+843
+00:42:28,109 --> 00:42:29,650
+you're looking at it pretty close up.
+
+844
+00:42:29,650 --> 00:42:30,657
+AUDIENCE: So it's as easy as that?
+
+845
+00:42:30,657 --> 00:42:31,940
+You just make the texture
+and then drag the camera?
+
+846
+00:42:31,940 --> 00:42:33,120
+COLTON OGDEN: Yup.
+
+847
+00:42:33,120 --> 00:42:33,960
+Yup.
+
+848
+00:42:33,960 --> 00:42:38,150
+And what that will do is
+create a link between the two
+
+849
+00:42:38,150 --> 00:42:40,294
+so that anything the
+camera sees, it's no longer
+
+850
+00:42:40,294 --> 00:42:42,210
+going to be rendering
+to the scene or anything
+
+851
+00:42:42,210 --> 00:42:44,190
+like, it's just going to
+render to the texture.
+
+852
+00:42:44,190 --> 00:42:46,940
+And actually, I think you can run
+it to the scene and the texture,
+
+853
+00:42:46,940 --> 00:42:49,360
+but these aren't rendering
+to the scene at all.
+
+854
+00:42:49,360 --> 00:42:52,380
+The only one rendering to the
+scene is the first person character
+
+855
+00:42:52,380 --> 00:42:56,248
+because it's the default
+camera, main camera.
+
+856
+00:42:56,248 --> 00:43:03,733
+AUDIENCE: What happens if you
+set the resolution to [INAUDIBLE]
+
+857
+00:43:03,733 --> 00:43:06,220
+COLTON OGDEN: If it's
+too high of a resolution,
+
+858
+00:43:06,220 --> 00:43:09,807
+it's just going to compress to fit
+the mesh, whatever it's affixed to.
+
+859
+00:43:09,807 --> 00:43:11,890
+And you'll probably run
+into performance problems.
+
+860
+00:43:11,890 --> 00:43:13,210
+But it's not going to break.
+
+861
+00:43:13,210 --> 00:43:14,170
+Yeah.
+
+862
+00:43:14,170 --> 00:43:19,300
+Because your resolution doesn't really
+have an effect necessarily on whatever
+
+863
+00:43:19,300 --> 00:43:22,720
+is in your game world, and
+that doesn't cause any issues.
+
+864
+00:43:22,720 --> 00:43:24,190
+It gets interpolated.
+
+865
+00:43:24,190 --> 00:43:27,110
+Unity will just calculate how to
+render it to the screen, right?
+
+866
+00:43:27,110 --> 00:43:30,790
+
+
+867
+00:43:30,790 --> 00:43:34,000
+Game textures, generally,
+are very high resolution,
+
+868
+00:43:34,000 --> 00:43:40,489
+like 4K textures are often used, even
+if you're running your game in 1080p.
+
+869
+00:43:40,489 --> 00:43:42,280
+And a game engine will
+probably optimize it
+
+870
+00:43:42,280 --> 00:43:46,490
+and down sampled the texture so that
+it is like actually a 1080p texture.
+
+871
+00:43:46,490 --> 00:43:51,490
+And you're not trying to calculate
+more, draw more than you need to.
+
+872
+00:43:51,490 --> 00:43:53,392
+But Unity will figure that out for you.
+
+873
+00:43:53,392 --> 00:43:54,850
+You don't have to worry about that.
+
+874
+00:43:54,850 --> 00:43:58,080
+
+
+875
+00:43:58,080 --> 00:43:59,990
+But yeah, that's what
+a render texture is.
+
+876
+00:43:59,990 --> 00:44:02,360
+And that's how we are
+creating this illusion.
+
+877
+00:44:02,360 --> 00:44:06,530
+Remember, everything in
+the game is an illusion.
+
+878
+00:44:06,530 --> 00:44:13,180
+In this case, because
+the textures are flat
+
+879
+00:44:13,180 --> 00:44:14,930
+and there's no perspective
+correction, you
+
+880
+00:44:14,930 --> 00:44:19,130
+can see that it's a texture, even if it
+is slightly convincing from far away.
+
+881
+00:44:19,130 --> 00:44:21,590
+Like from far away it
+actually kind of looks--
+
+882
+00:44:21,590 --> 00:44:24,950
+I mean, I don't know if
+it necessarily looks real.
+
+883
+00:44:24,950 --> 00:44:26,270
+I mean, it kind of does, right?
+
+884
+00:44:26,270 --> 00:44:27,440
+From here, it's hard to tell.
+
+885
+00:44:27,440 --> 00:44:30,050
+And from here it kind of looks like
+we're going into another room, right?
+
+886
+00:44:30,050 --> 00:44:32,390
+I go like that-- well,
+that's the broken wall.
+
+887
+00:44:32,390 --> 00:44:34,010
+When I go like that, right?
+
+888
+00:44:34,010 --> 00:44:36,260
+There's a portal there, and
+it kind of looks like it's
+
+889
+00:44:36,260 --> 00:44:37,880
+a real room that we're walking through.
+
+890
+00:44:37,880 --> 00:44:38,838
+It's just a resolution.
+
+891
+00:44:38,838 --> 00:44:41,600
+But all we're doing is we're
+just drawing a camera's view
+
+892
+00:44:41,600 --> 00:44:43,380
+onto that texture in real time.
+
+893
+00:44:43,380 --> 00:45:01,030
+And if you notice, when we
+move, we can see the gun.
+
+894
+00:45:01,030 --> 00:45:03,732
+So we can see that it's
+rendering it in real time.
+
+895
+00:45:03,732 --> 00:45:05,440
+And that's the power
+of a render texture.
+
+896
+00:45:05,440 --> 00:45:07,523
+And this will allow you
+to do all kinds of things.
+
+897
+00:45:07,523 --> 00:45:09,850
+You can have like TV
+screens in your game
+
+898
+00:45:09,850 --> 00:45:13,496
+that are rendering another
+part of your scene.
+
+899
+00:45:13,496 --> 00:45:15,370
+Obviously an example
+like this where you have
+
+900
+00:45:15,370 --> 00:45:17,050
+a portal looking into another area.
+
+901
+00:45:17,050 --> 00:45:18,940
+Now if you apply a
+perspective correction
+
+902
+00:45:18,940 --> 00:45:22,065
+to this whereby your camera actually
+tracks where your player's position is
+
+903
+00:45:22,065 --> 00:45:25,330
+relative to the portal, you can
+accomplish a much more believable look.
+
+904
+00:45:25,330 --> 00:45:28,390
+And you can actually make it seem as
+if you're looking into another area
+
+905
+00:45:28,390 --> 00:45:31,240
+because the camera is literally
+moving with your player.
+
+906
+00:45:31,240 --> 00:45:34,385
+So the cameras-- like the
+stuff that it's capturing
+
+907
+00:45:34,385 --> 00:45:37,510
+is going to be changing in real time,
+not only just your character's model,
+
+908
+00:45:37,510 --> 00:45:38,010
+right?
+
+909
+00:45:38,010 --> 00:45:42,040
+The actual angle is going to change
+and therefore, be perspective correct.
+
+910
+00:45:42,040 --> 00:45:43,990
+And there's an awesome
+tutorial that I'm going
+
+911
+00:45:43,990 --> 00:45:46,955
+to link to in the slides that'll
+show you how to go about doing that.
+
+912
+00:45:46,955 --> 00:45:48,280
+And it's really awesome.
+
+913
+00:45:48,280 --> 00:45:49,570
+And so this is what it
+ends up looking like.
+
+914
+00:45:49,570 --> 00:45:51,040
+This is actually before I changed--
+
+915
+00:45:51,040 --> 00:45:53,905
+one of the portals had a
+slightly offset camera angle.
+
+916
+00:45:53,905 --> 00:45:55,780
+So you can see here this
+is like a little bit
+
+917
+00:45:55,780 --> 00:45:58,880
+higher than this one is, even though
+they should be exactly the same.
+
+918
+00:45:58,880 --> 00:46:01,710
+But it's fixed now.
+
+919
+00:46:01,710 --> 00:46:04,470
+So texture masking-- oh, any
+questions about any of that
+
+920
+00:46:04,470 --> 00:46:06,480
+process before we talk
+about texture masking?
+
+921
+00:46:06,480 --> 00:46:09,360
+
+
+922
+00:46:09,360 --> 00:46:14,760
+OK, so texture masking
+is basically the process.
+
+923
+00:46:14,760 --> 00:46:18,770
+So if we just take a plane and
+we put a render texture onto it,
+
+924
+00:46:18,770 --> 00:46:19,870
+that's what it looks like.
+
+925
+00:46:19,870 --> 00:46:21,910
+It just looks like it's just a square.
+
+926
+00:46:21,910 --> 00:46:26,260
+And this could work fine if you
+want sort of a square portal look,
+
+927
+00:46:26,260 --> 00:46:28,250
+you don't have to do any extra work.
+
+928
+00:46:28,250 --> 00:46:31,390
+But if you want a
+circle, you can't really
+
+929
+00:46:31,390 --> 00:46:35,406
+create like a circle shaped plain
+object, that doesn't really exist.
+
+930
+00:46:35,406 --> 00:46:37,280
+And even if it did, it
+wouldn't be efficient,
+
+931
+00:46:37,280 --> 00:46:41,830
+especially if you want a very
+smooth plane because everything
+
+932
+00:46:41,830 --> 00:46:43,450
+is triangles and polygons, right?
+
+933
+00:46:43,450 --> 00:46:45,730
+So if you have a
+circle, it's going to be
+
+934
+00:46:45,730 --> 00:46:48,640
+a bunch of these fanned out
+polygons, especially very high res
+
+935
+00:46:48,640 --> 00:46:49,930
+circle like one of these.
+
+936
+00:46:49,930 --> 00:46:51,880
+That's a very high res circle.
+
+937
+00:46:51,880 --> 00:46:56,070
+Making a polygon that looks
+like that is not an optimal way
+
+938
+00:46:56,070 --> 00:46:58,125
+to go about solving that problem, right?
+
+939
+00:46:58,125 --> 00:47:00,000
+The much more optimal
+way to go about solving
+
+940
+00:47:00,000 --> 00:47:05,400
+that problem would be to designate
+certain pixels of some texture
+
+941
+00:47:05,400 --> 00:47:09,420
+as being pixels that we want to
+read, and then certain other pixels
+
+942
+00:47:09,420 --> 00:47:12,180
+being not pixels that we want to read.
+
+943
+00:47:12,180 --> 00:47:19,880
+And therefore, produce the final image
+that gets put onto a geometry, right?
+
+944
+00:47:19,880 --> 00:47:23,380
+And so, what we end up doing
+is creating an image first.
+
+945
+00:47:23,380 --> 00:47:27,610
+So it's this image, which
+is kind of hard to see,
+
+946
+00:47:27,610 --> 00:47:30,682
+but it's just a simple sort of--
+
+947
+00:47:30,682 --> 00:47:31,640
+can you see from there?
+
+948
+00:47:31,640 --> 00:47:32,640
+Yeah, you can.
+
+949
+00:47:32,640 --> 00:47:34,260
+So it's just a simple oval, right?
+
+950
+00:47:34,260 --> 00:47:37,620
+It's the exact shape that we
+want our portal to look like.
+
+951
+00:47:37,620 --> 00:47:40,737
+And the pixels that are white are the
+pixels that we're going to render,
+
+952
+00:47:40,737 --> 00:47:43,820
+and the pixels that are black are the
+pixels that we don't want to render.
+
+953
+00:47:43,820 --> 00:47:48,360
+We want to consider those as
+pure zero alpha effectively.
+
+954
+00:47:48,360 --> 00:47:51,870
+And using a awesome
+shader that you can get
+
+955
+00:47:51,870 --> 00:47:56,220
+for free just easily on the Unity web
+page-- this is just a masking shader.
+
+956
+00:47:56,220 --> 00:48:00,240
+And I'm not great at writing
+shaders, but what this does
+
+957
+00:48:00,240 --> 00:48:01,350
+is turns lighting off.
+
+958
+00:48:01,350 --> 00:48:06,430
+First of all, what happens if we
+have lighting applied to our portals?
+
+959
+00:48:06,430 --> 00:48:13,122
+
+
+960
+00:48:13,122 --> 00:48:14,830
+It's going to look a
+little weird, right?
+
+961
+00:48:14,830 --> 00:48:16,780
+You're going to get shadows
+cast on your portals
+
+962
+00:48:16,780 --> 00:48:18,988
+and that doesn't make sense
+because we're effectively
+
+963
+00:48:18,988 --> 00:48:22,310
+supposed to be looking into
+another place, another area.
+
+964
+00:48:22,310 --> 00:48:24,610
+So we have shadows that are
+being cast onto our thing,
+
+965
+00:48:24,610 --> 00:48:29,130
+we're effectively like almost seeing
+like a glass door on our portal, right?
+
+966
+00:48:29,130 --> 00:48:30,760
+It sort of breaks the illusion.
+
+967
+00:48:30,760 --> 00:48:33,250
+So lighting should be off.
+
+968
+00:48:33,250 --> 00:48:35,710
+A lot of these things I'm
+not 100% on because I'm not
+
+969
+00:48:35,710 --> 00:48:38,830
+great at writing shaders, but
+it's a very simple, easy shader
+
+970
+00:48:38,830 --> 00:48:43,150
+that you can grab off
+of the Unity web page.
+
+971
+00:48:43,150 --> 00:48:48,329
+I think I clipped the url
+here at the very bottom.
+
+972
+00:48:48,329 --> 00:48:50,120
+But I grabbed it off
+of the Unity web page.
+
+973
+00:48:50,120 --> 00:48:56,710
+And all it does is it adds onto your
+material this second image here,
+
+974
+00:48:56,710 --> 00:49:00,070
+and it gets blown up a little bit
+because Unity makes any texture
+
+975
+00:49:00,070 --> 00:49:05,240
+that you apply to
+basically any texture you
+
+976
+00:49:05,240 --> 00:49:08,450
+put into like an image selector
+will get made into a square shape.
+
+977
+00:49:08,450 --> 00:49:10,340
+And our image is not square shaped.
+
+978
+00:49:10,340 --> 00:49:13,490
+But what this does is when
+you pass in this image, which
+
+979
+00:49:13,490 --> 00:49:18,740
+is called a coaling mask, it will
+basically combine the two images
+
+980
+00:49:18,740 --> 00:49:25,140
+and then cancel out any of the
+pixels that are black on this.
+
+981
+00:49:25,140 --> 00:49:32,530
+It'll effectively add the black and
+white to the alpha of the texture
+
+982
+00:49:32,530 --> 00:49:33,349
+pixels, right?
+
+983
+00:49:33,349 --> 00:49:35,140
+So you can actually
+make some of these gray
+
+984
+00:49:35,140 --> 00:49:38,230
+and then they'll have the effect of
+sort of making it half transparent.
+
+985
+00:49:38,230 --> 00:49:44,500
+But in this case, I only went with full
+transparent and full hard 255 alpha.
+
+986
+00:49:44,500 --> 00:49:48,130
+So we get sort of a crisp
+outline for our portals.
+
+987
+00:49:48,130 --> 00:49:56,800
+And that's how you end up putting
+together a basic sort of oval shape
+
+988
+00:49:56,800 --> 00:49:59,260
+on something that is just a flat mesh.
+
+989
+00:49:59,260 --> 00:50:01,310
+And you can do this with anything.
+
+990
+00:50:01,310 --> 00:50:04,810
+Anytime you need to
+take away a detail that
+
+991
+00:50:04,810 --> 00:50:09,610
+would make making a mesh extremely
+difficult or doing really cool effects,
+
+992
+00:50:09,610 --> 00:50:12,439
+it's often just a lot easier
+to create a mask for it
+
+993
+00:50:12,439 --> 00:50:14,980
+and then use the right shader
+that's meant to have that mask.
+
+994
+00:50:14,980 --> 00:50:21,290
+And then just manipulate
+that however you need to.
+
+995
+00:50:21,290 --> 00:50:23,950
+And again, the link here
+for the shader is here.
+
+996
+00:50:23,950 --> 00:50:27,880
+And then you can use this for
+pretty much anything you want.
+
+997
+00:50:27,880 --> 00:50:31,430
+End result of that is we go
+from having a square portal
+
+998
+00:50:31,430 --> 00:50:33,050
+to an elliptical portal.
+
+999
+00:50:33,050 --> 00:50:33,860
+So pretty nice.
+
+1000
+00:50:33,860 --> 00:50:37,110
+
+
+1001
+00:50:37,110 --> 00:50:39,680
+I didn't have to use a
+plane, but it doesn't really
+
+1002
+00:50:39,680 --> 00:50:48,690
+make sense to use anything else because
+using a cube would create depth.
+
+1003
+00:50:48,690 --> 00:50:51,110
+We don't want the portal
+to have any depth, really.
+
+1004
+00:50:51,110 --> 00:50:52,764
+It's just should be a flat surface.
+
+1005
+00:50:52,764 --> 00:50:54,680
+And then when we go
+through it, it should just
+
+1006
+00:50:54,680 --> 00:50:58,940
+teleport us to the other surface
+to make it look sort of seamless.
+
+1007
+00:50:58,940 --> 00:51:03,170
+I don't think there's any
+other choice of geometry that
+
+1008
+00:51:03,170 --> 00:51:05,101
+makes sense for this use case.
+
+1009
+00:51:05,101 --> 00:51:10,011
+AUDIENCE: You wouldn't just make a
+cylinder flat and have [INAUDIBLE]
+
+1010
+00:51:10,011 --> 00:51:10,993
+project on it?
+
+1011
+00:51:10,993 --> 00:51:14,130
+COLTON OGDEN: No, I probably wouldn't.
+
+1012
+00:51:14,130 --> 00:51:19,170
+To make a cylinder flat and
+project it and have no depth on it,
+
+1013
+00:51:19,170 --> 00:51:23,820
+you would be able to
+still see the rings on it.
+
+1014
+00:51:23,820 --> 00:51:27,870
+And also texturing that is a
+little bit more complicated
+
+1015
+00:51:27,870 --> 00:51:35,790
+because you'd have to UV map both
+your mask and your regular texture
+
+1016
+00:51:35,790 --> 00:51:40,306
+onto that because by default
+it's going to wrap it weird.
+
+1017
+00:51:40,306 --> 00:51:42,680
+This is just a plane, so
+whatever you texture map onto it
+
+1018
+00:51:42,680 --> 00:51:43,920
+is going to be completely flat.
+
+1019
+00:51:43,920 --> 00:51:46,086
+But a cylinder is going to
+wrap it around all sides,
+
+1020
+00:51:46,086 --> 00:51:49,374
+and it's going to look
+a little bit funky.
+
+1021
+00:51:49,374 --> 00:51:51,540
+I suppose in theory you
+could use a cylinder for it,
+
+1022
+00:51:51,540 --> 00:51:53,040
+but I think would be a
+tremendous amount of work.
+
+1023
+00:51:53,040 --> 00:51:56,090
+I don't think it would be anywhere
+near as easy as getting it to work
+
+1024
+00:51:56,090 --> 00:51:59,720
+with just a flat plane or a mesh.
+
+1025
+00:51:59,720 --> 00:52:01,710
+Interesting idea, though.
+
+1026
+00:52:01,710 --> 00:52:05,220
+I guess you could
+theoretically create a cylinder
+
+1027
+00:52:05,220 --> 00:52:07,770
+if you wanted to like a
+bridge between two worlds
+
+1028
+00:52:07,770 --> 00:52:11,707
+and have one end be one portal
+and one end be another portal
+
+1029
+00:52:11,707 --> 00:52:13,290
+and then be able to walk between them.
+
+1030
+00:52:13,290 --> 00:52:15,331
+That's a cool idea, maybe
+you can make that work.
+
+1031
+00:52:15,331 --> 00:52:20,610
+But I think for this, the
+plane is the right way to go.
+
+1032
+00:52:20,610 --> 00:52:23,640
+Any more questions as to how that works?
+
+1033
+00:52:23,640 --> 00:52:27,710
+
+
+1034
+00:52:27,710 --> 00:52:28,770
+All right.
+
+1035
+00:52:28,770 --> 00:52:30,540
+So we'll talk about teleporting now.
+
+1036
+00:52:30,540 --> 00:52:33,160
+So teleporting is pretty easy.
+
+1037
+00:52:33,160 --> 00:52:39,794
+All we really need to do is
+just create a mesh collider
+
+1038
+00:52:39,794 --> 00:52:42,210
+on the portal mesh, the orange
+portal and the blue portal.
+
+1039
+00:52:42,210 --> 00:52:47,077
+And then that mesh collider
+is a trigger and it
+
+1040
+00:52:47,077 --> 00:52:51,990
+detects a collision with something else,
+we can just define on trigger, enter.
+
+1041
+00:52:51,990 --> 00:52:56,310
+And then with that, we
+can teleport the collider
+
+1042
+00:52:56,310 --> 00:52:59,730
+other to the other portals location.
+
+1043
+00:52:59,730 --> 00:53:03,150
+So every portal, this
+is the portal component,
+
+1044
+00:53:03,150 --> 00:53:05,940
+it has a linked portal because
+we need to know where to teleport
+
+1045
+00:53:05,940 --> 00:53:07,890
+the player to the other portal.
+
+1046
+00:53:07,890 --> 00:53:11,250
+So we need to have a
+reference to its transform.
+
+1047
+00:53:11,250 --> 00:53:15,510
+Whether it's active because
+if we allow ourselves
+
+1048
+00:53:15,510 --> 00:53:21,279
+to teleport to another portal
+and another portal back and forth
+
+1049
+00:53:21,279 --> 00:53:23,820
+without any restraints, what do
+you think is going to happen?
+
+1050
+00:53:23,820 --> 00:53:26,400
+
+
+1051
+00:53:26,400 --> 00:53:27,020
+Infinite loop.
+
+1052
+00:53:27,020 --> 00:53:30,250
+We just get an infinite sort
+of weird flickering effect.
+
+1053
+00:53:30,250 --> 00:53:33,270
+So you need to effectively have
+a toggle switch on both portals
+
+1054
+00:53:33,270 --> 00:53:37,860
+and say as soon as I enter
+a portal, I should not
+
+1055
+00:53:37,860 --> 00:53:40,137
+be able to teleport back into it.
+
+1056
+00:53:40,137 --> 00:53:41,970
+And as soon as I teleport
+to another portal,
+
+1057
+00:53:41,970 --> 00:53:44,260
+I should not be able to
+teleport into it either.
+
+1058
+00:53:44,260 --> 00:53:48,270
+But once you exit the portal, you
+should be able to teleport back into it.
+
+1059
+00:53:48,270 --> 00:53:52,810
+And so, what that effectively
+does is we enter a portal,
+
+1060
+00:53:52,810 --> 00:53:55,900
+it gets flagged as not teleportable.
+
+1061
+00:53:55,900 --> 00:53:57,970
+We get teleported to the other portal.
+
+1062
+00:53:57,970 --> 00:54:01,240
+As soon as that happens, this
+portal can now be teleported into,
+
+1063
+00:54:01,240 --> 00:54:06,560
+this portal that we're standing in
+is now flagged as not teleportable.
+
+1064
+00:54:06,560 --> 00:54:09,280
+And then we walk out of it and
+we're allowed to teleport back
+
+1065
+00:54:09,280 --> 00:54:11,170
+into that one and the other one.
+
+1066
+00:54:11,170 --> 00:54:13,100
+So there's effectively
+an on off operation
+
+1067
+00:54:13,100 --> 00:54:15,880
+that you have to balance appropriately.
+
+1068
+00:54:15,880 --> 00:54:18,400
+The actual "Portal" game is
+a little more complicated
+
+1069
+00:54:18,400 --> 00:54:22,060
+because they allow you to
+walk in between portals.
+
+1070
+00:54:22,060 --> 00:54:24,490
+This does not go into
+that level of detail,
+
+1071
+00:54:24,490 --> 00:54:27,040
+and it's a more complicated
+problem to solve.
+
+1072
+00:54:27,040 --> 00:54:29,700
+This example just assumes
+that you walk into a portal,
+
+1073
+00:54:29,700 --> 00:54:33,490
+you can teleport it out the other
+end, and there's no in-between state.
+
+1074
+00:54:33,490 --> 00:54:35,740
+And actually, if you're
+in-between two portals,
+
+1075
+00:54:35,740 --> 00:54:39,410
+there's a replication of geometry, which
+Valve will talk about in their talk
+
+1076
+00:54:39,410 --> 00:54:41,410
+as well, which I think
+will be very interesting.
+
+1077
+00:54:41,410 --> 00:54:45,100
+Because if you look into another portal
+while you're in the middle of a portal,
+
+1078
+00:54:45,100 --> 00:54:49,330
+you want to be able to see
+yourself in that portal,
+
+1079
+00:54:49,330 --> 00:54:50,980
+halfway in and out of that portal.
+
+1080
+00:54:50,980 --> 00:54:54,790
+So there is a lot of
+interesting considerations
+
+1081
+00:54:54,790 --> 00:54:57,010
+for getting very
+believable portal systems,
+
+1082
+00:54:57,010 --> 00:55:00,460
+but ours is a very simple illustration.
+
+1083
+00:55:00,460 --> 00:55:02,380
+And so, this toggle
+function is all that I
+
+1084
+00:55:02,380 --> 00:55:05,620
+have to toggle the function's
+on and off capability.
+
+1085
+00:55:05,620 --> 00:55:08,710
+And all it is just portal
+active is not portal active,
+
+1086
+00:55:08,710 --> 00:55:10,270
+and that just flips that flag.
+
+1087
+00:55:10,270 --> 00:55:12,370
+It's super easy.
+
+1088
+00:55:12,370 --> 00:55:18,830
+On trigger enter, we effectively cash
+our position x on the x and z-axis,
+
+1089
+00:55:18,830 --> 00:55:21,170
+so we don't rotate it
+because when we rotate our x
+
+1090
+00:55:21,170 --> 00:55:25,040
+and z on the first person
+controller by default,
+
+1091
+00:55:25,040 --> 00:55:28,010
+it causes some really weird
+buggy behavior based on the way
+
+1092
+00:55:28,010 --> 00:55:29,670
+that the FPS controller works.
+
+1093
+00:55:29,670 --> 00:55:32,380
+So all I do is I just
+cast those positions,
+
+1094
+00:55:32,380 --> 00:55:34,400
+and then make a rotation on the y-axis.
+
+1095
+00:55:34,400 --> 00:55:40,934
+And that'll save us that weird going
+topsy turvy effect that you'll get.
+
+1096
+00:55:40,934 --> 00:55:44,100
+If you use the FPS controller by default
+and you do perform rotations on it,
+
+1097
+00:55:44,100 --> 00:55:45,110
+you'll notice this.
+
+1098
+00:55:45,110 --> 00:55:49,434
+So I haven't had the time to dig
+in depth as to how to fix it,
+
+1099
+00:55:49,434 --> 00:55:51,350
+but this is the way that
+I was able to fix it.
+
+1100
+00:55:51,350 --> 00:55:54,830
+For this example, at
+least, only allow yourself
+
+1101
+00:55:54,830 --> 00:55:59,150
+to rotate on the y direction, which
+is where you're looking relative
+
+1102
+00:55:59,150 --> 00:56:00,500
+to the ground plane.
+
+1103
+00:56:00,500 --> 00:56:03,650
+And that will allow us
+to rotate based on where
+
+1104
+00:56:03,650 --> 00:56:09,516
+we're exiting the portal, at least on
+the walls that are going up and down
+
+1105
+00:56:09,516 --> 00:56:11,390
+and then have that sort
+of believable effect.
+
+1106
+00:56:11,390 --> 00:56:14,210
+It doesn't allow us to jump
+down into a portal from up above
+
+1107
+00:56:14,210 --> 00:56:17,240
+and see us coming down from
+the other portal, which
+
+1108
+00:56:17,240 --> 00:56:21,811
+is a cool effect unfortunately, but it
+does allow us of to get most of the way
+
+1109
+00:56:21,811 --> 00:56:22,310
+there.
+
+1110
+00:56:22,310 --> 00:56:24,920
+
+
+1111
+00:56:24,920 --> 00:56:27,840
+And so, we set our position
+to the other portal's position
+
+1112
+00:56:27,840 --> 00:56:29,730
+and our rotation, but only the y.
+
+1113
+00:56:29,730 --> 00:56:35,130
+We get the y, and then we said it
+here using euler angles on our players
+
+1114
+00:56:35,130 --> 00:56:36,480
+transform.
+
+1115
+00:56:36,480 --> 00:56:39,930
+And then there's a
+function that I created
+
+1116
+00:56:39,930 --> 00:56:43,770
+called mouse reset, which
+effectively just calls init again
+
+1117
+00:56:43,770 --> 00:56:49,950
+on the FPS controller's rotation
+on the camera and the player.
+
+1118
+00:56:49,950 --> 00:56:54,570
+And then, that's sort of like the
+hack that you need in order to--
+
+1119
+00:56:54,570 --> 00:56:56,880
+the reason that a lot
+of the weirdness exists
+
+1120
+00:56:56,880 --> 00:57:01,000
+is because the player controller
+cashes its rotation information.
+
+1121
+00:57:01,000 --> 00:57:04,740
+And so if you perform a
+rotation on your FPS controller
+
+1122
+00:57:04,740 --> 00:57:07,720
+by hand as opposed to allowing
+it to happen with the mouse,
+
+1123
+00:57:07,720 --> 00:57:12,180
+it will immediately reset it back
+to its prior position and rotation.
+
+1124
+00:57:12,180 --> 00:57:16,330
+Which has the effect of when we
+teleport from one portal to another--
+
+1125
+00:57:16,330 --> 00:57:18,570
+even though we set our
+direction of rotation
+
+1126
+00:57:18,570 --> 00:57:22,830
+to be outside going in the direction
+of where the portal is facing,
+
+1127
+00:57:22,830 --> 00:57:26,490
+we end up having the same rotation
+that we did entering the portal.
+
+1128
+00:57:26,490 --> 00:57:29,370
+So we end up coming out of
+portals often just backwards.
+
+1129
+00:57:29,370 --> 00:57:33,360
+And so, that's just a limitation
+of the first person controller,
+
+1130
+00:57:33,360 --> 00:57:36,900
+but you can fix that by calling
+mouse reset, which is a function that
+
+1131
+00:57:36,900 --> 00:57:39,770
+essentially just calls init again.
+
+1132
+00:57:39,770 --> 00:57:44,204
+Which init is part of the FPS
+controller's mouse look object.
+
+1133
+00:57:44,204 --> 00:57:46,620
+I won't go too much into detail
+about it just because it's
+
+1134
+00:57:46,620 --> 00:57:51,270
+a little bit arcane and the source codes
+in there if you want to take a look
+
+1135
+00:57:51,270 --> 00:57:52,560
+and dabble with it.
+
+1136
+00:57:52,560 --> 00:57:57,600
+But effectively, preventing it from
+caching its rotation information
+
+1137
+00:57:57,600 --> 00:58:01,290
+and just hard setting it,
+and then recalling the mouse
+
+1138
+00:58:01,290 --> 00:58:04,800
+look init function, which does
+the actual setting of the rotation
+
+1139
+00:58:04,800 --> 00:58:07,740
+on the camera and the player.
+
+1140
+00:58:07,740 --> 00:58:11,970
+A little bit weird, but
+that's Unity's FPS controller,
+
+1141
+00:58:11,970 --> 00:58:14,980
+and that's how other people
+are saying to fix it.
+
+1142
+00:58:14,980 --> 00:58:17,730
+So you could roll your own, you
+can create your own FPS controller
+
+1143
+00:58:17,730 --> 00:58:19,770
+and probably prevent
+this from happening.
+
+1144
+00:58:19,770 --> 00:58:21,853
+But if you want to use the
+regular FPS controller,
+
+1145
+00:58:21,853 --> 00:58:24,060
+that's the limitation there.
+
+1146
+00:58:24,060 --> 00:58:28,086
+But it's mostly working
+and it looks pretty good.
+
+1147
+00:58:28,086 --> 00:58:30,960
+Some more time on it, and we could
+probably make it look even better.
+
+1148
+00:58:30,960 --> 00:58:34,680
+But for now, I think it's good.
+
+1149
+00:58:34,680 --> 00:58:36,920
+So that's teleporting.
+
+1150
+00:58:36,920 --> 00:58:38,940
+Set your position, and
+then set your y rotation,
+
+1151
+00:58:38,940 --> 00:58:42,240
+override the FPS controller's
+default rotation caching,
+
+1152
+00:58:42,240 --> 00:58:46,800
+and we can walk in this portal and
+then instantly walk out this portal.
+
+1153
+00:58:46,800 --> 00:58:48,050
+And that's what we see.
+
+1154
+00:58:48,050 --> 00:58:52,710
+So any questions as to how sort
+of this works in a nutshell?
+
+1155
+00:58:52,710 --> 00:58:57,200
+Or maybe any of the
+code here in our portal?
+
+1156
+00:58:57,200 --> 00:59:00,686
+
+
+1157
+00:59:00,686 --> 00:59:03,180
+All right.
+
+1158
+00:59:03,180 --> 00:59:08,720
+So a much better version of the portal,
+at least from the rendering side,
+
+1159
+00:59:08,720 --> 00:59:09,750
+is this video here.
+
+1160
+00:59:09,750 --> 00:59:10,850
+So it's Braxis.
+
+1161
+00:59:10,850 --> 00:59:15,150
+So good he explains things very well.
+
+1162
+00:59:15,150 --> 00:59:19,490
+He's got a very high
+quality to his videos.
+
+1163
+00:59:19,490 --> 00:59:21,920
+He creates a bunch of Unity tutorials.
+
+1164
+00:59:21,920 --> 00:59:24,020
+And in this case, he
+created a portal that
+
+1165
+00:59:24,020 --> 00:59:27,980
+used an interesting
+shader that will only
+
+1166
+00:59:27,980 --> 00:59:35,000
+render everything but geometry and also
+onto a plane, in which case this plane.
+
+1167
+00:59:35,000 --> 00:59:39,650
+And does the camera interpolation of
+the player that I alluded to before,
+
+1168
+00:59:39,650 --> 00:59:41,870
+which allows us to actually have--
+
+1169
+00:59:41,870 --> 00:59:44,660
+so these are two separate
+worlds in tandem right now.
+
+1170
+00:59:44,660 --> 00:59:47,290
+So there's this red world
+here, and then this camera
+
+1171
+00:59:47,290 --> 00:59:49,610
+is looking at a completely
+different green world that's
+
+1172
+00:59:49,610 --> 00:59:52,350
+completely set off in the distance.
+
+1173
+00:59:52,350 --> 00:59:55,730
+That's the exact same geometry,
+but completely colored green
+
+1174
+00:59:55,730 --> 00:59:56,752
+as opposed to red.
+
+1175
+00:59:56,752 --> 00:59:59,210
+And if you look through here,
+it's just completely seamless
+
+1176
+00:59:59,210 --> 01:00:00,920
+and the walk through
+is completely seamless.
+
+1177
+01:00:00,920 --> 01:00:02,960
+And he goes into detail as to
+how he accomplished all of this,
+
+1178
+01:00:02,960 --> 01:00:03,530
+if you're curious.
+
+1179
+01:00:03,530 --> 01:00:05,930
+And he provides you the shader
+that you can use for free.
+
+1180
+01:00:05,930 --> 01:00:08,114
+So definitely check that
+out if that's of interest.
+
+1181
+01:00:08,114 --> 01:00:09,530
+There's a link there in the video.
+
+1182
+01:00:09,530 --> 01:00:11,870
+And here's a link to his YouTube series.
+
+1183
+01:00:11,870 --> 01:00:16,280
+I put some of these in the slack because
+somebody requested some AI videos.
+
+1184
+01:00:16,280 --> 01:00:18,890
+And he has a bunch of
+different AI videos
+
+1185
+01:00:18,890 --> 01:00:20,690
+and a bunch of other really cool series.
+
+1186
+01:00:20,690 --> 01:00:23,270
+So you can take a look
+at that, if curious.
+
+1187
+01:00:23,270 --> 01:00:28,950
+And the best version of "Portal"
+obviously is the portal itself.
+
+1188
+01:00:28,950 --> 01:00:32,690
+And Dave Kircher and Tejeev Kohli
+are employees involved at Valve
+
+1189
+01:00:32,690 --> 01:00:35,300
+who worked on "Portal," and
+they'll be here on May 2
+
+1190
+01:00:35,300 --> 01:00:39,320
+to give a talk as to all of the
+technical sort of things that
+
+1191
+01:00:39,320 --> 01:00:43,410
+went behind the scenes and
+related to rendering and physics
+
+1192
+01:00:43,410 --> 01:00:46,580
+and just getting a
+believable and good feeling
+
+1193
+01:00:46,580 --> 01:00:52,190
+experience with "Portal" for
+the actual polished final game
+
+1194
+01:00:52,190 --> 01:00:53,240
+that we're talking about.
+
+1195
+01:00:53,240 --> 01:00:55,497
+So definitely come to that
+talk if you're curious.
+
+1196
+01:00:55,497 --> 01:00:58,080
+We're going to take a break, and
+then as soon as we come back,
+
+1197
+01:00:58,080 --> 01:01:00,288
+we're going to talk a little
+bit about some new tools
+
+1198
+01:01:00,288 --> 01:01:03,800
+that Unity has released called
+ProBuilder and ProGrids.
+
+1199
+01:01:03,800 --> 01:01:05,380
+And we'll talk about the assignment.
+
+1200
+01:01:05,380 --> 01:01:08,030
+And that will be it for GD 50.
+
+1201
+01:01:08,030 --> 01:01:09,170
+All right, welcome back.
+
+1202
+01:01:09,170 --> 01:01:10,310
+This is Lecture 10.
+
+1203
+01:01:10,310 --> 01:01:13,640
+So we talked about "Portal" before the
+break, we talked about ray casting.
+
+1204
+01:01:13,640 --> 01:01:16,610
+We talked about render
+textures, what those are,
+
+1205
+01:01:16,610 --> 01:01:18,500
+how easy it is to make those in Unity.
+
+1206
+01:01:18,500 --> 01:01:22,340
+We talked about how to give our
+first person controller a gun
+
+1207
+01:01:22,340 --> 01:01:26,080
+so that we could actually look around
+and look as if we're holding a weapon.
+
+1208
+01:01:26,080 --> 01:01:29,080
+We talked about the portals themselves,
+how we're masking out the render
+
+1209
+01:01:29,080 --> 01:01:32,960
+texture as applied to a plane, and how
+each of those has a camera behind it
+
+1210
+01:01:32,960 --> 01:01:36,290
+so that it can render what is going
+out from the portal in the direction
+
+1211
+01:01:36,290 --> 01:01:37,820
+that it's facing.
+
+1212
+01:01:37,820 --> 01:01:40,550
+We're going to deviate
+from "Portal" now, and talk
+
+1213
+01:01:40,550 --> 01:01:44,330
+about ProBuilder and ProGrids,
+which are two tools that
+
+1214
+01:01:44,330 --> 01:01:49,790
+are part of the new Unity 2018.1
+which will allow us to actually model
+
+1215
+01:01:49,790 --> 01:01:51,710
+geometry per the screenshot.
+
+1216
+01:01:51,710 --> 01:01:56,500
+This is actually a level that I
+created and that is in the Distro.
+
+1217
+01:01:56,500 --> 01:01:59,780
+It will allow us to create
+geometry in the actual scene view
+
+1218
+01:01:59,780 --> 01:02:03,890
+without needing to go into a third
+party program like Blender or Maya,
+
+1219
+01:02:03,890 --> 01:02:07,880
+and have to sort of alternate
+between the two and import and export
+
+1220
+01:02:07,880 --> 01:02:09,259
+incessantly.
+
+1221
+01:02:09,259 --> 01:02:11,300
+Not only that, but as soon
+as you model something
+
+1222
+01:02:11,300 --> 01:02:13,297
+like this in Unity in
+the scene view, you
+
+1223
+01:02:13,297 --> 01:02:15,380
+can immediately test it
+for gameplay and make sure
+
+1224
+01:02:15,380 --> 01:02:16,966
+that it actually fits what you want.
+
+1225
+01:02:16,966 --> 01:02:19,840
+And you don't have to worry about
+scale issues when you are importing
+
+1226
+01:02:19,840 --> 01:02:22,880
+and sort of making it work, and
+figuring out ultimately that, "Oh,
+
+1227
+01:02:22,880 --> 01:02:25,040
+I don't like the way
+this mesh this level is.
+
+1228
+01:02:25,040 --> 01:02:27,650
+Let me go and tweak it and redo it."
+
+1229
+01:02:27,650 --> 01:02:30,800
+It just allows you a ton
+of ease and flexibility.
+
+1230
+01:02:30,800 --> 01:02:32,710
+And I previously
+mentioned Braxis before,
+
+1231
+01:02:32,710 --> 01:02:34,460
+but he's got a couple
+of awesome tutorials
+
+1232
+01:02:34,460 --> 01:02:37,760
+here on ProBuilder and ProGrids
+to supplement sort of what
+
+1233
+01:02:37,760 --> 01:02:39,330
+we'll talk about today in lecture.
+
+1234
+01:02:39,330 --> 01:02:42,680
+But if you want sort of more of a
+showcase of all the features of both,
+
+1235
+01:02:42,680 --> 01:02:46,350
+then you can look at these videos
+here and get a sense of how they work.
+
+1236
+01:02:46,350 --> 01:02:50,270
+So we're going to go ahead and just mess
+around with pro builder a little bit
+
+1237
+01:02:50,270 --> 01:02:53,310
+here in the scene view so that
+we can see what it looks like.
+
+1238
+01:02:53,310 --> 01:02:55,040
+I'm going to open up my other scene.
+
+1239
+01:02:55,040 --> 01:02:56,442
+So I have the "Portal" scene.
+
+1240
+01:02:56,442 --> 01:02:58,400
+If you are in the Distro,
+this is where all the
+
+1241
+01:02:58,400 --> 01:03:01,360
+stuff that we've been looking at
+exists, just the "Portal" game.
+
+1242
+01:03:01,360 --> 01:03:05,600
+There's a ProBuilder scene as well,
+which I'm going to not save that.
+
+1243
+01:03:05,600 --> 01:03:12,370
+And so this ProBuilder scene is the
+level geometry that I created earlier.
+
+1244
+01:03:12,370 --> 01:03:16,200
+Now it looks pretty horrendous because
+I didn't spend a terrible amount of time
+
+1245
+01:03:16,200 --> 01:03:16,700
+on it.
+
+1246
+01:03:16,700 --> 01:03:20,022
+And I'm not a particularly talented
+visual designer by any stretch.
+
+1247
+01:03:20,022 --> 01:03:21,980
+Let me go ahead and make
+it a little bit larger
+
+1248
+01:03:21,980 --> 01:03:23,563
+so that we can see it a little better.
+
+1249
+01:03:23,563 --> 01:03:25,867
+
+
+1250
+01:03:25,867 --> 01:03:27,950
+But it showcases some of
+the interesting features.
+
+1251
+01:03:27,950 --> 01:03:36,320
+So we have obviously polygonal
+square shaped rectangular geometry.
+
+1252
+01:03:36,320 --> 01:03:38,990
+We can see that some faces
+are textured and some aren't.
+
+1253
+01:03:38,990 --> 01:03:41,060
+So we can see this
+face here, for example,
+
+1254
+01:03:41,060 --> 01:03:44,780
+is just white material,
+the default material.
+
+1255
+01:03:44,780 --> 01:03:49,040
+We can see that all of these have
+this brick texture, which I got off
+
+1256
+01:03:49,040 --> 01:03:51,680
+a procedural generator
+website that allows
+
+1257
+01:03:51,680 --> 01:03:54,050
+you to choose a good
+template for your texture
+
+1258
+01:03:54,050 --> 01:03:56,297
+and then specify colors
+and stuff like that.
+
+1259
+01:03:56,297 --> 01:03:57,880
+I did the same thing for this texture.
+
+1260
+01:03:57,880 --> 01:04:00,110
+This is another
+procedural texture, which
+
+1261
+01:04:00,110 --> 01:04:04,240
+is kind of like a blue,
+marbley type texture.
+
+1262
+01:04:04,240 --> 01:04:06,739
+The cool thing about it
+is-- at least for texturing,
+
+1263
+01:04:06,739 --> 01:04:09,280
+you can just choose arbitrary
+faces that you want to texture,
+
+1264
+01:04:09,280 --> 01:04:12,130
+rather than have to texture
+the whole thing like you
+
+1265
+01:04:12,130 --> 01:04:15,610
+would do if you were to just
+give a mesh a default material,
+
+1266
+01:04:15,610 --> 01:04:17,320
+it'll apply to the whole mesh.
+
+1267
+01:04:17,320 --> 01:04:21,452
+In this case, it's just applying it to
+whatever faces we select in ProBuilder.
+
+1268
+01:04:21,452 --> 01:04:23,410
+Another interesting thing,
+which I really like,
+
+1269
+01:04:23,410 --> 01:04:28,512
+is ProBuilder gives you a lot of tools
+for creating special kinds of geometry
+
+1270
+01:04:28,512 --> 01:04:29,720
+very quickly and efficiently.
+
+1271
+01:04:29,720 --> 01:04:33,370
+In this case, this is a
+staircase, which all I had to do
+
+1272
+01:04:33,370 --> 01:04:36,040
+was with ProBuilder
+select build staircase,
+
+1273
+01:04:36,040 --> 01:04:38,290
+and then you can choose a
+lot of different parameters.
+
+1274
+01:04:38,290 --> 01:04:40,540
+We'll take a look at how
+to do that in a second.
+
+1275
+01:04:40,540 --> 01:04:41,623
+I did the same thing here.
+
+1276
+01:04:41,623 --> 01:04:44,390
+So notice this staircase
+has kind of a spiral to it.
+
+1277
+01:04:44,390 --> 01:04:46,964
+And then this staircase is
+really tall, but has no spiral.
+
+1278
+01:04:46,964 --> 01:04:48,880
+And then we have another
+staircase here, which
+
+1279
+01:04:48,880 --> 01:04:50,950
+is kind of shorter and
+doesn't have a spiral,
+
+1280
+01:04:50,950 --> 01:04:53,860
+and then it ends up coming
+up here to this point.
+
+1281
+01:04:53,860 --> 01:04:56,410
+And then if this were
+the assignment, maybe
+
+1282
+01:04:56,410 --> 01:05:00,160
+this spot here would be where
+you put your collider that
+
+1283
+01:05:00,160 --> 01:05:03,130
+says, "OH, this the level's conclusion.
+
+1284
+01:05:03,130 --> 01:05:04,300
+You've been in the level."
+
+1285
+01:05:04,300 --> 01:05:07,750
+So the assignment is with
+ProBuilder, make a level.
+
+1286
+01:05:07,750 --> 01:05:09,740
+It doesn't have to be
+anything terribly fancy.
+
+1287
+01:05:09,740 --> 01:05:10,781
+I'm not a great designer.
+
+1288
+01:05:10,781 --> 01:05:13,360
+But it should have at
+least one section where
+
+1289
+01:05:13,360 --> 01:05:16,090
+you're required to jump,
+so some sort of jump puzzle
+
+1290
+01:05:16,090 --> 01:05:20,050
+just so that you can think about the
+design of your level a little bit.
+
+1291
+01:05:20,050 --> 01:05:24,220
+And it should be meaningfully large,
+it doesn't have to be gargantuan.
+
+1292
+01:05:24,220 --> 01:05:28,180
+And it shouldn't be small, it
+shouldn't be 10 meters or--
+
+1293
+01:05:28,180 --> 01:05:32,770
+maybe not 10 meters, but it
+shouldn't be like five meters large.
+
+1294
+01:05:32,770 --> 01:05:34,090
+Obviously, that's very small.
+
+1295
+01:05:34,090 --> 01:05:38,110
+It should be something that you would
+consider a somewhat sizable level.
+
+1296
+01:05:38,110 --> 01:05:42,880
+Using something of this
+size is a fair metric.
+
+1297
+01:05:42,880 --> 01:05:47,170
+So ProBuilder-- so by
+default, ProBuilder
+
+1298
+01:05:47,170 --> 01:05:48,820
+is not installed in your project.
+
+1299
+01:05:48,820 --> 01:05:50,320
+You have to go to the Asset Store.
+
+1300
+01:05:50,320 --> 01:05:53,570
+I don't know, Asset Store has been a
+little bit slow last couple of days.
+
+1301
+01:05:53,570 --> 01:05:54,820
+Let's see if it works quickly.
+
+1302
+01:05:54,820 --> 01:05:56,804
+It looks like it is.
+
+1303
+01:05:56,804 --> 01:05:59,470
+So if we go to the Asset Store
+and open-- it's connecting again,
+
+1304
+01:05:59,470 --> 01:06:02,080
+it's being slow.
+
+1305
+01:06:02,080 --> 01:06:06,890
+So if you search for assets and just
+type ProBuilder, it will pop up here.
+
+1306
+01:06:06,890 --> 01:06:09,100
+And notice that it says
+Unity technologies.
+
+1307
+01:06:09,100 --> 01:06:11,230
+Anything basically that
+says Unity technologies
+
+1308
+01:06:11,230 --> 01:06:14,020
+will be a free sort
+of supplement to Unity
+
+1309
+01:06:14,020 --> 01:06:16,690
+that you can easily just
+import from the Asset Store.
+
+1310
+01:06:16,690 --> 01:06:22,039
+Now it's a little bit cramped the window
+here, because I'm in a 720p monitor.
+
+1311
+01:06:22,039 --> 01:06:24,580
+But you just have to click
+Download, and then Import in order
+
+1312
+01:06:24,580 --> 01:06:27,130
+to import it into your project.
+
+1313
+01:06:27,130 --> 01:06:29,650
+The Distro for "Portal"
+for assignment 10
+
+1314
+01:06:29,650 --> 01:06:32,740
+already has ProBuilder
+and ProGrids installed.
+
+1315
+01:06:32,740 --> 01:06:37,130
+ProGrids would be the exact same
+process, just ProGrids right here.
+
+1316
+01:06:37,130 --> 01:06:40,360
+And when you import both
+of those into your project,
+
+1317
+01:06:40,360 --> 01:06:43,870
+you'll immediately have the
+ability to go up to Tools.
+
+1318
+01:06:43,870 --> 01:06:46,850
+And you'll see ProBuilder
+and ProGrids here.
+
+1319
+01:06:46,850 --> 01:06:51,430
+And all you need to do is click on the
+ProBuilder and then ProBuilder window.
+
+1320
+01:06:51,430 --> 01:06:54,566
+And you can see here this nice
+little widget filled window pops up,
+
+1321
+01:06:54,566 --> 01:06:56,440
+and you can also dock
+it here if you want to.
+
+1322
+01:06:56,440 --> 01:06:57,814
+Actually, I did that on accident.
+
+1323
+01:06:57,814 --> 01:07:00,850
+But Unity makes it pretty
+nice so you can dock
+
+1324
+01:07:00,850 --> 01:07:03,172
+your stuff wherever you want it to.
+
+1325
+01:07:03,172 --> 01:07:04,630
+And there's a few different things.
+
+1326
+01:07:04,630 --> 01:07:08,190
+So you can do new shape
+and a new poly-shape.
+
+1327
+01:07:08,190 --> 01:07:11,170
+The new shape actually
+gives you shape templates.
+
+1328
+01:07:11,170 --> 01:07:14,380
+So here, I have chosen
+just cube by default,
+
+1329
+01:07:14,380 --> 01:07:17,220
+and it allows you to do
+stairs, prisms, cylinder.
+
+1330
+01:07:17,220 --> 01:07:19,180
+So I can just do a stair,
+for example, and then
+
+1331
+01:07:19,180 --> 01:07:22,270
+we immediately see this stair mesh here.
+
+1332
+01:07:22,270 --> 01:07:25,480
+I can generate the number of steps that
+I want just by changing the slider.
+
+1333
+01:07:25,480 --> 01:07:28,930
+I can change the curvature if I want,
+so that it's a rotating staircase.
+
+1334
+01:07:28,930 --> 01:07:33,670
+And then I can also change how
+wide and how tall the stairs are,
+
+1335
+01:07:33,670 --> 01:07:37,070
+and also this inner radius is
+like how deep the steps are,
+
+1336
+01:07:37,070 --> 01:07:38,410
+if that makes sense.
+
+1337
+01:07:38,410 --> 01:07:41,350
+And then all of these
+together, once you've finished,
+
+1338
+01:07:41,350 --> 01:07:43,180
+you just hit build stair, and it's done.
+
+1339
+01:07:43,180 --> 01:07:46,240
+Now you have a stair mesh that you
+can just put anywhere in your level,
+
+1340
+01:07:46,240 --> 01:07:47,665
+and it's that easy to make stairs.
+
+1341
+01:07:47,665 --> 01:07:50,230
+
+
+1342
+01:07:50,230 --> 01:07:53,740
+Before I get into more of
+what makes ProBuilder, work,
+
+1343
+01:07:53,740 --> 01:07:56,060
+I'm going to go ahead
+and enable ProGrids.
+
+1344
+01:07:56,060 --> 01:07:59,630
+So ProGrids is a cool feature.
+
+1345
+01:07:59,630 --> 01:08:03,730
+It's a cool add on, which will
+actually lock everything in your scene
+
+1346
+01:08:03,730 --> 01:08:08,200
+to a specific grid which you can
+designate based on how fine or coarse
+
+1347
+01:08:08,200 --> 01:08:10,260
+you want the grid to be.
+
+1348
+01:08:10,260 --> 01:08:12,940
+And what that will allow
+us to do is when I move,
+
+1349
+01:08:12,940 --> 01:08:14,860
+notice that it's moving on the grid.
+
+1350
+01:08:14,860 --> 01:08:21,550
+It's not moving in a continuous
+motion, it's actually discrete steps.
+
+1351
+01:08:21,550 --> 01:08:24,279
+And the advantage of
+doing things this way
+
+1352
+01:08:24,279 --> 01:08:27,760
+is that when you're modeling
+your level or whatnot--
+
+1353
+01:08:27,760 --> 01:08:33,670
+let's say you have maybe a diagram
+or a drawing that you've created.
+
+1354
+01:08:33,670 --> 01:08:37,029
+You slap it on a texture,
+a flat mesh in your scene,
+
+1355
+01:08:37,029 --> 01:08:39,700
+and then you just sort of
+draw your level on top of it,
+
+1356
+01:08:39,700 --> 01:08:44,029
+everything will map up nice and cleanly
+when you're creating all your geometry.
+
+1357
+01:08:44,029 --> 01:08:47,560
+And you can snap things together and
+it will align all on the same axis.
+
+1358
+01:08:47,560 --> 01:08:50,759
+And it makes creating levels
+like this just a lot easier.
+
+1359
+01:08:50,759 --> 01:08:53,050
+You don't have to worry about
+things being slightly off
+
+1360
+01:08:53,050 --> 01:08:55,450
+and then like missing
+vertices and everything
+
+1361
+01:08:55,450 --> 01:08:58,210
+be looking a little bit unclean.
+
+1362
+01:08:58,210 --> 01:09:01,189
+This ensures that
+everything is very clean.
+
+1363
+01:09:01,189 --> 01:09:03,880
+So again, just notice the
+discrete steps that it's moving.
+
+1364
+01:09:03,880 --> 01:09:07,319
+These are all locked to the grid here.
+
+1365
+01:09:07,319 --> 01:09:13,229
+And so you can change all the
+settings here as to how large it is.
+
+1366
+01:09:13,229 --> 01:09:16,410
+If I create a cube.
+
+1367
+01:09:16,410 --> 01:09:21,939
+So I'm going to go ahead and
+create a new cube and build it.
+
+1368
+01:09:21,939 --> 01:09:27,100
+Notice up here these four buttons
+are like the modes with which
+
+1369
+01:09:27,100 --> 01:09:29,109
+we can interact with our cube.
+
+1370
+01:09:29,109 --> 01:09:32,214
+And this is very similar to what you
+get in 3D software, like Blender,
+
+1371
+01:09:32,214 --> 01:09:33,460
+Maya, whatnot.
+
+1372
+01:09:33,460 --> 01:09:36,300
+You choose vertices with
+the left mouse, and then you
+
+1373
+01:09:36,300 --> 01:09:39,850
+can hit shift to select multiple,
+and then you can just move it.
+
+1374
+01:09:39,850 --> 01:09:44,170
+And since I'm using ProGrids, it's
+snapping it to the grid, right?
+
+1375
+01:09:44,170 --> 01:09:50,020
+So if I turn off ProGrids, it
+should just be continuous like that.
+
+1376
+01:09:50,020 --> 01:09:52,439
+And so, you can get
+whatever sort of angles
+
+1377
+01:09:52,439 --> 01:09:57,830
+you want depending on
+what your use case is.
+
+1378
+01:09:57,830 --> 01:09:59,990
+So I'm going to go
+ahead and hit Command Z.
+
+1379
+01:09:59,990 --> 01:10:03,630
+If I click on the face mode and I
+click this face and I shift click,
+
+1380
+01:10:03,630 --> 01:10:06,600
+it'll actually extrude
+it and make a new face.
+
+1381
+01:10:06,600 --> 01:10:09,660
+And I can keep doing
+this over and over again.
+
+1382
+01:10:09,660 --> 01:10:12,370
+Let me zoom out a little bit so
+I can see a little bit better.
+
+1383
+01:10:12,370 --> 01:10:17,480
+And I extrude that, and
+then I extrude that.
+
+1384
+01:10:17,480 --> 01:10:18,080
+Right?
+
+1385
+01:10:18,080 --> 01:10:20,120
+Starting to build something.
+
+1386
+01:10:20,120 --> 01:10:23,260
+It's not beautiful, but it's something.
+
+1387
+01:10:23,260 --> 01:10:24,380
+I can extrude that again.
+
+1388
+01:10:24,380 --> 01:10:28,010
+
+
+1389
+01:10:28,010 --> 01:10:31,570
+I believe I can scale as well.
+
+1390
+01:10:31,570 --> 01:10:35,130
+So you can build it out like that.
+
+1391
+01:10:35,130 --> 01:10:37,180
+And I haven't spent a
+ton of time mastering
+
+1392
+01:10:37,180 --> 01:10:40,870
+how to use that tool and all the
+ins and outs of it, but it is very,
+
+1393
+01:10:40,870 --> 01:10:45,100
+I think, useful if you're
+looking to get into level design
+
+1394
+01:10:45,100 --> 01:10:49,990
+and you want to avoid the overhead
+of dealing with third party
+
+1395
+01:10:49,990 --> 01:10:53,770
+software like Blender or Maya and
+having model files that you're
+
+1396
+01:10:53,770 --> 01:10:55,360
+importing and exporting.
+
+1397
+01:10:55,360 --> 01:10:57,110
+It can be kind of a pain.
+
+1398
+01:10:57,110 --> 01:11:02,650
+However, if you want to export
+models, you can definitely do that.
+
+1399
+01:11:02,650 --> 01:11:04,285
+There is a method here--
+
+1400
+01:11:04,285 --> 01:11:06,310
+I forget which one it is off hand.
+
+1401
+01:11:06,310 --> 01:11:08,180
+I think it's this one.
+
+1402
+01:11:08,180 --> 01:11:09,190
+No.
+
+1403
+01:11:09,190 --> 01:11:11,350
+One of these allows
+you to save the model.
+
+1404
+01:11:11,350 --> 01:11:13,460
+I don't remember
+exactly which one it is.
+
+1405
+01:11:13,460 --> 01:11:14,370
+Is it this one?
+
+1406
+01:11:14,370 --> 01:11:19,180
+
+
+1407
+01:11:19,180 --> 01:11:22,950
+The menu is a little bit cramped here,
+so I'm going to actually blow it up.
+
+1408
+01:11:22,950 --> 01:11:26,106
+
+
+1409
+01:11:26,106 --> 01:11:28,980
+Offhand, I can't recall which of
+these allows you to actually export.
+
+1410
+01:11:28,980 --> 01:11:32,220
+I don't have the icons memorized
+yet because it's a fairly new tool.
+
+1411
+01:11:32,220 --> 01:11:34,470
+But one of these will allow
+you to actually export
+
+1412
+01:11:34,470 --> 01:11:38,700
+the object as FBX or OBJ,
+whatever your software is
+
+1413
+01:11:38,700 --> 01:11:39,885
+that you end up wanting to--
+
+1414
+01:11:39,885 --> 01:11:43,060
+
+
+1415
+01:11:43,060 --> 01:11:46,740
+so you can just also go up to
+here to the export menu, which is
+
+1416
+01:11:46,740 --> 01:11:48,780
+a lot easier to see everything by name.
+
+1417
+01:11:48,780 --> 01:11:50,654
+And you can choose how
+you want it to export.
+
+1418
+01:11:50,654 --> 01:11:52,850
+You can also export
+assets too for your game
+
+1419
+01:11:52,850 --> 01:11:55,380
+so you can have objects in
+your scene that ProBuilder
+
+1420
+01:11:55,380 --> 01:11:58,290
+will generate for using, so you
+can create prefabs that way.
+
+1421
+01:11:58,290 --> 01:12:00,480
+But then here's OBJ so
+that you can export it
+
+1422
+01:12:00,480 --> 01:12:05,130
+to your 3D software of choice.
+
+1423
+01:12:05,130 --> 01:12:08,130
+This is relevant for situations
+where, for example, you
+
+1424
+01:12:08,130 --> 01:12:12,660
+want to like rig and
+model and animate a mesh.
+
+1425
+01:12:12,660 --> 01:12:15,030
+You can't do any sort of
+rigging in ProBuilder,
+
+1426
+01:12:15,030 --> 01:12:17,940
+but you can do that
+in other 3D software.
+
+1427
+01:12:17,940 --> 01:12:20,340
+So it makes sense to export it that way.
+
+1428
+01:12:20,340 --> 01:12:24,000
+You can also create the model here,
+export it, rig it, and then re-import
+
+1429
+01:12:24,000 --> 01:12:26,010
+it if you want to, and that's relevant.
+
+1430
+01:12:26,010 --> 01:12:28,256
+
+
+1431
+01:12:28,256 --> 01:12:29,880
+This is a usable scene as is right now.
+
+1432
+01:12:29,880 --> 01:12:31,630
+The lightning gets a
+little bit messed up.
+
+1433
+01:12:31,630 --> 01:12:34,960
+Notice here when you mess with
+stuff, but that gets fixed.
+
+1434
+01:12:34,960 --> 01:12:38,310
+There's of meter here where
+it does some calculating.
+
+1435
+01:12:38,310 --> 01:12:41,670
+And by default, it will actually
+bake lighting on all of your objects.
+
+1436
+01:12:41,670 --> 01:12:47,790
+But as is, this will perfectly collide
+with any characters that you have.
+
+1437
+01:12:47,790 --> 01:12:49,294
+So I have a FPS character.
+
+1438
+01:12:49,294 --> 01:12:51,210
+I'm going to bring this
+guy up, let's go ahead
+
+1439
+01:12:51,210 --> 01:12:57,820
+and set the transform up here,
+put him in the right position.
+
+1440
+01:12:57,820 --> 01:13:01,840
+And ProGrids is attaching that, making
+that grid visible next to where I am.
+
+1441
+01:13:01,840 --> 01:13:05,640
+And you can set the axis for that.
+
+1442
+01:13:05,640 --> 01:13:07,290
+Currently, I have it actually disabled.
+
+1443
+01:13:07,290 --> 01:13:12,540
+So if I enable it now, this will
+actually move in increments, see?
+
+1444
+01:13:12,540 --> 01:13:15,180
+And it'll snap it to the grid perfectly.
+
+1445
+01:13:15,180 --> 01:13:25,088
+But as I hit play, I should
+just be on this mesh up here.
+
+1446
+01:13:25,088 --> 01:13:26,520
+Yeah.
+
+1447
+01:13:26,520 --> 01:13:28,620
+And so this is just part
+of the scene now, like
+
+1448
+01:13:28,620 --> 01:13:31,590
+as if you had made it in
+Blender or Maya or whatever.
+
+1449
+01:13:31,590 --> 01:13:35,320
+If you jump down to my actual level
+and then explore it a little bit,
+
+1450
+01:13:35,320 --> 01:13:40,320
+this is all just haphazardly created.
+
+1451
+01:13:40,320 --> 01:13:45,310
+Stairs and other meshes and stuff.
+
+1452
+01:13:45,310 --> 01:13:47,450
+And so, make it all the way to the top.
+
+1453
+01:13:47,450 --> 01:13:49,512
+I fell down.
+
+1454
+01:13:49,512 --> 01:13:50,970
+I'm also horrible at playing games.
+
+1455
+01:13:50,970 --> 01:13:57,650
+But the beauty of it is you can
+just play it instantly, right?
+
+1456
+01:13:57,650 --> 01:13:59,000
+Right out the gate.
+
+1457
+01:13:59,000 --> 01:14:01,910
+Now another cool thing
+that I like to showcase
+
+1458
+01:14:01,910 --> 01:14:05,170
+is we talked about gray boxing earlier.
+
+1459
+01:14:05,170 --> 01:14:07,400
+For making interior
+levels, gray boxing is
+
+1460
+01:14:07,400 --> 01:14:10,240
+the purpose of making levels and
+testing them for playability.
+
+1461
+01:14:10,240 --> 01:14:11,990
+The cool thing about
+ProBuilder is that it
+
+1462
+01:14:11,990 --> 01:14:19,250
+has a invert normals feature,
+which I think is just
+
+1463
+01:14:19,250 --> 01:14:23,780
+generally accessible in 3D software.
+
+1464
+01:14:23,780 --> 01:14:27,950
+I don't know offhand which menu it's in.
+
+1465
+01:14:27,950 --> 01:14:32,610
+Actions, geometry, do I have
+the right things selected?
+
+1466
+01:14:32,610 --> 01:14:36,840
+All right, I'm going to
+open up ProBuilder window.
+
+1467
+01:14:36,840 --> 01:14:46,290
+And then one of these
+is invert selection.
+
+1468
+01:14:46,290 --> 01:14:49,290
+Sorry, wait.
+
+1469
+01:14:49,290 --> 01:14:51,700
+Flip normals, there we go.
+
+1470
+01:14:51,700 --> 01:14:55,620
+And so, what this does is now
+this is an interior level.
+
+1471
+01:14:55,620 --> 01:15:03,690
+So all we did before was we made a
+polygonal creation of arbitrary size
+
+1472
+01:15:03,690 --> 01:15:04,620
+and shape.
+
+1473
+01:15:04,620 --> 01:15:08,190
+If you invert the normal--
+so recall every 3D polygon,
+
+1474
+01:15:08,190 --> 01:15:10,600
+3D surface as a normal
+and whatever direction
+
+1475
+01:15:10,600 --> 01:15:13,830
+that's facing, going the opposite
+way, going towards that normal
+
+1476
+01:15:13,830 --> 01:15:15,000
+is what gets rendered.
+
+1477
+01:15:15,000 --> 01:15:17,970
+But behind it, if you're going in
+the opposite direction of the surface
+
+1478
+01:15:17,970 --> 01:15:20,070
+normal, it's invisible.
+
+1479
+01:15:20,070 --> 01:15:23,220
+And so, the effect of that is if we
+flip all the normals of something that
+
+1480
+01:15:23,220 --> 01:15:26,367
+is convex, we get an interior scene.
+
+1481
+01:15:26,367 --> 01:15:28,200
+And if we're looking
+at it from the outside,
+
+1482
+01:15:28,200 --> 01:15:29,658
+it looks a little bit weird, right?
+
+1483
+01:15:29,658 --> 01:15:31,740
+Like we can see into it.
+
+1484
+01:15:31,740 --> 01:15:34,960
+And this is something that you might
+see like in "Minecraft," for example,
+
+1485
+01:15:34,960 --> 01:15:36,360
+when you're looking in
+part of the geometry
+
+1486
+01:15:36,360 --> 01:15:37,776
+that you shouldn't be able to see.
+
+1487
+01:15:37,776 --> 01:15:40,580
+You can click through the
+world and see all the other
+
+1488
+01:15:40,580 --> 01:15:44,490
+like interior parts of the
+world because you've basically
+
+1489
+01:15:44,490 --> 01:15:47,430
+gone beyond the surface
+normal of that polygon,
+
+1490
+01:15:47,430 --> 01:15:51,330
+and you're only seeing
+the from that perspective
+
+1491
+01:15:51,330 --> 01:15:56,110
+all the surface normals of polygons that
+are facing in your direction in that
+
+1492
+01:15:56,110 --> 01:15:56,610
+way.
+
+1493
+01:15:56,610 --> 01:15:59,010
+But often, it will allow you
+to look straight through all
+
+1494
+01:15:59,010 --> 01:16:02,340
+of the other sort of cubes
+that are along the way
+
+1495
+01:16:02,340 --> 01:16:06,060
+because you're looking at all the
+inverse of their surface normal,
+
+1496
+01:16:06,060 --> 01:16:07,800
+you're looking in that direction.
+
+1497
+01:16:07,800 --> 01:16:12,390
+And so, again, only one direction
+can a polygon be lit at once.
+
+1498
+01:16:12,390 --> 01:16:15,450
+And even if we look at it from
+the top, you can see that as well.
+
+1499
+01:16:15,450 --> 01:16:18,930
+We're looking at it from
+the top, flip the normals,
+
+1500
+01:16:18,930 --> 01:16:23,790
+it becomes a convex 3D object.
+
+1501
+01:16:23,790 --> 01:16:26,340
+Flip them, now it's an
+interior level, right?
+
+1502
+01:16:26,340 --> 01:16:29,354
+So I'm actually going to go into this.
+
+1503
+01:16:29,354 --> 01:16:31,020
+And I'm going to flip the normals again.
+
+1504
+01:16:31,020 --> 01:16:34,010
+I'm going to click on this.
+
+1505
+01:16:34,010 --> 01:16:39,510
+I have to click on a lot of these,
+actually, because it split up the mesh.
+
+1506
+01:16:39,510 --> 01:16:41,280
+But it's going to be easy enough.
+
+1507
+01:16:41,280 --> 01:16:43,352
+I'm clicking all the
+top services of this,
+
+1508
+01:16:43,352 --> 01:16:45,810
+making sure I didn't get any
+on the other side on accident.
+
+1509
+01:16:45,810 --> 01:16:47,100
+I did not.
+
+1510
+01:16:47,100 --> 01:16:53,040
+I'm going to extrude this, and then
+I'm going to flip all the normals,
+
+1511
+01:16:53,040 --> 01:16:56,580
+and then I'm going to take my
+FPS controller, which is here,
+
+1512
+01:16:56,580 --> 01:16:59,000
+and actually I think it's
+already inside, which it is.
+
+1513
+01:16:59,000 --> 01:17:00,730
+I'm going to hit play.
+
+1514
+01:17:00,730 --> 01:17:04,304
+The lighting, I'm not sure
+if it will be messed up.
+
+1515
+01:17:04,304 --> 01:17:07,470
+It is messed up because it is in the
+middle of calculating a bunch of stuff,
+
+1516
+01:17:07,470 --> 01:17:11,970
+but now I've created an interior level
+with the weird mesh that I had before.
+
+1517
+01:17:11,970 --> 01:17:18,889
+And so, if you make the building
+of your level this concave thing
+
+1518
+01:17:18,889 --> 01:17:21,680
+and then you flip all the normals,
+you can create an interior scene
+
+1519
+01:17:21,680 --> 01:17:23,960
+very easily with ceiling
+and everything else.
+
+1520
+01:17:23,960 --> 01:17:26,251
+Normally otherwise, it'd be
+kind of a pain in the butt.
+
+1521
+01:17:26,251 --> 01:17:30,170
+But it makes it super easy
+to do with ProBuilder.
+
+1522
+01:17:30,170 --> 01:17:33,800
+And there's a lot of other
+features, a material editor for one.
+
+1523
+01:17:33,800 --> 01:17:37,969
+So with the material editor, you can
+actually designate specific materials.
+
+1524
+01:17:37,969 --> 01:17:40,010
+In this case, I've created
+a couple of materials.
+
+1525
+01:17:40,010 --> 01:17:44,270
+A brick texture here, and a marble
+texture, which I took some textures,
+
+1526
+01:17:44,270 --> 01:17:48,020
+created material, made the albedo
+component of those materials
+
+1527
+01:17:48,020 --> 01:17:50,040
+that texture.
+
+1528
+01:17:50,040 --> 01:17:53,270
+And what that allows me to do is
+I can select an arbitrary face.
+
+1529
+01:17:53,270 --> 01:17:56,030
+So in this case, I'm going
+to choose these faces.
+
+1530
+01:17:56,030 --> 01:17:58,580
+And I can just click
+on this brick texture.
+
+1531
+01:17:58,580 --> 01:18:01,760
+And now, these are
+textured as that brick.
+
+1532
+01:18:01,760 --> 01:18:03,650
+It's not applying it to
+the entire mesh, it's
+
+1533
+01:18:03,650 --> 01:18:07,310
+just applying it to whatever
+specific face that we want to.
+
+1534
+01:18:07,310 --> 01:18:09,860
+And there's a UV editor, which
+will allow to actually take
+
+1535
+01:18:09,860 --> 01:18:12,870
+the mesh of your model.
+
+1536
+01:18:12,870 --> 01:18:15,320
+In this case, this is
+our entire mesh here.
+
+1537
+01:18:15,320 --> 01:18:17,480
+Just remember, as we
+talked about it last week,
+
+1538
+01:18:17,480 --> 01:18:19,850
+everything gets cut out and made flat.
+
+1539
+01:18:19,850 --> 01:18:21,062
+So you can sort of see--
+
+1540
+01:18:21,062 --> 01:18:23,270
+if you remember the shape
+of what we're dealing with,
+
+1541
+01:18:23,270 --> 01:18:31,910
+all the polygons that
+comprised weird, large object.
+
+1542
+01:18:31,910 --> 01:18:37,370
+They're all now splayed out for us, so
+we can just very easily take a texture
+
+1543
+01:18:37,370 --> 01:18:40,400
+and put it wherever we want on here.
+
+1544
+01:18:40,400 --> 01:18:46,230
+Now I don't have a ton
+of experience using this,
+
+1545
+01:18:46,230 --> 01:18:49,841
+so I'm not 100% confident in my ability
+to UV map something right now in front
+
+1546
+01:18:49,841 --> 01:18:50,340
+of you.
+
+1547
+01:18:50,340 --> 01:18:55,060
+But the documentation on
+the ProBuilder web site
+
+1548
+01:18:55,060 --> 01:18:56,800
+goes in the detail as
+to how to use this.
+
+1549
+01:18:56,800 --> 01:19:01,450
+So if you wanted say a specific
+texture to be in part of the mesh,
+
+1550
+01:19:01,450 --> 01:19:03,940
+and then maybe another texture
+to be another part of it
+
+1551
+01:19:03,940 --> 01:19:09,176
+in a specific welded way
+that's not splat onto it,
+
+1552
+01:19:09,176 --> 01:19:10,800
+the UV editor would help you with that.
+
+1553
+01:19:10,800 --> 01:19:13,300
+For example, a face on a
+character model or something else.
+
+1554
+01:19:13,300 --> 01:19:15,940
+
+
+1555
+01:19:15,940 --> 01:19:19,150
+Or maybe like a sign on a door
+somewhere, or something like that.
+
+1556
+01:19:19,150 --> 01:19:22,900
+You can do that all here, just
+click and drag all the faces.
+
+1557
+01:19:22,900 --> 01:19:25,720
+The faces are actually entered
+dependent from one another
+
+1558
+01:19:25,720 --> 01:19:29,110
+so that you can lay them out in a
+way that fits the texture that you
+
+1559
+01:19:29,110 --> 01:19:32,710
+are trying to map everything to.
+
+1560
+01:19:32,710 --> 01:19:36,320
+That is ProBuilder in a nutshell.
+
+1561
+01:19:36,320 --> 01:19:38,080
+There's a lot of features.
+
+1562
+01:19:38,080 --> 01:19:40,580
+We don't have time to cover all of them.
+
+1563
+01:19:40,580 --> 01:19:42,590
+And I mean, frankly, I
+just don't know of all
+
+1564
+01:19:42,590 --> 01:19:46,420
+of them super well yet just
+because the technology is so new.
+
+1565
+01:19:46,420 --> 01:19:50,530
+But I think this is going to be
+a huge part of Unity's future
+
+1566
+01:19:50,530 --> 01:19:53,980
+and making it accessible for people
+that would otherwise have maybe
+
+1567
+01:19:53,980 --> 01:19:57,610
+been turned off by the idea of modeling
+their level geometry or their object
+
+1568
+01:19:57,610 --> 01:19:58,990
+geometry.
+
+1569
+01:19:58,990 --> 01:20:02,710
+I mean, certainly for me, now this
+makes me want to make a game in Unity
+
+1570
+01:20:02,710 --> 01:20:06,910
+right now because I know I can
+instantly start creating my levels.
+
+1571
+01:20:06,910 --> 01:20:08,650
+It's just nice and easy and convenient.
+
+1572
+01:20:08,650 --> 01:20:12,100
+And ProGrids, you should
+definitely use ProGrids in tandem
+
+1573
+01:20:12,100 --> 01:20:16,420
+with ProBuilder so that you can
+optimally rearrange things in a way
+
+1574
+01:20:16,420 --> 01:20:20,390
+so that they're all evenly
+lined up with each other.
+
+1575
+01:20:20,390 --> 01:20:22,630
+Otherwise, you're going
+to end up with issues
+
+1576
+01:20:22,630 --> 01:20:26,020
+in manipulating their position
+in a very specific way
+
+1577
+01:20:26,020 --> 01:20:28,550
+and coming up here and
+setting their values manually.
+
+1578
+01:20:28,550 --> 01:20:30,850
+And that's just kind of
+a pain, so much easier
+
+1579
+01:20:30,850 --> 01:20:36,200
+just to snap everything to the grid,
+the ProGrids, and deal with it that way.
+
+1580
+01:20:36,200 --> 01:20:40,120
+And so, the assignment
+is largely just going
+
+1581
+01:20:40,120 --> 01:20:47,410
+to be take ProBuilder and ProGrids
+and just make a level with it.
+
+1582
+01:20:47,410 --> 01:20:50,530
+And then just take the principles that
+we've learned, create a controller,
+
+1583
+01:20:50,530 --> 01:20:55,180
+create a collider, and just
+make a very simple scene.
+
+1584
+01:20:55,180 --> 01:21:00,400
+And otherwise, probably spend your
+time focused on your final project.
+
+1585
+01:21:00,400 --> 01:21:05,800
+So any questions as to ProBuilder,
+how it works, how to get it set up?
+
+1586
+01:21:05,800 --> 01:21:06,486
+Yeah?
+
+1587
+01:21:06,486 --> 01:21:09,888
+AUDIENCE: So what would it look like--
+can a character actually stand on top
+
+1588
+01:21:09,888 --> 01:21:13,252
+of an object that had it's [INAUDIBLE]
+
+1589
+01:21:13,252 --> 01:21:13,960
+COLTON OGDEN: No.
+
+1590
+01:21:13,960 --> 01:21:17,290
+It should flip through it.
+
+1591
+01:21:17,290 --> 01:21:21,120
+Let me go ahead and put this up here.
+
+1592
+01:21:21,120 --> 01:21:25,330
+And actually I think it does
+still trigger collision,
+
+1593
+01:21:25,330 --> 01:21:30,760
+but you'll be able to see through the--
+
+1594
+01:21:30,760 --> 01:21:32,346
+AUDIENCE: It's just visual?
+
+1595
+01:21:32,346 --> 01:21:33,970
+COLTON OGDEN: Yeah, it's just a visual.
+
+1596
+01:21:33,970 --> 01:21:35,890
+It's just a visual bug,
+it's a lightning bug.
+
+1597
+01:21:35,890 --> 01:21:37,181
+The physics should still apply.
+
+1598
+01:21:37,181 --> 01:21:41,170
+I'm going to go ahead and
+set the model up here.
+
+1599
+01:21:41,170 --> 01:21:43,990
+
+
+1600
+01:21:43,990 --> 01:21:44,850
+OK.
+
+1601
+01:21:44,850 --> 01:21:45,350
+Hit play.
+
+1602
+01:21:45,350 --> 01:21:50,832
+
+
+1603
+01:21:50,832 --> 01:21:52,790
+No, actually it looked
+like it went through it.
+
+1604
+01:21:52,790 --> 01:21:59,840
+So it also inverts the collision box.
+
+1605
+01:21:59,840 --> 01:22:03,290
+I've seen some games where
+you can clip through something
+
+1606
+01:22:03,290 --> 01:22:05,204
+and still collide with it.
+
+1607
+01:22:05,204 --> 01:22:08,120
+So I think it depends on, ultimately,
+the engine or the implementation
+
+1608
+01:22:08,120 --> 01:22:09,230
+that you're using.
+
+1609
+01:22:09,230 --> 01:22:14,630
+But in this case, when you flip the
+surface normals here of this mesh,
+
+1610
+01:22:14,630 --> 01:22:18,074
+it also flips the mesh
+collider's normals.
+
+1611
+01:22:18,074 --> 01:22:18,574
+Yeah?
+
+1612
+01:22:18,574 --> 01:22:21,466
+AUDIENCE: The obvious thing
+to do would be copy it,
+
+1613
+01:22:21,466 --> 01:22:24,334
+size it up a liitle bit,
+and then not [INAUDIBLE] it.
+
+1614
+01:22:24,334 --> 01:22:27,250
+And then you would have kind of an
+inner and outer layer [INAUDIBLE]..
+
+1615
+01:22:27,250 --> 01:22:28,499
+COLTON OGDEN: Precisely, yeah.
+
+1616
+01:22:28,499 --> 01:22:33,560
+If you wanted, you could
+make a copy of the interior.
+
+1617
+01:22:33,560 --> 01:22:37,170
+You'd make it the same size, I suppose.
+
+1618
+01:22:37,170 --> 01:22:41,360
+And then not flip it's normals such
+that you have a shell and an interior.
+
+1619
+01:22:41,360 --> 01:22:44,640
+Yeah, absolutely.
+
+1620
+01:22:44,640 --> 01:22:47,270
+Yeah, it depends.
+
+1621
+01:22:47,270 --> 01:22:51,670
+A lot of interior levels, you will never
+ever be outside of their boundaries.
+
+1622
+01:22:51,670 --> 01:22:53,430
+And so you don't often
+see that happening,
+
+1623
+01:22:53,430 --> 01:22:56,092
+but it's very much the case that
+you could have that happening.
+
+1624
+01:22:56,092 --> 01:22:58,550
+And if you have like a house
+model, for example, then yeah.
+
+1625
+01:22:58,550 --> 01:23:03,810
+You'll actually see hosue models are
+modeled with walls that are two planes,
+
+1626
+01:23:03,810 --> 01:23:05,160
+so there's a bit of thickness.
+
+1627
+01:23:05,160 --> 01:23:08,400
+It's actually a rectangular
+shape, so it allows
+
+1628
+01:23:08,400 --> 01:23:13,750
+you to have a collision on
+one side and another side
+
+1629
+01:23:13,750 --> 01:23:18,640
+because there's two
+planes of the collider,
+
+1630
+01:23:18,640 --> 01:23:23,610
+rather than just the single plane, which
+is the direction of the surface normal.
+
+1631
+01:23:23,610 --> 01:23:25,240
+Any further questions on ProBuilder?
+
+1632
+01:23:25,240 --> 01:23:25,740
+Yeah?
+
+1633
+01:23:25,740 --> 01:23:28,230
+AUDIENCE: So how come you can
+[INAUDIBLE] through the ceiling
+
+1634
+01:23:28,230 --> 01:23:29,271
+but not through the door.
+
+1635
+01:23:29,271 --> 01:23:30,720
+Is there [INAUDIBLE] in the top?
+
+1636
+01:23:30,720 --> 01:23:33,553
+COLTON OGDEN: Because the bottom's
+surface normal is pointed upward.
+
+1637
+01:23:33,553 --> 01:23:36,180
+So this right here is pointed upwards.
+
+1638
+01:23:36,180 --> 01:23:40,204
+But notice that here, the surface
+normal is actually pointed down.
+
+1639
+01:23:40,204 --> 01:23:42,870
+So you can only collide with the
+direction of the surface normal
+
+1640
+01:23:42,870 --> 01:23:46,680
+that's facing you, if that makes sense.
+
+1641
+01:23:46,680 --> 01:23:50,970
+You can walk towards the
+direction of the surface normal,
+
+1642
+01:23:50,970 --> 01:23:54,610
+but not against the surface
+normal, if that makes sense.
+
+1643
+01:23:54,610 --> 01:23:58,670
+That's the way that Unity calculates
+its mesh renderer component.
+
+1644
+01:23:58,670 --> 01:24:00,669
+AUDIENCE: Well, there's
+also left and the right.
+
+1645
+01:24:00,669 --> 01:24:05,052
+So the left is-- can you go
+through on the left to the right?
+
+1646
+01:24:05,052 --> 01:24:08,230
+COLTON OGDEN: You could go
+through from this direction,
+
+1647
+01:24:08,230 --> 01:24:11,170
+but you could not go
+through this direction.
+
+1648
+01:24:11,170 --> 01:24:14,986
+Because this direction, the
+surface normal is pointed this way,
+
+1649
+01:24:14,986 --> 01:24:17,860
+so if we try to walk against it,
+we'll be walking against the normal.
+
+1650
+01:24:17,860 --> 01:24:21,790
+And so, we will trigger a collision.
+
+1651
+01:24:21,790 --> 01:24:24,070
+But if you're walking through
+it in such that you're
+
+1652
+01:24:24,070 --> 01:24:26,290
+going the same direction
+as the surface normal,
+
+1653
+01:24:26,290 --> 01:24:31,190
+so if you're coming from this direction
+then it won't detect a collision.
+
+1654
+01:24:31,190 --> 01:24:32,280
+Does that make sense?
+
+1655
+01:24:32,280 --> 01:24:34,020
+Yeah.
+
+1656
+01:24:34,020 --> 01:24:36,480
+What Tany suggested, which
+was to make a shell around it,
+
+1657
+01:24:36,480 --> 01:24:37,780
+would solve that problem.
+
+1658
+01:24:37,780 --> 01:24:42,390
+So if we created this exact mesh,
+duplicated it, and then inverted it,
+
+1659
+01:24:42,390 --> 01:24:44,310
+then we would have two
+of the same object,
+
+1660
+01:24:44,310 --> 01:24:46,800
+but with normals going one
+direction and normals going
+
+1661
+01:24:46,800 --> 01:24:49,950
+the other direction such
+that the mesh renderers
+
+1662
+01:24:49,950 --> 01:24:53,080
+account for both potential
+movement directions.
+
+1663
+01:24:53,080 --> 01:24:54,381
+Cool.
+
+1664
+01:24:54,381 --> 01:24:54,880
+All right.
+
+1665
+01:24:54,880 --> 01:24:57,920
+Any further questions on ProBuilder?
+
+1666
+01:24:57,920 --> 01:25:00,050
+Again, not meant to be a
+comprehensive tutorial.
+
+1667
+01:25:00,050 --> 01:25:04,940
+There's videos and documentation
+that I've linked to in the slides,
+
+1668
+01:25:04,940 --> 01:25:08,900
+but more just to illustrate
+how awesome this tool is really
+
+1669
+01:25:08,900 --> 01:25:12,380
+and that this is probably
+going to save some people doing
+
+1670
+01:25:12,380 --> 01:25:20,840
+Unity projects in time if you're doing
+any asset modeling or level modeling.
+
+1671
+01:25:20,840 --> 01:25:23,510
+Another thing that--
+
+1672
+01:25:23,510 --> 01:25:27,320
+I didn't make a slide for it,
+but which I talked about in class
+
+1673
+01:25:27,320 --> 01:25:29,000
+was Shader Graph.
+
+1674
+01:25:29,000 --> 01:25:34,440
+And so, a Shader Graph is
+another 2018.1 feature,
+
+1675
+01:25:34,440 --> 01:25:38,000
+which allows rather than
+having to write shaders
+
+1676
+01:25:38,000 --> 01:25:43,970
+in Shader Lab, which is Unity's
+shader language, which can be quite
+
+1677
+01:25:43,970 --> 01:25:46,790
+an experience, quite intimidating.
+
+1678
+01:25:46,790 --> 01:25:50,804
+You can actually create them now with
+this node based programming language--
+
+1679
+01:25:50,804 --> 01:25:52,970
+not really programming
+language, but this node based
+
+1680
+01:25:52,970 --> 01:25:55,490
+programming environment, I should say.
+
+1681
+01:25:55,490 --> 01:25:58,970
+Which will allow you to choose
+all these preset nodes that
+
+1682
+01:25:58,970 --> 01:26:01,280
+influence the shader's behavior.
+
+1683
+01:26:01,280 --> 01:26:03,770
+And there's a lot of different kinds.
+
+1684
+01:26:03,770 --> 01:26:08,960
+And have the result of that be you can
+see your shader every step of the way,
+
+1685
+01:26:08,960 --> 01:26:11,750
+so the shader is just a series
+of transformations going
+
+1686
+01:26:11,750 --> 01:26:15,680
+from left to right in one direction.
+
+1687
+01:26:15,680 --> 01:26:17,510
+All of these
+transformations, you can see
+
+1688
+01:26:17,510 --> 01:26:21,860
+how they end up accumulating
+to produce this final effect.
+
+1689
+01:26:21,860 --> 01:26:22,930
+In which case here--
+
+1690
+01:26:22,930 --> 01:26:29,570
+if it maybe kind of hard to dicern,
+is a marine guy with these blue holes
+
+1691
+01:26:29,570 --> 01:26:31,940
+that are actually masking his mesh.
+
+1692
+01:26:31,940 --> 01:26:33,710
+And we talked about masking earlier.
+
+1693
+01:26:33,710 --> 01:26:39,320
+This shader itself looks like it's
+applying a mask with this noise that
+
+1694
+01:26:39,320 --> 01:26:40,130
+is generating.
+
+1695
+01:26:40,130 --> 01:26:43,730
+And it comes with noise generation
+functions, generation nodes,
+
+1696
+01:26:43,730 --> 01:26:47,570
+which will allow you to feed those
+into the mass component of your shader
+
+1697
+01:26:47,570 --> 01:26:49,910
+and then produce some very
+interesting cool effects.
+
+1698
+01:26:49,910 --> 01:26:53,060
+Otherwise, this would be kind of--
+
+1699
+01:26:53,060 --> 01:26:58,070
+unless you're a shader expert, which I
+am not, it would be pretty complicated
+
+1700
+01:26:58,070 --> 01:27:01,190
+and non-trivial to implement
+something like this with just code.
+
+1701
+01:27:01,190 --> 01:27:03,710
+But this generates code for
+you, such that you don't
+
+1702
+01:27:03,710 --> 01:27:06,984
+have to actually write any code at all.
+
+1703
+01:27:06,984 --> 01:27:08,900
+But you can still see
+the produced shader that
+
+1704
+01:27:08,900 --> 01:27:12,590
+gets created for you from shader graph.
+
+1705
+01:27:12,590 --> 01:27:17,514
+I believe that it's just a
+asset now, I'm not 100% sure.
+
+1706
+01:27:17,514 --> 01:27:18,680
+I didn't test this going in.
+
+1707
+01:27:18,680 --> 01:27:25,960
+
+
+1708
+01:27:25,960 --> 01:27:28,120
+Hopefully, I'm not just missing it.
+
+1709
+01:27:28,120 --> 01:27:30,880
+Supposedly, you should be
+able to just import it.
+
+1710
+01:27:30,880 --> 01:27:31,690
+I'm not 100%.
+
+1711
+01:27:31,690 --> 01:27:36,640
+Let's see how you actually-- it
+said this article maybe uses it.
+
+1712
+01:27:36,640 --> 01:27:37,660
+Via the Package Manger.
+
+1713
+01:27:37,660 --> 01:27:40,480
+
+
+1714
+01:27:40,480 --> 01:27:43,580
+I think this is a new
+Window Package Manager.
+
+1715
+01:27:43,580 --> 01:27:47,165
+So we to Window and
+then Package Manager.
+
+1716
+01:27:47,165 --> 01:27:51,420
+
+
+1717
+01:27:51,420 --> 01:27:52,800
+And then all.
+
+1718
+01:27:52,800 --> 01:27:56,280
+
+
+1719
+01:27:56,280 --> 01:27:57,290
+And then Shader Graph.
+
+1720
+01:27:57,290 --> 01:27:57,790
+Yeah.
+
+1721
+01:27:57,790 --> 01:27:58,460
+So right here.
+
+1722
+01:27:58,460 --> 01:28:02,190
+So Window, and then Package
+Manager, and then Shader Graph
+
+1723
+01:28:02,190 --> 01:28:07,470
+and that will allow
+you to import the means
+
+1724
+01:28:07,470 --> 01:28:11,970
+by which I create these
+graph layouts if you're using
+
+1725
+01:28:11,970 --> 01:28:14,920
+2018.1, which the course is using.
+
+1726
+01:28:14,920 --> 01:28:21,630
+But if you're at home and you're
+using 2017.4, then update to 2018.1,
+
+1727
+01:28:21,630 --> 01:28:24,510
+and you should see this
+in your package manager.
+
+1728
+01:28:24,510 --> 01:28:26,700
+And then once you do
+that, you can actually
+
+1729
+01:28:26,700 --> 01:28:28,440
+create a new Shader Graph object.
+
+1730
+01:28:28,440 --> 01:28:31,440
+And then you'll see it as a new
+window that pops up in your scene,
+
+1731
+01:28:31,440 --> 01:28:33,690
+and then you can start adding nodes.
+
+1732
+01:28:33,690 --> 01:28:36,230
+I don't have any
+material prepared for it,
+
+1733
+01:28:36,230 --> 01:28:38,550
+and I didn't anticipate
+talking about it necessarily,
+
+1734
+01:28:38,550 --> 01:28:41,642
+but it's something that seems
+to be very game changing.
+
+1735
+01:28:41,642 --> 01:28:44,100
+And it's something that Unreal
+has had for a long time that
+
+1736
+01:28:44,100 --> 01:28:46,980
+sort of differentiated it
+from Unity, in my opinion.
+
+1737
+01:28:46,980 --> 01:28:49,650
+And I think a very
+valuable thing that they've
+
+1738
+01:28:49,650 --> 01:28:55,050
+added that shows a lot of
+awesome progress for 2018.
+
+1739
+01:28:55,050 --> 01:28:59,430
+So, again, a link to
+Braxis if you want details
+
+1740
+01:28:59,430 --> 01:29:03,600
+on how to use-- not
+only ProBuilder ProGrid,
+
+1741
+01:29:03,600 --> 01:29:06,870
+but a lot of other awesome features of
+Unity and to do a lot of cool stuff.
+
+1742
+01:29:06,870 --> 01:29:09,050
+He makes some really cool videos.
+
+1743
+01:29:09,050 --> 01:29:14,100
+Assignment 10, so assignment 10 is going
+to be creating a level with ProBuilder
+
+1744
+01:29:14,100 --> 01:29:16,680
+just to get your hands wet with it.
+
+1745
+01:29:16,680 --> 01:29:18,930
+The level should be pretty complex.
+
+1746
+01:29:18,930 --> 01:29:24,030
+So like I said earlier, not
+like a finished game level.
+
+1747
+01:29:24,030 --> 01:29:27,490
+I'm not expecting you to do
+awesome, amazing, incredible things.
+
+1748
+01:29:27,490 --> 01:29:31,470
+But a level that has maybe a few
+pieces of interesting geometry,
+
+1749
+01:29:31,470 --> 01:29:34,840
+maybe generate some stairs, has
+some pipes you can generate,
+
+1750
+01:29:34,840 --> 01:29:37,890
+and some other things.
+
+1751
+01:29:37,890 --> 01:29:39,660
+Have a jumping puzzle in there.
+
+1752
+01:29:39,660 --> 01:29:42,570
+So this says there should be one
+jumping puzzle for the player,
+
+1753
+01:29:42,570 --> 01:29:44,520
+the assignment doesn't
+officially say it yet,
+
+1754
+01:29:44,520 --> 01:29:46,440
+but I'm going to make
+a change to make it say
+
+1755
+01:29:46,440 --> 01:29:48,023
+that there should be a jumping puzzle.
+
+1756
+01:29:48,023 --> 01:29:52,020
+You can interpret this however you want,
+just a couple of platforms is fine.
+
+1757
+01:29:52,020 --> 01:29:56,100
+But honestly, whatever you would like.
+
+1758
+01:29:56,100 --> 01:29:58,320
+And have two different
+textures or materials.
+
+1759
+01:29:58,320 --> 01:30:02,200
+So you can just import
+whatever texture you want,
+
+1760
+01:30:02,200 --> 01:30:06,220
+or you can go to a website that allows
+you to procedure the create a texture.
+
+1761
+01:30:06,220 --> 01:30:08,700
+And you can assign it
+to a material, put it
+
+1762
+01:30:08,700 --> 01:30:10,920
+in the material editor of
+ProBuilder, and then use
+
+1763
+01:30:10,920 --> 01:30:15,730
+that to assign it to a face or to
+the whole object, if you want to.
+
+1764
+01:30:15,730 --> 01:30:17,962
+But there should be at
+least two, not the default,
+
+1765
+01:30:17,962 --> 01:30:19,420
+so to make it a little interesting.
+
+1766
+01:30:19,420 --> 01:30:23,590
+You can use many more if you want
+to, but only two are required.
+
+1767
+01:30:23,590 --> 01:30:26,370
+So this should be kind
+of like a complete scene.
+
+1768
+01:30:26,370 --> 01:30:30,000
+So make a new scene separate
+from the ProBuilder scene,
+
+1769
+01:30:30,000 --> 01:30:33,660
+separate from the "Portal"
+scene, include an FPS controller
+
+1770
+01:30:33,660 --> 01:30:37,200
+so that we can move around the scene
+immediately after creating the mesh,
+
+1771
+01:30:37,200 --> 01:30:39,737
+right?
+
+1772
+01:30:39,737 --> 01:30:41,820
+But that said, you can use
+the default controller.
+
+1773
+01:30:41,820 --> 01:30:43,320
+You don't need to do anything fancy.
+
+1774
+01:30:43,320 --> 01:30:46,050
+And then at the very end, you
+should have a trigger on a collider
+
+1775
+01:30:46,050 --> 01:30:48,330
+somewhere, which can be invisible.
+
+1776
+01:30:48,330 --> 01:30:51,205
+It doesn't have to be invisible,
+you can make this whatever you want.
+
+1777
+01:30:51,205 --> 01:30:52,780
+You can make like an arch or--
+
+1778
+01:30:52,780 --> 01:30:54,390
+I don't know.
+
+1779
+01:30:54,390 --> 01:30:57,370
+You're free to use your
+imagination as much as you want,
+
+1780
+01:30:57,370 --> 01:31:01,590
+but there needs to be some collider,
+whether it's invisible or not
+
+1781
+01:31:01,590 --> 01:31:02,489
+at the very end.
+
+1782
+01:31:02,489 --> 01:31:05,280
+And there needs to be a trigger,
+and then when you collide with it,
+
+1783
+01:31:05,280 --> 01:31:07,710
+it should say, "Level
+Complete" on the screen.
+
+1784
+01:31:07,710 --> 01:31:12,930
+So just take a text object from
+Unity 2D, part of the canvas.
+
+1785
+01:31:12,930 --> 01:31:15,915
+If you just add a UI
+text in the scene, it
+
+1786
+01:31:15,915 --> 01:31:19,800
+will automatically add a canvas
+and an event system for you.
+
+1787
+01:31:19,800 --> 01:31:22,079
+Create the label, and then
+just set it on or off,
+
+1788
+01:31:22,079 --> 01:31:24,620
+depending on whether or not
+you've collided with the trigger.
+
+1789
+01:31:24,620 --> 01:31:30,030
+There is code for this in the helicopter
+game in the "Game Over" text script.
+
+1790
+01:31:30,030 --> 01:31:32,400
+You can see exactly how this is done.
+
+1791
+01:31:32,400 --> 01:31:37,830
+All it effectively is setting the
+color of the text to 0000 vs 0001,
+
+1792
+01:31:37,830 --> 01:31:40,920
+or whatever color you want to
+effectively just to change on the alpha
+
+1793
+01:31:40,920 --> 01:31:43,560
+component of the text color.
+
+1794
+01:31:43,560 --> 01:31:46,420
+And then once that's done, then
+you have a complete assignment.
+
+1795
+01:31:46,420 --> 01:31:48,240
+And then you can spend more energy.
+
+1796
+01:31:48,240 --> 01:31:51,480
+Hopefully, this should only
+take maybe an hour, maybe less.
+
+1797
+01:31:51,480 --> 01:31:57,429
+You can spend more energy on your final
+project, which will be due on the 11th.
+
+1798
+01:31:57,429 --> 01:32:00,220
+But altogether, it's been an awesome
+pleasure teaching this course.
+
+1799
+01:32:00,220 --> 01:32:03,600
+And I hope that a lot of you were able
+to learn a lot of interesting things
+
+1800
+01:32:03,600 --> 01:32:06,270
+and hopefully were inspired to
+create some of your own projects
+
+1801
+01:32:06,270 --> 01:32:10,290
+and will continue to create some
+of your own products in the future.
+
+1802
+01:32:10,290 --> 01:32:13,630
+I certainly enjoyed making a lot of
+the stuff, especially "Super Mario
+
+1803
+01:32:13,630 --> 01:32:14,130
+Brothers."
+
+1804
+01:32:14,130 --> 01:32:15,720
+I think that was my favorite.
+
+1805
+01:32:15,720 --> 01:32:17,970
+But this was GD50.
+
+1806
+01:32:17,970 --> 01:32:20,720
+So thank you so much.
+
+1807
+01:32:20,720 --> 01:32:22,161
