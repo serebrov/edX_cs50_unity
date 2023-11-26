@@ -522,3 +522,169 @@ The maze count is in the left top corner.
 There is a typo in the specification:
 "The LevelGenerator script will be the place to look here; ..., so best to take a look at where the blocks are being insantiated ..,.".
 "insantiated" should be "instantiated"
+
+# Lecture 9: Portal
+
+Parenting:
+The gun is attached to the FPS controller as a child.
+In this case Unity automatically applies all transforms of the parent (FPS character) to the gun, so it moves along with the character.
+
+Raycasting:
+Part of the physics namespace, part of the scripting API.
+We have a start point as a source and give a vector as a direction. We can use Transform.forward to specify a direction that takes current X and Y and make a vector along the Z, so if we are at the camera we have a vector pointing to the direction we are looking at.
+As a result we get a point where that ray intersects with something.
+
+Unity has a function `Debug.DrawRay` to show rays in the editor view (this is a debug function, it only applies to the editor).
+We can attach it to, for example, PortalGun object, start the game and see in the editor view where rays are casted.
+See [./portal_10/Assets/Scripts/DebugRay.cs](Assets/Scripts/DebugRay.cs) - the behavior that enables ray debugging on update.
+
+In the game, we use `Physics.Raycast` in the [./portal_10/Assets/Scripts/PortalGun.cs](Assets/Scripts/PortalGun.cs) to find where to put the portal:
+
+```csharp
+void FirePortal(string type) {
+
+	// struct object that will hold our raycast information
+	RaycastHit hit;
+
+	// if we collide with an object with our raycast, spawn a portal there
+	if (Physics.Raycast(gunTip.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity)) {
+		portalSound.Play();
+		
+		// choose between the correct portals based on string input
+		GameObject portal = type == "orange" ? orangePortal : bluePortal;
+
+		// set the portal to the same position as the raycast point, and set
+		// its rotation to orient to the wall relative to what its "up" direction is,
+		// which is Vector.up in world space 
+		portal.transform.SetPositionAndRotation(hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+	} else {
+		errorSound.Play();
+	}
+}
+```
+
+To enable VR: edit - project settings - player - XR settings - virtual reality and, if you have a VR headset attached, it will work with the camera.
+
+RenderTexture: asset that we use for rendering.
+Portals are render textures.
+Initially they are rendered outsize the level space (can be seen in the editor).
+Create: right click in the Project view - Create - Render Texture.
+It is important to have good resolution for the render texture, so it does not look pixelated. In this demo we use 1024x1024 which should be good enough, but in a real game we would need to adjust it depending on the actual game resolution settings (that can be changed dynamically).
+
+We render camera view to render textures.
+There are two additional cameras attached to each portal.
+The camera object has target texture property, so we just specify the render texture in Unity editor to make it work: camera view is displayed on the render texture and we can see what that camera sees when we put the portal on the wall.
+
+Texture masking:
+We use it to make the portal to be oval, while it works based on the square render texture.
+So we have a square render texture and an oval mask applied to it.
+
+The mask is implemented as an image where white pixels represent areas that are rendered and black pixels represent parts that are not rendered and a masking shader [.portal_10/Assets/Shaders/MaskedTexture.shader](portal_10/Assets/Shaders/MaskedTexture.shader):
+
+```
+Shader "MaskedTexture"
+{
+   Properties
+   {
+      _MainTex ("Base (RGB)", 2D) = "white" {}
+      _Mask ("Culling Mask", 2D) = "white" {}
+   }
+   SubShader
+   {
+      Tags {"Queue"="Transparent"}
+      Lighting Off
+      ZWrite Off
+      Blend SrcAlpha OneMinusSrcAlpha
+      Pass
+      {
+         SetTexture [_Mask] {combine texture}
+         SetTexture [_MainTex] {combine texture, previous}
+      }
+   }
+}
+```
+
+See: http://wiki.unity3d.com/index.php?title=Texture_Mask
+
+Portals implementation
+See [.portal_10/Assets/Scripts/Portal.cs](portal_10/Assets/Scripts/Portal.cs):
+
+```csharp
+// Note: `other` is the player object.
+
+// cache player rotation to revert after teleport
+// Note: without it, if we fall through the portal in the floor,
+// players axis rotates in a way that instead of turning left and right,
+// mouse starts turning the room around, as if the player was an airplane
+// flying through it and we tilted the airplane left and right.
+float xRot = other.transform.rotation.x;
+float zRot = other.transform.rotation.z;
+
+// set the player's position and rotation to the other portal's
+other.transform.SetPositionAndRotation(linkedPortal.transform.position, 
+	Quaternion.identity);
+other.transform.rotation = linkedPortal.transform.parent.transform.rotation;
+
+// Y rotation from portal
+float yRot = other.transform.eulerAngles.y;
+
+// combine previously cached axes with new Y to get new rotation
+other.transform.eulerAngles = new Vector3(xRot, yRot, zRot);
+
+// override FPSController's mouse look caching
+other.GetComponent<FirstPersonController>().MouseReset();
+```
+
+## ProBuilder and ProGrid
+
+ProBuilder allows to model 3D objects directly in Unity editor (this is normally done in 3D rendering software like Blender).
+ProGrid adds a grid to the editor allowing to snap objects to it.
+
+The "Flip Normals" feature in ProBuilder allows to turn a 3D object into a "room" (so we can have a scene inside the room shaped as this object).
+
+Shadergraph: allows to model a shader with UI graph, connecting standard nodes, generates shader code (can be added via Window - Package Manager - Shadergraph).
+
+## Assignment 10
+
+
+- Create your own level in a new scene using ProBuilder and ProGrids!
+- Ensure that the level has an FPSController to navigate with in the scene.
+- Ensure that there is an object or region with a trigger at the very end that will trigger the end of the level (some zone with an invisible BoxCollider will work).
+- When the level ends, display “You Won!” on the screen with a Text object.
+
+Specification:
+
+- Create your own level in a new scene using ProBuilder and ProGrids! The distro should already have ProBuilder and ProGrids imported and ready for use, but just in case they aren’t, you can easily find them by searching in the Asset Store (where they are now free, thanks to Unity having acquired them!). There are many resources for learning how to use ProGrids effectively, but two resources in particular that are worth checking out are here and here, which should more than prepare you for creating a simple level.
+- Ensure that the level has an FPSController to navigate with in the scene. This part’s probably the easiest; just import an FPSController from the Standard Assets! It should already be imported into the project in the distro, where you can find the prefabs under Assets > Standard Assets > Characters > FirstPersonCharacter > Prefabs!
+- Ensure that there is an object or region with a trigger at the very end that will trigger the end of the level (some zone with an invisible BoxCollider will work). This one should be easy as well, just relying on the creation of an empty GameObject and giving it a BoxCollider component, which you can then resize via its resize button in the component inspector!
+- When the level ends, display “You Won!” on the screen with a Text object. Recall that OnTriggerEnter is the function you’ll need to write in a script you also associate with the BoxCollider trigger, and ensure that the BoxCollider is set to a trigger in the inspector as well! Then simply program the appropriate logic to toggle on the display of a Text object that you also include in your scene (for an example on how to do this, just see the Helicopter Game 3D project, specifically the GameOverText script)!
+
+
+## Submission
+
+Key points for the demo:
+
+* “You won” message
+
+Submission:
+
+```sh
+# git clone ssh://github.com/me50/serebrov.git
+cd serebrov
+git checkout main
+gco -b games50/projects/2018/x/portal
+cp -r ../unity_cs50/portal_10/* .
+git add .
+git commit -m "Jump puzzle submission"
+
+git push origin HEAD
+```
+
+Github link: https://github.com/me50/serebrov/blob/games50/projects/2018/x/portal/Assets/Scripts
+Youtube demo: https://youtu.be/M-IKvbcIRas
+
+Notes:
+* The player needs to go up the two blocks of stairs and jump down through the torus to win the level
+* There is a "catch" plane below the level: the player is teleported back to the start box on collision (so the level restarts when you fall down)
+* The default skybox was styled with "Wispy Skybox" asset (skybox material is assined in window - rendering - lightning settings - environment - skybox material)
+* There was a problem with mouse beign locked to left-right movements when building the game (but worked fine when starting the game in Unity editor). Turned out to be a second camera (the "Main Camera" object added to the new scene automatically). Removing the main camera solved the problem.
